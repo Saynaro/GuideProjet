@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+*{
+    font-family: "Inter",sans-serif;
+    
+}
+body{
+    background-color:#222222;
+    margin: 0;
+}
+.tous{
+    display: flex;
+    flex-direction: row;
+    
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 30%;
+    height: 100vh;
+}
+.edit {
+    position: absolute;
+    width: 20%;
+    color: white;
+    background-color: #0c0c0c;
+    border-style: none;
+    top: 10%;
+    left: 80%;
+    height: 5%;
+    border-radius: 8px;
+}
+.edit:hover{
+    cursor: pointer;
+    background-color: #222222;
+}
+.avatar{
+    border-radius: 50%;
+    position: fixed;
+    top: 30%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    height: 35%;
+    width: 17%;
+    z-index: 10;
+}
+.h2{
+    margin-bottom: 0;
+}
+.violet{ 
+    height: 30%;
+    background-color: blueviolet;
+}
+.sitename img{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border-radius: 0;
+    margin: 0;
+}
+
+.sitename{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 5px 0 5px 5px;
+    font-size: 24px;
+    width: 60%;
+    border-radius: 0 0 18px 0;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.sitename a{
+    text-decoration: none;
+    color: white;
+}
+.sitename img{
+    transition: transform 0.3s ease;
+}
+.sitename img:hover{
+    transform: scale(1.1);
+}
+
+
+.follow{
+    display: flex;
+    width: 80%;
+    height: 40px;
+    margin-left: 20px;
+    justify-content: center;
+    gap: 10px;
+}
+.follow button{
+    border-radius: 8px;
+    background-color: blueviolet;
+    color: white;
+    width: 40%;
+    border-style: none;
+}
+.follow button:hover{
+    background-color: rgb(153, 78, 224);
+    cursor: pointer;
+}
+.followers{
+    width: 60%;
+    background-color: #0c0c0c;
+    border-radius: 8px;
+    border: 1px solid blueviolet;
+    padding: 0;
+}
+.description{
+    font-size: 13px;
+    width: 80%;
+    background-color: #0c0c0c;
+    border-radius: 8px;
+    border: 1px solid blueviolet;
+    text-align: left;
+    margin: 20px;
+}
+.vide{
+    display: flex;
+    position: relative;
+    padding-bottom: 100px;
+}
+.noir{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    color: white;
+    text-align: center;
+    height: 70%;
+    padding-left: 30px;
+    background-color: #1a1919;
+    
+}
+.noir h2{
+    margin-bottom: 3px;
+}
+.reseau{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+    gap: 20px;
+    border-top: 2px solid gray;;
+}
+.reseau img{
+    border-radius: 0;
+    left: auto;
+    top: auto;
+    width: 35px;
+    height: 35px;
+    padding: 10px;
+}
+.icon{
+     transition: transform 0.3s ease;
+}
+.icon:hover{
+    transform: scale(1.2);
+}
+.right{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30%;
+    width: 70%;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.back_img{
+    justify-content: end;
+    display: flex;
+    width: 100%;
+}
+.bannier{
+    position: absolute;
+    width: 100%;
+    height: 45vh;
+}
+.nickname{
+    position: absolute;
+    display: flex;
+    padding: 5px 5px 5px 0;
+    gap: 10px;
+    font-size: 24px;
+    width: 20%;
+    justify-self: end;
+    border-radius: 0 0 0 8px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.nickname a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.nickname img{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+.nickname img:hover{
+    transform: scale(1.1);
+}
+.second{
+    position: relative;
+}
