@@ -49,6 +49,7 @@ body{
     transform: scale(1.1);
 }
 .nickname{
+    font-weight: bold;
     display: flex;
     justify-content: end;
     padding: 5px 5px 5px 0;
@@ -217,7 +218,7 @@ p{
     border-radius: 8px;
 }
 .game:hover{
-    transform: scale(1.01);
+    transform: scale(1.007);
 }
 .sousimg img{
     width: 20px;
@@ -248,7 +249,9 @@ p{
     border-radius: 0;
 }
 
-
+.pub img{
+    border-radius: 0;
+}
 .text{
     font-weight: bold;
     position: absolute;
@@ -306,7 +309,8 @@ p{
 }
 .icon{
      transition: transform 0.3s ease;
+     
 }
 .icon:hover{
-    transform: scale(1.3);
+    transform: scale(1.1);
 }

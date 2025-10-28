@@ -1,211 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 *{
     font-family: "Inter",sans-serif;
-    
 }
 body{
     background-color:#222222;
     margin: 0;
-    padding: 0;
-}
-.tous{
-    display: flex;
-    flex-direction: row;
-    
-}
-
-.left{
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    width: 30%;
-    height: 100vh;
-}
-.edit {
-    position: absolute;
-    width: 20%;
-    color: white;
-    background-color: #0c0c0c;
-    border-style: none;
-    top: 10%;
-    left: 80%;
-    height: 5%;
-    border-radius: 8px;
-}
-.edit:hover{
-    cursor: pointer;
-    background-color: #222222;
-}
-.avatar{
-    border-radius: 50%;
-    position: fixed;
-    top: 30%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-    height: 35%;
-    width: 17%;
-    z-index: 10;
-}
-.h2{
-    margin-bottom: 0;
-}
-.violet{ 
-    height: 30%;
-    background-color: blueviolet;
-}
-.sitename img{
-    position: relative;
-    width: 25px;
-    height: 25px;
-    border-radius: 0;
-    margin: 0;
-}
-
-.sitename{
-    font-weight: bold;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    padding: 5px 0 5px 5px;
-    font-size: 24px;
-    width: 60%;
-    border-radius: 0 0 18px 0;
-    height: 30px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-.sitename a{
-    text-decoration: none;
-    color: white;
-}
-.sitename a:hover{
-    color: rgb(185, 185, 185);
-}
-.sitename img{
-    transition: transform 0.3s ease;
-}
-.sitename img:hover{
-    transform: scale(1.1);
-}
-
-
-.follow{
-    display: flex;
-    width: 80%;
-    height: 40px;
-    margin-left: 20px;
-    justify-content: center;
-    gap: 10px;
-}
-.follow button{
-    height: 40px;
-    border-radius: 8px;
-    background-color: blueviolet;
-    color: white;
-    width: 40%;
-    border-style: none;
-}
-.follow button:hover{
-    background-color: rgb(153, 78, 224);
-    cursor: pointer;
-}
-.followers{
-    width: 60%;
-    height: 40px;
-    background-color: #0c0c0c;
-    border-radius: 8px;
-    border: 1px solid blueviolet;
-    padding: 0;
-}
-.description{
-    font-size: 12.5px;
-    width: 80%;
-    min-height: 150px;
-    max-height: 160px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    background-color: #0c0c0c;
-    border-radius: 8px;
-    border: 1px solid blueviolet;
-    text-align: left;
-    margin: 20px;
-}
-.description p{
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-.vide{
-    display: flex;
-    position: relative;
-    padding-bottom: 100px;
-}
-.noir{
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    color: white;
-    text-align: center;
-    height: 70%;
-    padding: 0 10px 0 30px;
-    background-color: #1a1919;
-    
-}
-.noir h2{
-    margin-bottom: 3px;
-}
-.reseau{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0 0 20px;
-    width: 100%;
-    gap: 20px;
-    border-top: 2px solid gray;;
-}
-.reseau img{
-    border-radius: 0;
-    left: auto;
-    top: auto;
-    width: 35px;
-    height: 35px;
-    padding: 10px;
-}
-.icon{
-     transition: transform 0.3s ease;
-}
-.icon:hover{
-    transform: scale(1.1);
-}
-.right{
-    margin-left: 30%;
-    width: 70%;
-    padding: 0;
-    
 }
 
 .back_img{
     display: flex;
-    position: relative;
-    justify-content: end;
-    display: flex;
-    height: 50vh;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
+    color: rgb(255, 255, 255);
+    height: 35vh;
+    margin: 0;
 }
-.bannier{
-    position: absolute;
+.back_img img{
     width: 100%;
+    height: 100%;
+}
+.haut{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: end;
 }
 .nickname{
-    position: absolute;
     display: flex;
+    justify-content: end;
     padding: 5px 5px 5px 0;
     gap: 10px;
     font-size: 24px;
-    width: 20%;
-    justify-self: end;
+    width: 15%;
     border-radius: 0 0 0 8px;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -213,21 +40,37 @@ body{
 .nickname a{
     text-decoration: none;
     color: rgb(255, 255, 255);
+    font-weight: 600;
 }
 .nickname a:hover{
-    color: rgb(153, 153, 153);
+    color: rgb(185, 185, 185);
+    transition: 0.3s;  
 }
 .nickname img{
     border-radius: 50%;
     width: 30px;
-    height: 30px;
     transition: transform 0.3s ease;
 }
 .nickname img:hover{
     transform: scale(1.1);
 }
-.second{
-    position: relative;
+
+.titre{
+    position: absolute;
+    height: 30%;
+    top: 5%;
+    left: 2%;
+}
+
+
+/* second containeur */
+
+.titre img{
+    width: 100%;
+    height: 100%;
+}
+p{
+    color: rgb(202, 202, 202);
 }
 form{
     display: flex;
@@ -250,9 +93,9 @@ form button:hover{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0 0 0 10px;
+    margin: 15px 10px 10px 20px;
     padding-bottom: 15px;
-    width: 98%;
+    width: 95%;
     border-bottom: 1px solid;
     border-bottom-color: darkgrey;
 }
@@ -309,13 +152,6 @@ form button:hover{
     width: 20%;
     height: 100%;
 }
-.sort{
-    width: 70px;
-}
-.sort img{
-    width: 50%;
-    height: 100%;
-}
 .arrond:hover{
     border-color: rgba(0, 0, 0, 0.1);
 }
@@ -327,79 +163,92 @@ form button:hover{
     padding-left: 10px;
     border-radius: 8px 0 0 8px;
 }
-.nombres{
-    margin-left: 20px;
-    
-    font-size: 14px;
-    color: white;
+p{
+    margin-left: 10px;
 }
 .show{
     display: flex;
-    padding-top: 10px;
+    font-size: 14px;
+    
 }
 .show_icon{
-    width: 30px;
-    height: 26px;
+    width: 25px;
+    height: 20px;
     margin: 10px 0 0 20px;
+    
 }
-.games_block{
+.container{
+    display: flex;
+    margin-top: 20px;
+    
+}
+.game_block{
+    width: 80%;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,1fr);
     gap: 20px;
-    padding: 0 30px 10px 20px;
+    padding: 0 30px 0 20px;
 }
-.games_block img{
+.game_block img{
     display: block;
     height: 100%;
     width: 100%;
     border-radius: 4px;
 }
-.game{
+.pub{
+    width: 12%;
+    margin: 0 20px 0 20px;
+}
+.pub img{
+    width: 100%;
     height: 100%;
-    aspect-ratio: 8/10;
+}
+.pub1 a {
+    width: 100%;
+    height: 100%;
+}
+.pub a:hover{
+    cursor: pointer;
+}
+.pub1{
+    background-color: rgb(22, 82, 161);
+    height: 49%;
+    margin-bottom: 20px;
+}
+
+.pub2{
+    background-color: rgb(39, 94, 167);
+    height: 50%;
+}
+
+.game{
+   height: 100%;
+    aspect-ratio: 3/4;
     border: 1px solid white;
     border-radius: 4px;
 
 
-    transition: all 0.4s ease;
+    transition: all 0.5s ease;
 }
 .game:hover{
     transform: scale(1.01);
 }
-
-
-
 .extra{
     max-height: 0;
-    
     padding: 0;
     opacity: 0;
     overflow: hidden ;
     transform: translateY(-50px);
-    pointer-events: auto;
-    
+    pointer-events: none;
 }
-
-
 
 .extra.show{
     max-height: 400px;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-}
-
-.extra.show img{
-        width: 120%;
-}
-
-.hidden:hover{
-    transform: scale(1.01);
-}
-.hidden img{
-    height: 100%;
-    width: 100%;
 }
 #view_more{
 
@@ -423,19 +272,22 @@ form button:hover{
 }
 
 
-    
+
+
+
+/* Footer */
+
+
 .footer{
-    position: relative;
+    position: absolute;
     width: 95%;
-    margin-left: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 50px 20px 0 20px;
+    margin: 50px 20px 20px 20px;
 }
 .liens{
-    font-size: 14px;
     width: 95%;
     display: flex;
     flex-direction: row;
@@ -456,7 +308,7 @@ form button:hover{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 80%;
+    width: 60%;
     gap: 50px;
     margin-bottom: 70px;
     border-top: 1px solid gray;;
@@ -471,4 +323,70 @@ form button:hover{
 }
 .icon:hover{
     transform: scale(1.1);
+}
+
+
+/* Differents ecrans */
+@media (max-width:768px) {
+    
+}
+
+
+
+@media (min-width: 769px) and (max-width: 1919px) {
+    
+}
+
+@media (min-width: 1920px) {
+    *{
+        font-size: 20px;
+    }
+    .pub1{
+        height: 803px;
+        width: 284px;
+    }
+    .pub2{
+        height: 803px;
+        width: 284px;
+    }
+    .game{
+        border-radius: 12px;
+        width: 350px;
+        height: 525px;
+        
+    }
+    .arrondi button{
+        height: 54px;
+        width: 189px;
+    }
+    .arrondi input{
+        height: 54px;
+        width: 421px;
+    }
+    .rond button{
+        width: 150px;
+        height: 54px;
+    }
+
+    .arrondi button{
+        width: 54px;
+        height: 54px;
+    }
+    .filter button{
+        width: 160px;
+        height: 54px;
+    }
+    .game img{
+        border-radius: 12px;
+    }
+    .container{
+        gap: 50px;
+    }
+    .titre{
+        height: 250px;
+    }
+    .back_img{
+        width: 100%;
+        height: 309px;
+    }
 }
