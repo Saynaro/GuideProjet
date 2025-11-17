@@ -13,7 +13,7 @@ body{
     justify-content: space-between;
     width: 100%;
     color: rgb(255, 255, 255);
-    height: 35vh;
+    height: 40vh;
     margin: 0;
 }
 .back_img img{
@@ -32,7 +32,7 @@ body{
     padding: 5px 5px 5px 0;
     gap: 10px;
     font-size: 24px;
-    width: 15%;
+    
     border-radius: 0 0 0 8px;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -353,11 +353,12 @@ p{
         border-radius: 12px;
         width: 350px;
         height: 525px;
+        margin-bottom: 10px ;
         
     }
-    .arrondi button{
+    .filter{
+        width: 163px;
         height: 54px;
-        width: 189px;
     }
     .arrondi input{
         height: 54px;
@@ -368,9 +369,12 @@ p{
         height: 54px;
     }
 
-    .arrondi button{
+    .search{
         width: 54px;
         height: 54px;
+    }
+    .search img{
+        width: 30px;
     }
     .filter button{
         width: 160px;

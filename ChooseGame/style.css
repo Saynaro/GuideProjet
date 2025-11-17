@@ -13,7 +13,7 @@ body{
     justify-content: space-between;
     width: 100%;
     color: rgb(255, 255, 255);
-    height: 50vh;
+    height: 40vh;
     margin: 0;
 }
 .back_img img{
@@ -36,7 +36,7 @@ body{
     width: 15%;
     border-radius: 0 0 16px 0;
     height: 30px;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 .sitename a{
     text-decoration: none;
@@ -50,38 +50,16 @@ body{
     transform: scale(1.05);
 }
 .nickname{
-    font-weight: bold;
     display: flex;
     justify-content: end;
-    
+    padding: 5px;
+    gap: 10px;
     font-size: 24px;
+    font-weight: bold;
     border-radius: 0 0 0 8px;
-
-    
-}
-.ajoute{
-    display: flex;
-    flex-direction: row;
-    background-color: rgba(0, 0, 0, 0.5);
-    height: 40px;
-    width: 90px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0 0 0 16px;
-}
-.nick{
-    display: flex;
-    align-items: center;
-    height: 32px;
-    padding-top: 2px;
-    gap: 5px;
-    background-color: rgba(0, 0, 0, 0.9);
-    margin-left: 0;
-    padding: 4px 5px 4px 10px;
-}
-
-.nick img{
     height: 30px;
+    background-color: rgba(0, 0, 0, 0.7);
+    
 }
 .nickname a{
     text-decoration: none;
@@ -99,8 +77,8 @@ body{
     position: absolute;
     width: 30%;
     height: 30%;
-    top: 23%;
-    left: -1%;
+    top: 6%;
+    left: 1%;
 }
 a{
     text-decoration: none;
@@ -117,6 +95,7 @@ a:hover{
 p{
     color: rgb(202, 202, 202);
 }
+
 form{
     display: flex;
     position: relative;
@@ -197,13 +176,7 @@ form button:hover{
     width: 20%;
     height: 100%;
 }
-.sort{
-    width: 70px;
-}
-.sort img{
-    width: 50%;
-    height: 100%;
-}
+
 .arrond:hover{
     border-color: rgba(0, 0, 0, 0.1);
 }
@@ -215,125 +188,42 @@ form button:hover{
     padding-left: 10px;
     border-radius: 8px 0 0 8px;
 }
-p{
-    margin-left: 20px;
-}
-.games_block{
-    display: flex;
-    width: 95%;
-    display: grid;
-    grid-template-columns: repeat(4, 21em);
-    grid-template-rows: repeat(3,250px);
-    gap: 50px 32px;
-    margin: 10px 20px 10px 20px;
-}
-.games_block img{
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-}
-.game{
-    transition: transform 0.3s ease;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-}
-.game:hover{
-    transform: scale(1.007);
-}
-.sousimg img{
-    width: 20px;
-    height: 20px;
-}
-.sousimg p{
-    margin: 0;
-}
-.avatar{
-    display: flex;
-}
-.avatar p{
-    padding-left: 2px;
-}
-.sousimg{
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 10px 0px 10px;
-}
-.pub{
-    grid-column: 4/5;
-    grid-row: 4/1;
-    width: 45%;
-    margin-left: 20px;
-    height: 90%;
-    background-color: rgb(0, 117, 126);
-    border: none;
-    border-radius: 0;
-}
 
-.pub img{
-    border-radius: 0;
-}
-.text{
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding-left: 2vw;
-    padding-bottom: 1vh;
-    padding-top: 2vh;
-    font-size: large;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 8px 8px 0 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.footer{
-    position: absolute;
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 100px 20px 20px 20px;
-}
-.liens{
-    width: 95%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 30px ;
-    border-top: 1px solid gray;
-    padding: 10px;
-}
-.liens a{
-    color: white;
-    text-decoration: none;
-}
-.liens a:hover{
-    color: rgb(153, 153, 153);
-}
-.reseau{
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 60%;
-    gap: 50px;
-    margin-bottom: 70px;
-    border-top: 1px solid gray;;
-}
-.reseau img{
-    width: 30px;
-    height: 30px;
-    padding-top: 20px;
-}
-.icon{
-     transition: transform 0.3s ease;
-     
-}
-.icon:hover{
-    transform: scale(1.1);
-}
+
+
+
+/* Slider */
+.swiper {
+      width: 80%;
+      max-width: 300px;
+      padding-top: 50px;
+      padding-bottom: 80px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 120px;
+      height: 200px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .swiper-slide-active {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white;
+    }
