@@ -2,14 +2,24 @@ const swiper = new Swiper(".swiper", {
       effect: "coverflow",
       grabCursor: true,
       centeredSlides: true,
+      initialSlide:2,
+      speed: 600,
+      preventClicks: true,
       slidesPerView: "auto",
-      loop: true,
       coverflowEffect: {
         rotate: 0,        // угол поворота карточек
-        stretch: 0,       // расстояние между ними
-        depth: 200,       // ГЛУБИНА (эффект отдаления)
-        modifier: 2,      // сила эффекта
+        stretch: 80,       // расстояние между ними
+        depth: 350,       // ГЛУБИНА (эффект отдаления)
+        modifier: 1,      // сила эффекта
         slideShadows: true,
+      },
+      on:{
+        click(event) {
+          swiper.slideTo(this.clickedIndex);
+        },
+      },
+      pagination:{
+        el: ".swiper-pagination",
       },
       navigation: {
         nextEl: ".swiper-button-next",
