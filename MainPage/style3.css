@@ -13,7 +13,7 @@ body{
     justify-content: space-between;
     width: 100%;
     color: rgb(255, 255, 255);
-    height: 40vh;
+    height: 35vh;
     margin: 0;
 }
 .back_img img{
@@ -29,13 +29,27 @@ body{
 .nickname{
     display: flex;
     justify-content: end;
-    padding: 5px 5px 5px 0;
-    gap: 10px;
     font-size: 24px;
     
     border-radius: 0 0 0 8px;
-    height: 30px;
+}
+.ajoute{
+    display: flex;
+    flex-direction: row;
     background-color: rgba(0, 0, 0, 0.5);
+    width: 90px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 0 16px;
+}
+.nick{
+    display: flex;
+    align-items: center;
+    height: 35px;
+    gap: 5px;
+    background-color: rgba(0, 0, 0, 0.9);
+    margin-left: 0;
+    padding: 4px 5px 4px 10px;
 }
 .nickname a{
     text-decoration: none;
@@ -46,9 +60,11 @@ body{
     color: rgb(185, 185, 185);
     transition: 0.3s;  
 }
+
 .nickname img{
     border-radius: 50%;
     width: 30px;
+    height: 30px;
     transition: transform 0.3s ease;
 }
 .nickname img:hover{
@@ -106,7 +122,7 @@ form button:hover{
 .rond button{
     border-radius: 30px;
     height: 40px;
-    width: 20vh;
+    width: 100px;
     cursor: pointer;
     border: none;
     background-color: #222222;
@@ -125,10 +141,14 @@ form button:hover{
 }
 .arrondi input,button{
     font-weight: bold;
-    height: 35px;
+    height: 34px;
     background-color: #0f0f0f;
     color: rgb(255, 255, 255);
     border-style: groove;
+}
+.arrondi input:focus{
+    border: 1px solid blueviolet;
+    height: 32px;
 }
 .arrondi button{
     cursor: pointer;
@@ -160,6 +180,7 @@ form button:hover{
     cursor: auto;
     border: none;
     outline: none;
+    width: 250px;
     padding-left: 10px;
     border-radius: 8px 0 0 8px;
 }
@@ -188,7 +209,7 @@ p{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,1fr);
-    gap: 20px;
+    gap: 25px;
     padding: 0 30px 0 20px;
 }
 .game_block img{
@@ -333,24 +354,204 @@ p{
 
 
 
-@media (min-width: 769px) and (max-width: 1919px) {
+@media (min-width: 769px) and (max-width: 1599px) {
     
+}
+
+@media (min-width: 1400px) and (max-width:1599px){
+
+    .ajoute{
+        width: 100px;
+    }
+    .nick{
+        height: 35px;
+    }
+
+    .nickname img{
+    width: 30px;
+    height: 30px;
+    }
+    
+    a{
+        font-size: 22px;
+    }
+
+    .filter{
+        font-size: 15px;
+        width: 130px;
+        height: 40px;
+    }
+    .filter img{
+        height: 35px;
+        width: 25px;
+    }
+    .arrondi input::placeholder{
+        font-size: 16px;
+    }
+    .arrondi input{
+        height: 38px;
+        width: 280px;
+    }
+    .arrondi input:focus{
+    border: 1px solid blueviolet;
+    height: 36px;
+}
+    .rond button{
+        font-size: 16px;
+        width: 100px;
+        height: 47px;
+    }
+
+    .search{
+        width: 50px;
+        height: 40px;
+    }
+    .search img{
+        width: 30px;
+    }
+
+}
+
+@media (min-width: 1600px) and (max-width:1919px){
+    *{
+        font-size: 20px;
+    }
+
+    .ajoute{
+        width: 100px;
+        padding: 0 10px 0 10px;
+        border-radius: 0 0 0 30px;
+    }
+    .nick{
+        height: 45px;
+        gap: 10px;
+    }
+
+    .nickname img{
+        width: 40px;
+        height: 40px;
+    }
+
+    a{
+        font-size: 25px;
+    }
+    .pub1{
+        height: 750px;
+        width: 250px;
+    }
+    .pub2{
+        height: 710px;
+        width: 250px;
+    }
+
+    .game{
+        border-radius: 6px;
+        width: 310px;
+        height: 460px;
+        margin-bottom: 10px ;
+        
+    }
+    .filter{
+        font-size: 17px;
+        width: 140px;
+        height: 47px;
+    }
+    .arrondi input::placeholder{
+        font-size: 18px;
+    }
+    .arrondi input{
+        height: 45px;
+        width: 320px;
+    }
+    .arrondi input:focus{
+    border: 1px solid blueviolet;
+    height: 42px;
+}
+    .rond button{
+        font-size: 18px;
+        width: 140px;
+        height: 47px;
+    }
+
+    .search{
+        width: 50px;
+        height: 47px;
+    }
+    .search img{
+        width: 30px;
+    }
+    .filter button{
+        width: 160px;
+        height: 54px;
+    }
+    .container{
+        gap: 50px;
+    }
+    .titre{
+        height: 220px;
+    }
+    .back_img{
+        width: 100%;
+        height: 35vh;
+    }
+
+    .game img{
+        border-radius: 6px;
+    }
+    
+    .show p{
+        font-size: 17px;
+    }
+    .show img{
+        height: 35px;
+        width: 40px;
+    }
+    .footer a{
+        font-size: 22px;
+    }
+    .reseau{
+        gap: 100px;
+    }
+    .reseau img{
+        width: 40px;
+        height: 40px;
+        padding-top: 20px;
+    }
 }
 
 @media (min-width: 1920px) {
     *{
         font-size: 20px;
     }
+
+    .ajoute{
+        width: 100px;
+        padding: 0 10px 0 10px;
+    }
+    .nick{
+        height: 60px;
+        gap: 10px;
+    }
+
+    .nickname img{
+    width: 45px;
+    height: 45px;
+    }
+
+    a{
+        font-size: 30px;
+    }
     .pub1{
         height: 803px;
         width: 284px;
     }
     .pub2{
-        height: 803px;
+        height: 815px;
         width: 284px;
     }
+
     .game{
-        border-radius: 12px;
+        border-radius: 6px;
         width: 350px;
         height: 525px;
         margin-bottom: 10px ;
@@ -362,8 +563,12 @@ p{
     }
     .arrondi input{
         height: 54px;
-        width: 421px;
+        width: 370px;
     }
+    .arrondi input:focus{
+    border: 1px solid blueviolet;
+    height: 49px;
+}
     .rond button{
         width: 150px;
         height: 54px;
@@ -380,8 +585,12 @@ p{
         width: 160px;
         height: 54px;
     }
+    .show img{
+        height: 50px;
+        width: 50px;
+    }
     .game img{
-        border-radius: 12px;
+        border-radius: 6px;
     }
     .container{
         gap: 50px;
@@ -392,5 +601,17 @@ p{
     .back_img{
         width: 100%;
         height: 309px;
+    }
+
+
+
+    .reseau{
+        gap: 100px;
+        margin-bottom: 70px;
+    }
+    .reseau img{
+        width: 50px;
+        height: 50px;
+        padding-top: 20px;
     }
 }
