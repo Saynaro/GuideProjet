@@ -11,9 +11,10 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 50vh;
     width: 100%;
     color: rgb(255, 255, 255);
-    height: 50vh;
+    
     margin: 0;
 }
 .back_img img{
@@ -128,7 +129,7 @@ form button{
     width: 40px;
     height: 36px;
 }
-form button img{
+form button img{ 
     width: 80%;
 }
 form button:hover{
@@ -151,7 +152,7 @@ form button:hover{
 .rond button{
     border-radius: 30px;
     height: 40px;
-    width: 20vh;
+    width: 130px;
     cursor: pointer;
     border: none;
     background-color: #222222;

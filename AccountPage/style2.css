@@ -8,6 +8,9 @@ body{
     margin: 0;
     padding: 0;
 }
+section{
+    height: 100vh;
+}
 .tous{
     display: flex;
     flex-direction: row;
@@ -64,11 +67,13 @@ body{
 .sitename{
     font-weight: bold;
     display: flex;
+    justify-content: start;
+    align-items: center;
     flex-direction: row;
     gap: 20px;
     padding: 5px 0 5px 5px;
     font-size: 24px;
-    width: 60%;
+    width: 50%;
     border-radius: 0 0 18px 0;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -109,7 +114,10 @@ body{
     cursor: pointer;
 }
 .followers{
-    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54%;
     height: 40px;
     background-color: #0c0c0c;
     border-radius: 8px;
@@ -118,9 +126,9 @@ body{
 }
 .description{
     font-size: 12.5px;
-    width: 80%;
-    min-height: 150px;
-    max-height: 160px;
+    width: 75%;
+    min-height: 130px;
+    max-height: 140px;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
@@ -128,7 +136,8 @@ body{
     border-radius: 8px;
     border: 1px solid blueviolet;
     text-align: left;
-    margin: 20px;
+    margin: 20px 0 20px 20px;
+    padding: 5px;
 }
 .description p{
     white-space: normal;
@@ -138,16 +147,18 @@ body{
 .vide{
     display: flex;
     position: relative;
-    padding-bottom: 100px;
+    padding-bottom: 170px;
 }
 .noir{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     justify-items: center;
     color: white;
     text-align: center;
     height: 70%;
-    padding: 0 10px 0 30px;
+    
     background-color: #1a1919;
     
 }
@@ -169,15 +180,15 @@ body{
     border-radius: 0;
     left: auto;
     top: auto;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     padding: 10px;
 }
 .icon{
      transition: transform 0.3s ease;
 }
 .icon:hover{
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
 .right{
     margin-left: 30%;
@@ -190,28 +201,31 @@ body{
     display: flex;
     position: relative;
     justify-content: end;
-    display: flex;
-    height: 50vh;
+    display: flex; 
+    height: auto;
     width: 100%;
 }
 .bannier{
-    position: absolute;
+    height: 40vh;
     width: 100%;
 }
 .nickname{
     position: absolute;
     display: flex;
+    justify-content: end;
+    align-items: center;
     padding: 5px 5px 5px 0;
     gap: 10px;
     font-size: 24px;
-    width: 20%;
-    justify-self: end;
-    border-radius: 0 0 0 8px;
+    width: 23%;
+        
+    border-radius: 0 0 0 18px;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.5);
 }
 .nickname a{
     text-decoration: none;
+    font-weight: bold;
     color: rgb(255, 255, 255);
 }
 .nickname a:hover{
@@ -226,9 +240,7 @@ body{
 .nickname img:hover{
     transform: scale(1.1);
 }
-.second{
-    position: relative;
-}
+
 form{
     display: flex;
     position: relative;
@@ -238,7 +250,7 @@ form button{
     background-color: rgba(115, 31, 161, 1);
     border: none;
     width: 40px;
-    height: 36px;
+    height: 37px;
 }
 form button img{
     width: 80%;
@@ -250,8 +262,8 @@ form button:hover{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0 0 0 10px;
-    padding-bottom: 15px;
+    margin: 10px 0 0 10px;
+    padding-bottom: 10px;
     width: 98%;
     border-bottom: 1px solid;
     border-bottom-color: darkgrey;
@@ -303,6 +315,7 @@ form button:hover{
     align-items: center;
 }
 .filter{
+    height: 37px;
     width: 110px;
 }
 .filter img{
@@ -310,6 +323,7 @@ form button:hover{
     height: 100%;
 }
 .sort{
+    height: 37px;
     width: 70px;
 }
 .sort img{
@@ -321,12 +335,19 @@ form button:hover{
 }
 
 .arrondi input{
+    color: rgb(170, 170, 170);
     cursor: auto;
     border: none;
     outline: none;
     padding-left: 10px;
     border-radius: 8px 0 0 8px;
 }
+.arrondi input:focus{
+    border: 1px solid blueviolet;
+    height: 33px;
+}
+
+
 .nombres{
     margin-left: 20px;
     
@@ -356,7 +377,8 @@ form button:hover{
     border-radius: 4px;
 }
 .game{
-    height: 100%;
+    height: auto;
+    width: 100%;
     aspect-ratio: 8/10;
     border: 1px solid white;
     border-radius: 4px;
@@ -385,6 +407,7 @@ form button:hover{
 
 .extra.show{
     max-height: 400px;
+    margin-bottom: 6px;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
@@ -449,7 +472,8 @@ form button:hover{
     text-decoration: none;
 }
 .liens a:hover{
-    color: rgb(153, 153, 153);
+    color: rgb(165, 90, 235);
+    transition: 0.3s ease;
 }
 .reseau{
 
@@ -471,4 +495,392 @@ form button:hover{
 }
 .icon:hover{
     transform: scale(1.1);
+}
+
+
+
+
+
+
+/* Responsive display */
+
+@media (min-width: 1700px)  {
+
+
+    button{
+        font-size: 18px;
+    }
+    .left{
+        font-size: 20px;
+    }
+    .bannier{
+    height: 40vh;
+    width: 100%;
+    }
+    .avatar{
+        height: 30%;
+    }
+    .vide{
+        padding-bottom: 110px;
+    }
+    .follow{
+        padding-bottom: 10px;
+        padding-top: 20px;
+    }
+    .follow button{
+        height: 50px;
+
+    }
+    .followers{
+        height: 50px;
+    }
+    .description{
+        font-size: 16px;
+        min-height: 200px;
+        max-height: 200px;
+    }
+    .edit {
+        font-size: 20px;
+        top: 12%;
+    }
+
+    .icon{
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .sitename{
+        width: 40%;
+        height: 40px;
+    }
+    .sitename a{
+        font-size: 30px;
+    }
+
+
+
+    /* right side */
+    .nickname{
+        
+        width: 23%;
+        height: 40px;
+    }
+    .nickname a{
+        font-size: 30px;
+    }
+
+
+    .rond button{
+        height: 40px;
+    }
+
+
+    .filter {
+        height: 40px;
+        width: 150px;
+    }
+    .sort {
+        height: 40px;
+        width: 100px;
+    }
+    form button{
+        width:  35px;
+        height: 40px;
+    }
+    .search{
+        width: 25px;
+    }
+    .arrondi input{
+        height: 40px;
+        width: 300px;
+    }
+    .arrondi input:focus{
+        height: 36px;
+    }
+    /* footer */
+    .footer a{
+        font-size: 23px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/*       */
+
+
+
+@media (min-width: 750px) and (max-width: 999px){
+     button{
+        font-size: 11px;
+    }
+    .left{
+        font-size: 10px;
+    }
+    
+    .avatar{
+        height: 30%;
+    }
+    .vide{
+        padding-bottom: 120px;
+    }
+
+    .follow button{
+        height: 30px;
+        margin-top: 10px;
+    }
+    .followers{
+        height: 29px;
+        margin-top: 10px;
+    }
+    .description{
+        font-size: 9px;
+        min-height: 80px;
+        max-height: 90px;
+        margin: 10px 0 20px 20px;
+        
+    }
+    .edit {
+        font-size: 11px;
+        top: 12%;
+    }
+
+    .icon{
+        width: 23px !important;
+        height: 23px !important;
+    }
+    .reseau{
+        gap: 20px;
+    }
+    .sitename{
+        width: 45%;
+        height: 25px;
+        padding-right: 10px;
+    }
+    .sitename img{
+        height: 22px;
+        width: 22px;
+    }
+    .sitename a{
+        font-size: 14px;
+    }
+
+
+
+    /* right side */
+    .nombres{
+        font-size: 10px;
+        
+    }
+    .show_icon{
+        height: 20px;
+        width: 25px;
+        
+    }
+
+    .nickname{
+        width: 25%;
+        height: 25px;
+    }
+    .nickname img{
+        height: 25px;
+        width: 25px;
+    }
+    .nickname a{
+        font-size: 14px;
+    }
+
+    
+
+    .rond button{
+        font-size: 10px;
+        height: 30px;
+        width: 70px;
+    }
+
+   
+    .filter {
+        font-size: 10px;
+        height: 30px;
+        width: 90px;
+        
+    }
+   
+    .arrond img{
+        height: 20px;
+        width: 16px;
+    }
+    .sort {
+        font-size: 10px;
+        height: 30px;
+        width: 50px;
+    }
+    form button{
+        width:  30px;
+        height: 30px;
+    }
+    .search{
+        
+        width: 20px;
+    }
+    .arrondi input{
+        font-size: 10px;
+        height: 30px;
+        width: 100px;
+    }
+    .arrondi input:focus{
+        height: 26px;
+    }
+
+    .edit{
+        height: 30px;
+    }
+
+
+    /* footer */
+    .footer a{
+        font-size: 12px;
+    }
+        
+}
+
+
+
+
+ 
+@media (min-width: 1000px) and (max-width: 1199px) {
+        button{
+        font-size: 13px;
+    }
+    .left{
+        font-size: 13px;
+    }
+    .bannier{
+    height: 40vh;
+    width: 100%;
+    }
+    .avatar{
+        height: 30%;
+    }
+    .vide{
+        padding-bottom: 110px;
+    }
+ 
+    .follow button{
+        height: 35px;
+        
+    }
+    .followers{
+        height: 35px;
+    }
+    .description{
+        font-size: 12px;
+        min-height: 110px;
+        max-height: 120px;
+
+    }
+    .edit {
+        font-size: 13px;
+        top: 12%;
+    }
+
+    .icon{
+        width: 25px !important;
+        height: 25px !important;
+    }
+    .reseau{
+        gap: 20px;
+    }
+    .sitename{
+        width: 45%;
+        height: 30px;
+    }
+    .sitename img{
+        height: 25px;
+        width: 25px;
+    }
+    .sitename a{
+        font-size: 16px;
+    }
+
+
+
+    /* right side */
+    .nombres{
+        font-size: 12px;
+        margin-left: 0;
+    }
+    .show_icon{
+        height: 20px;
+        width: 25px;
+        
+    }
+    .show{
+        gap: 8px;
+    }
+    .nickname{
+        
+        width: 25%;
+        height: 30px;
+    }
+    .nickname img{
+        height: 25px;
+        width: 25px;
+    }
+    .nickname a{
+        font-size: 16px;
+    }
+
+
+    .rond button{
+        font-size: 11px;
+        height: 35px;
+        width: 100px;
+    }
+
+   
+    .filter {
+        font-size: 11px;
+        height: 35px;
+        width: 100px;
+        
+    }
+   
+    .arrond img{
+        height: 22px;
+        width: 18px;
+    }
+    .sort {
+        font-size: 11px;
+        height: 35px;
+        width: 70px;
+    }
+    form button{
+        width:  35px;
+        height: 35px;
+    }
+    .search{
+        width: 25px;
+    }
+    .arrondi input{
+        height: 34px;
+        width: 130px;
+    }
+    .arrondi input:focus{
+        height: 30px;
+    }
+
+
+
+
+    /* footer */
+    .footer a{
+        font-size: 14px;
+    }
+    
 }

@@ -11,7 +11,7 @@ const swiper = new Swiper(".swiper", {
         stretch:30,       // distance entre eux
         depth: 250,       // Profondeur (effet d'éloignement)
         modifier: 1,      // force de l’effet
-        slideShadows: true,
+        slideShadows: true,  // ombres
       },
       on:{
         click(event) {
@@ -26,3 +26,15 @@ const swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev",
       },
     });
+
+
+
+
+const buttons = document.querySelectorAll(".button");
+buttons.forEach(touch => {
+    touch.addEventListener("click",() =>{
+        buttons.forEach(btn => btn.classList.remove("active")); 
+            touch.classList.add("active");   
+    });
+});
+
