@@ -44,13 +44,7 @@ body{
     text-decoration: none;
     color: white;
 }
-.sitename img{
-    height: 30px;
-    transition: transform 0.3s ease;
-}
-.sitename img:hover{
-    transform: scale(1.05);
-}
+
 .nickname{
     font-weight: bold;
     display: flex;
@@ -141,7 +135,7 @@ form button:hover{
     justify-content: space-between;
     margin: 15px 10px 10px 20px;
     padding-bottom: 15px;
-    width: 95%;
+    width: 97%;
     border-bottom: 1px solid;
     border-bottom-color: darkgrey;
 }
@@ -194,17 +188,11 @@ form button:hover{
 .filter{
     width: 110px;
 }
-.filter img{
-    width: 20%;
-    height: 100%;
-}
+
 .sort{
     width: 70px;
 }
-.sort img{
-    width: 50%;
-    height: 100%;
-}
+
 .arrond:hover{
     border-color: rgba(0, 0, 0, 0.1);
 }
@@ -365,6 +353,7 @@ p{
 
     .ajoute{
         width: 100px;
+        height: 43px;
     }
     .nick{
         height: 35px;
@@ -398,20 +387,33 @@ p{
     .arrondi input:focus{
     border: 1px solid blueviolet;
     height: 36px;
-}
+    }
+    .sort{
+        height: 40px;
+    }
     .rond button{
         font-size: 16px;
-        width: 100px;
-        height: 47px;
+        width: 150px;
+        height: 40px;
     }
-
+    form button{
+        height: 40px;
+    }
     .search{
         width: 50px;
         height: 40px;
     }
-    .search img{
-        width: 30px;
-    }
+
+
+
+    .games_block{
+
+    grid-template-columns: repeat(4, 23.7em);
+
+}
+
+
+
 
 }
 
@@ -520,6 +522,14 @@ p{
         height: 40px;
         padding-top: 20px;
     }
+
+
+    .games_block{
+
+        grid-template-columns: repeat(4, 25em);
+        grid-template-rows: repeat(3,270px);
+
+    }
 }
 
 @media (min-width: 1920px) {
@@ -616,5 +626,13 @@ p{
         width: 50px;
         height: 50px;
         padding-top: 20px;
+    }
+
+
+        .games_block{
+
+        grid-template-columns: repeat(4, 27em);
+        grid-template-rows: repeat(3,290px);
+
     }
 }

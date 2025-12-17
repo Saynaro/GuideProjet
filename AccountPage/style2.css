@@ -45,7 +45,7 @@ section{
     top: 30%;
     left: 15%;
     transform: translate(-50%, -50%);
-    height: 35%;
+    height: 33%;
     width: 17%;
     z-index: 10;
 }
@@ -56,13 +56,7 @@ section{
     height: 30%;
     background-color: blueviolet;
 }
-.sitename img{
-    position: relative;
-    width: 25px;
-    height: 25px;
-    border-radius: 0;
-    margin: 0;
-}
+
 
 .sitename{
     font-weight: bold;
@@ -71,7 +65,7 @@ section{
     align-items: center;
     flex-direction: row;
     gap: 20px;
-    padding: 5px 0 5px 5px;
+    padding: 8px 0 5px 5px;
     font-size: 24px;
     width: 50%;
     border-radius: 0 0 18px 0;
@@ -85,19 +79,14 @@ section{
 .sitename a:hover{
     color: rgb(185, 185, 185);
 }
-.sitename img{
-    transition: transform 0.3s ease;
-}
-.sitename img:hover{
-    transform: scale(1.1);
-}
+
 
 
 .follow{
     display: flex;
     width: 80%;
     height: 40px;
-    margin-left: 20px;
+    
     justify-content: center;
     gap: 10px;
 }
@@ -136,7 +125,7 @@ section{
     border-radius: 8px;
     border: 1px solid blueviolet;
     text-align: left;
-    margin: 20px 0 20px 20px;
+    margin: 20px 0 0 0;
     padding: 5px;
 }
 .description p{
@@ -147,7 +136,7 @@ section{
 .vide{
     display: flex;
     position: relative;
-    padding-bottom: 170px;
+    padding-bottom: 100px;
 }
 .noir{
     display: flex;
@@ -165,17 +154,18 @@ section{
 .noir h2{
     margin-bottom: 3px;
 }
-.reseau{
+.reseau-left{
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 0 0 0 20px;
-    width: 100%;
+    margin: 20px;
+    width: 77%;
     gap: 20px;
     border-top: 2px solid gray;;
 }
+
 .reseau img{
     border-radius: 0;
     left: auto;
@@ -185,7 +175,7 @@ section{
     padding: 10px;
 }
 .icon{
-     transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 .icon:hover{
     transform: scale(1.02);
@@ -316,7 +306,7 @@ form button:hover{
 }
 .filter{
     height: 37px;
-    width: 110px;
+    width: 120px;
 }
 .filter img{
     width: 20%;
@@ -352,17 +342,15 @@ form button:hover{
     margin-left: 20px;
     
     font-size: 14px;
-    color: white;
+    color: rgb(196, 196, 196);
 }
 .show{
     display: flex;
+    align-items: center;
     padding-top: 10px;
+    margin-left: 20px;
 }
-.show_icon{
-    width: 30px;
-    height: 26px;
-    margin: 10px 0 0 20px;
-}
+
 .games_block{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -475,7 +463,7 @@ form button:hover{
     color: rgb(165, 90, 235);
     transition: 0.3s ease;
 }
-.reseau{
+.reseau-right{
 
     display: flex;
     flex-direction: row;
@@ -491,7 +479,7 @@ form button:hover{
     padding-top: 20px;
 }
 .icon{
-     transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 .icon:hover{
     transform: scale(1.1);
@@ -616,7 +604,7 @@ form button:hover{
 
 
 @media (min-width: 750px) and (max-width: 999px){
-     button{
+    button{
         font-size: 11px;
     }
     .left{
@@ -752,7 +740,7 @@ form button:hover{
 
 
 
- 
+
 @media (min-width: 1000px) and (max-width: 1199px) {
         button{
         font-size: 13px;
@@ -843,14 +831,14 @@ form button:hover{
         width: 100px;
     }
 
-   
+
     .filter {
         font-size: 11px;
         height: 35px;
         width: 100px;
         
     }
-   
+
     .arrond img{
         height: 22px;
         width: 18px;

@@ -2,7 +2,7 @@ const swiper = new Swiper(".swiper", {
       effect: "coverflow",
       grabCursor: true,
       centeredSlides: true,
-      initialSlide: 2,
+      initialSlide: 3,
       speed: 600,
       preventClicks: true,
       slidesPerView: "auto",
