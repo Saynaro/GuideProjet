@@ -24,7 +24,7 @@ let shown = false;
 
 button.addEventListener('click', () => {
   extraItems.forEach(item => {
-    item.classList.toggle('show'); // ajouter supprime class "show"
+    item.classList.toggle('show'); // ajouter suprimer class "show"
   });
 
   button.textContent = shown ? 'View More' : 'Hide';
@@ -39,12 +39,7 @@ button.addEventListener('click', () => {
 //buttons allguides, favorites onclick active background color change
 
 const buttons = document.querySelectorAll(".button");
-buttons.forEach(touch => {
-    touch.addEventListener("click",() =>{
-        buttons.forEach(btn => btn.classList.remove("active")); 
-            touch.classList.add("active");   
-    });
-});
+
 
 buttons.forEach(button => {
     button.addEventListener("click",() =>{

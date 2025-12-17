@@ -627,16 +627,16 @@ form button:hover{
         height: 30%;
     }
     .vide{
-        padding-bottom: 120px;
+        padding-bottom: 110px;
     }
 
     .follow button{
         height: 30px;
-        margin-top: 10px;
+        
     }
     .followers{
         height: 29px;
-        margin-top: 10px;
+        
     }
     .description{
         font-size: 9px;
