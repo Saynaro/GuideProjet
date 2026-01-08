@@ -310,8 +310,9 @@ form button:hover{
 }
 
 .sousimg img{
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
 }
 .sousimg p{
     margin: 0;
@@ -411,6 +412,7 @@ form button:hover{
 }
 .liens a:hover{
     color: rgb(153, 153, 153);
+    transition: 0.3s;
 }
 .reseau{
 

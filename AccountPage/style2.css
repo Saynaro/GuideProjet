@@ -21,7 +21,7 @@ section{
     display: flex;
     flex-direction: column;
     position: fixed;
-    width: 30%;
+    width: 25%;
     height: 100vh;
 }
 .edit {
@@ -33,7 +33,7 @@ section{
     top: 10%;
     left: 80%;
     height: 5%;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 .edit:hover{
     cursor: pointer;
@@ -42,8 +42,8 @@ section{
 .avatar{
     border-radius: 50%;
     position: fixed;
-    top: 30%;
-    left: 15%;
+    top: 25%;
+    left: 12.5%;
     transform: translate(-50%, -50%);
     height: 33%;
     width: 17%;
@@ -53,19 +53,19 @@ section{
     margin-bottom: 0;
 }
 .violet{ 
-    height: 30%;
+    height: 25%;
     background-color: blueviolet;
 }
 
 
 .sitename{
-    font-weight: bold;
+    font-weight: 600;
     display: flex;
     justify-content: start;
-    align-items: center;
+
     flex-direction: row;
     gap: 20px;
-    padding: 8px 0 5px 5px;
+    padding: 5px;
     font-size: 24px;
     width: 50%;
     border-radius: 0 0 18px 0;
@@ -92,7 +92,8 @@ section{
 }
 .follow button{
     height: 40px;
-    border-radius: 8px;
+    font-size: 16px;
+    border-radius: 6px;
     background-color: blueviolet;
     color: white;
     width: 40%;
@@ -113,11 +114,16 @@ section{
     border: 1px solid blueviolet;
     padding: 0;
 }
+.username{
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    color: rgb(210, 210, 210);
+}
 .description{
     font-size: 12.5px;
     width: 75%;
-    min-height: 130px;
-    max-height: 140px;
+    min-height: 200px;
+    max-height: 210px;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
@@ -129,6 +135,7 @@ section{
     padding: 5px;
 }
 .description p{
+    font-size: 16px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -136,7 +143,7 @@ section{
 .vide{
     display: flex;
     position: relative;
-    padding-bottom: 100px;
+    padding-bottom: 30%;
 }
 .noir{
     display: flex;
@@ -146,13 +153,14 @@ section{
     justify-items: center;
     color: white;
     text-align: center;
-    height: 70%;
+    height: 75%;
     
     background-color: #1a1919;
     
 }
 .noir h2{
     margin-bottom: 3px;
+    font-weight: 500;
 }
 .reseau-left{
     position: relative;
@@ -170,8 +178,8 @@ section{
     border-radius: 0;
     left: auto;
     top: auto;
-    width: 30px;
-    height: 30px;
+    width: 100px;
+    height: 100px;
     padding: 10px;
 }
 .icon{
@@ -181,8 +189,8 @@ section{
     transform: scale(1.02);
 }
 .right{
-    margin-left: 30%;
-    width: 70%;
+    margin-left: 25%;
+    width: 75%;
     padding: 0;
     
 }
@@ -203,11 +211,11 @@ section{
     position: absolute;
     display: flex;
     justify-content: end;
-    align-items: center;
-    padding: 8px 5px 5px 0;
+
+    padding: 5px;
     gap: 10px;
     font-size: 24px;
-    width: 23%;
+    width: 20%;
         
     border-radius: 0 0 0 18px;
     height: 30px;
@@ -215,7 +223,7 @@ section{
 }
 .nickname a{
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
     color: rgb(255, 255, 255);
 }
 .nickname a:hover{
@@ -235,8 +243,11 @@ form{
     display: flex;
     position: relative;
 }
+form input{
+    width: 20vw;
+}
 form button{
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 6px 6px 0;
     background-color: rgba(115, 31, 161, 1);
     border: none;
     width: 40px;
@@ -252,9 +263,8 @@ form button:hover{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 10px 0 0 10px;
-    padding-bottom: 10px;
-    width: 98%;
+    margin: 20px 20px 0 20px;
+    padding-bottom: 20px;
     border-bottom: 1px solid;
     border-bottom-color: darkgrey;
 }
@@ -283,7 +293,8 @@ form button:hover{
     gap: 10px;
 }
 .arrondi input,button{
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 16px;
     height: 35px;
     background-color: #0f0f0f;
     color: rgb(255, 255, 255);
@@ -298,7 +309,7 @@ form button:hover{
     transition: 0.3s;
 }
 .arrond{
-    border-radius: 8px;
+    border-radius: 6px;
     display: flex;
     gap: 3px;
     padding: 4px;
@@ -306,7 +317,7 @@ form button:hover{
 }
 .filter{
     height: 37px;
-    width: 120px;
+    
 }
 .filter img{
     width: 20%;
@@ -335,7 +346,7 @@ form button:hover{
     border: none;
     outline: none;
     padding-left: 10px;
-    border-radius: 8px 0 0 8px;
+    border-radius: 6px 0 0 6px;
 }
 .arrondi input:focus{
     border: 1px solid blueviolet;
@@ -356,7 +367,7 @@ form button:hover{
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,1fr);
     gap: 20px;
-    padding: 0 30px 10px 20px;
+    padding: 0 20px 10px 20px;
 }
 .games_block img{
     display: block;
@@ -492,8 +503,8 @@ form button:hover{
     border-top: 1px solid gray;;
 }
 .reseau img{
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     padding-top: 20px;
 }
 .icon{

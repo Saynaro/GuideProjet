@@ -337,7 +337,7 @@ p{
     text-decoration: none;
 }
 .liens a:hover{
-    color: rgb(156, 83, 224);
+    color: rgb(153, 153, 153);
     transition: 0.3s;
 }
 .reseau{
