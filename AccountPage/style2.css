@@ -204,7 +204,7 @@ section{
     display: flex;
     justify-content: end;
     align-items: center;
-    padding: 5px 5px 5px 0;
+    padding: 8px 5px 5px 0;
     gap: 10px;
     font-size: 24px;
     width: 23%;
@@ -313,12 +313,17 @@ form button:hover{
     height: 100%;
 }
 .sort{
+    
     height: 37px;
     width: 70px;
 }
-.sort img{
-    width: 50%;
-    height: 100%;
+.show_line{
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 20px;
+}
+.show_line p{
+    margin-left: 10px;
 }
 .arrond:hover{
     border-color: rgba(0, 0, 0, 0.1);
@@ -344,12 +349,7 @@ form button:hover{
     font-size: 14px;
     color: rgb(196, 196, 196);
 }
-.show{
-    display: flex;
-    align-items: center;
-    padding-top: 10px;
-    margin-left: 20px;
-}
+
 
 .games_block{
     display: grid;
@@ -364,26 +364,42 @@ form button:hover{
     width: 100%;
     border-radius: 4px;
 }
+
+
+
 .game{
     height: auto;
     width: 100%;
-    aspect-ratio: 8/10;
     border: 1px solid white;
     border-radius: 4px;
 
 
-    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.4s ease forwards;
 }
-.game:hover{
-    transform: scale(1.01);
+
+@keyframes fadeUp{
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+.game-inner{
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+.game-inner img {
+    height: 100%;
+}
+.game-inner:hover{
+    transform: scale(1.004);
+}
 
-
+/*
 .extra{
     max-height: 0;
-    
-    padding: 0;
     opacity: 0;
     overflow: hidden ;
     transform: translateY(-50px);
@@ -402,16 +418,17 @@ form button:hover{
 }
 
 .extra.show img{
-        width: 120%;
+        width: 100%;
+        height: 100%;
+        
 }
+
 
 .hidden:hover{
     transform: scale(1.01);
 }
-.hidden img{
-    height: 100%;
-    width: 100%;
-}
+*/
+
 #view_more{
 
     display: flex;
@@ -420,6 +437,7 @@ form button:hover{
     border-radius: 6px;
     border: none;
     padding: 10px;
+    margin-top: 20px;
     gap: 5px;
 }
 #view_more img{
@@ -539,6 +557,7 @@ form button:hover{
     .sitename{
         width: 40%;
         height: 40px;
+        
     }
     .sitename a{
         font-size: 30px;

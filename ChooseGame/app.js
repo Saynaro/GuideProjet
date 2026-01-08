@@ -1,3 +1,30 @@
+// import { jeux } from "../Arrays/gamesArray.js";
+
+
+
+// const jeuxHTML = '';
+
+// jeux.forEach(jeu => {
+//     jeuxHTML += `
+//       <div class="swiper-slide">
+
+//         <img src="../GamePhoto/${jeu.image}" alt="${jeu.titre}" />
+
+//       </div>
+//     `;
+
+//     document.querySelector('.swiper-wrapper').innerHTML = jeuxHTML;
+
+// });
+
+
+
+
+
+
+
+
+
 const swiper = new Swiper(".swiper", {
       effect: "coverflow",
       grabCursor: true,
