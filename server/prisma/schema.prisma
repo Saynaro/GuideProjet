@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model favorite_guides {
+  user_id    Int
+  guide_id   Int
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  guides     guides    @relation(fields: [guide_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+
+  @@id([user_id, guide_id])
+  @@index([guide_id], map: "favorite_guides_guide_id_fkey")
+}
+
+model games {
+  id          Int          @id @default(autoincrement())
+  title       String       @db.VarChar(100)
+  description String?      @db.Text
+  cover       String?      @db.VarChar(255)
+  created_at  DateTime?    @default(now()) @db.Timestamp(0)
+  guides      guides[]
+  user_games  user_games[]
+}
+
+model guide_likes {
+  user_id    Int
+  guide_id   Int
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  guides     guides    @relation(fields: [guide_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+
+  @@id([user_id, guide_id])
+  @@index([guide_id], map: "guide_likes_guide_id_fkey")
+}
+
+model guides {
+  id              Int               @id @default(autoincrement())
+  user_id         Int
+  game_id         Int
+  title           String            @db.VarChar(150)
+  content         String            @db.Text
+  likes_count     Int               @default(0)
+  created_at      DateTime?         @default(now()) @db.Timestamp(0)
+  image           String            @db.VarChar(255)
+  favorite_guides favorite_guides[]
+  guide_likes     guide_likes[]
+  games           games             @relation(fields: [game_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+  users           users             @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+
+  @@index([game_id], map: "guides_game_id_fkey")
+  @@index([user_id], map: "guides_user_id_fkey")
+}
+
+model user_follows {
+  follower_id  Int
+  following_id Int
+  created_at   DateTime @default(now()) @db.Timestamp(0)
+  follower     users    @relation("following_relation", fields: [follower_id], references: [id], onDelete: Cascade)
+  following    users    @relation("follower_relation", fields: [following_id], references: [id], onDelete: Cascade)
+
+  @@id([follower_id, following_id])
+  @@index([following_id], map: "user_follows_following_id_fkey")
+}
+
+model user_games {
+  user_id Int
+  game_id Int
+  games   games @relation(fields: [game_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+  users   users @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+
+  @@id([user_id, game_id])
+  @@index([game_id], map: "user_games_game_id_fkey")
+}
+
+model users {
+  id              Int               @id @default(autoincrement())
+  username        String            @unique @db.VarChar(50)
+  email           String            @unique @db.VarChar(100)
+  password        String            @db.VarChar(255)
+  avatar          String?           @db.VarChar(255)
+  cover           String?           @db.VarChar(255)
+  bio             String?           @db.Text
+  created_at      DateTime          @default(now()) @db.Timestamp(0)
+  display_name    String?           @db.VarChar(64)
+  favorite_guides favorite_guides[]
+  guide_likes     guide_likes[]
+  guides          guides[]
+  following       user_follows[]    @relation("following_relation")
+  followers       user_follows[]    @relation("follower_relation")
+  user_games      user_games[]
+}

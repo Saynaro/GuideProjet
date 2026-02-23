@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Page</title>
+  <link rel="stylesheet" href="css/ajouteGuide.css">
+</head>
+<body>
+
+  <!-- container de jeux choisi -->
+  <div class="game-container">
+    <h1 class="game-title"></h1>
+    <img class="game-image" src="" alt="">
+  </div>
+
+  <!-- Form de guide -->
+  <div class="guide-form">
+    <h2>Ajoutez votre guide</h2>
+    <form id="guideForm" enctype="multipart/form-data">
+      <label>
+        Photo du guide:
+        <input type="file" id="guideImage" name="image" accept="image/*">
+      </label>
+      <label>
+        Title:
+        <input type="text" id="title" name="title">
+      </label>
+      <label>
+        Contenu du guide:
+        <textarea id="guideContent" rows="5" name="content" placeholder="Entrez le texte de votre guide..."></textarea>
+      </label>
+      <button type="submit">Sauvegarder</button>
+    </form>
+  </div>
+
+  <!-- Contenu du guide affiché -->
+  <div class="guide-display">
+    <h2>Votre guide:</h2>
+    <div class="guide-photo"></div>
+    <p class="guide-text"></p>
+  </div>
+
+  <script type="module" src="js/pages/ajoutGuide.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+/* Основные настройки */
+:root {
+    --primary-color: blueviolet; 
+    --bg-dark: #0f172a;       
+    --card-bg: #1e293b;       /* Цвет карточек */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #22d3ee;       
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Контейнер выбранной игры */
+.game-container {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.game-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-image {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Форма добавления */
+.guide-form {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.guide-form h2 {
+    margin-top: 0;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.guide-form label {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Input types */
+input[type="file"],input[type="text"], textarea {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background-color: #0f172a;
+    color: white;
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* BUTTONS */
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary-color), blueviolet);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+/* prereview ce que est en bas */
+.guide-display {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 600px;
+    border-top: 1px solid #334155;
+    padding-top: 30px;
+}
+
+.guide-photo img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.guide-text {
+    line-height: 1.6;
+    color: #cbd5e1;
+    white-space: pre-wrap; 
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
