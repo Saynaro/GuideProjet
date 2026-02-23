@@ -70,10 +70,10 @@ body{
     align-items: center;
     height: 32px;
     padding-top: 2px;
-    gap: 5px;
+    gap: 10px;
     background-color: rgba(0, 0, 0, 0.9);
     margin-left: 0;
-    padding: 4px 5px 4px 10px;
+    padding: 4px 10px 4px 10px;
 }
 
 .nick img{
@@ -83,19 +83,27 @@ body{
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
-.nickname img{
-    border-radius: 50%;
+.nickname img.right-avatar {
     width: 30px;
+    height: 30px;
+    min-width: 30px; 
+    min-height: 30px;
+    border-radius: 50%;
+    object-fit: cover; 
+    display: block;
     transition: transform 0.3s ease;
 }
-.nickname img:hover{
-    transform: scale(1.05);
+
+.nickname img.right-avatar:hover {
+    transform: scale(1.1);
 }
+
 .titre{
     position: absolute;
-    height: 30vh;
-    bottom: 1%;
-    left: 1%;
+    height: 20%;
+    width: 30%;
+    bottom: 30%;
+    left: 2%;
 }
 a{
     text-decoration: none;
@@ -313,10 +321,12 @@ form button:hover{
     width: 23px;
     height: 23px;
     border-radius: 50%;
+    object-fit: cover;
 }
 .sousimg p{
     margin: 0;
 }
+
 .avatar{
     display: flex;
     align-items: center;

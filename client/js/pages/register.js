@@ -1,13 +1,4 @@
-// document.getElementById('username').addEventListener('input', function() {
-//     const username = this.value;
-//     const errorElement = document.getElementById('username-error');
-//     if (username.length < 3) {
-//         errorElement.textContent = 'Username must be at least 3 characters long.';
-//         errorElement.style.display = 'block';
-//     } else {
-//         errorElement.style.display = 'none';
-//     }
-// });
+
 const errorMessage = document.getElementById('error-message');
 
 const form = document.getElementById('register_form');

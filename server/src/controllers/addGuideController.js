@@ -58,19 +58,18 @@ const createGuide = async (req, res) => {
         })
 
         // Format the created_at date to "DD.MM.YYYY"
-        const formattedGuides = guide.map(guide => ({
+        const formattedGuide = {
             ...guide,
-            // convert 2024-05-22T10:00:00.000Z to 22.05.2024
             created_at: new Date(guide.created_at).toLocaleDateString('fr-FR', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric'
             })
-        }));
-    
+        };
+
         res.status(201).json({
             status: "Success",
-            data: formattedGuides,
+            data: formattedGuide,
         });
     } catch (error) {
         console.error("FATAL ERROR:", error); 

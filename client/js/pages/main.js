@@ -9,6 +9,39 @@ const counter = document.getElementById('search_results');
 const container = document.querySelector('.game_block');
 
 
+
+async function fetchUserInfo() {
+    try {
+        const res = await fetch("http://localhost:5001/users/me", {
+            credentials: "include"
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch user info");
+
+        const user = await res.json();
+
+            const rightAvatarImg = document.querySelector(".right-avatar");
+            const rightNicknameAnchor = document.querySelector(".nick a:first-child");
+
+            if (rightAvatarImg) {
+                rightAvatarImg.src = user.avatar 
+                    ? `http://localhost:5001/assets/avatars/${user.avatar}` 
+                    : "assets/white.jpg";
+            }
+
+            if (rightNicknameAnchor) {
+                rightNicknameAnchor.textContent = user.username;
+            }
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+fetchUserInfo();
+
+
+
 let allGames = [];
 const initial = 12;        // les jeux afichés premier
 let isExpanded = false;      // est élargi?
@@ -18,7 +51,7 @@ renderInitial();
 
 
 function updateCounter() {                      // combien des jeux affiché sur combien
-  counter.textContent = `Showing ${currentIndex} of ${allGames.length} results`;
+    counter.textContent = `Showing ${currentIndex} of ${allGames.length} results`;
 }
 
 currentIndex = initial;
@@ -26,8 +59,8 @@ updateCounter();
 
 
 function renderInitial() {                          // les jeux affichés en ouvrant le site
-  container.innerHTML = '';
-  allGames.slice(0, initial).forEach(renderCard);
+    container.innerHTML = '';
+    allGames.slice(0, initial).forEach(renderCard);
 }
 
 
@@ -35,13 +68,13 @@ function addNext() {                    // les jeux affiché en touchant le butt
   const slice = allGames.slice(currentIndex, currentIndex + step);            // prendre le tableau, combien jeux on veux (ici: 12).
   slice.forEach(renderCard);                                     //  A partir de la premiere element du array, et + 6 chaque fois
 
-  currentIndex += slice.length;
+    currentIndex += slice.length;
 
-  if (currentIndex >= allGames.length) {
-    button.textContent = "Hide";
-    updateCounter();
-    isExpanded = true;
-  }
+    if (currentIndex >= allGames.length) {
+        button.textContent = "Hide";
+        updateCounter();
+        isExpanded = true;
+    }
 }
 
 
@@ -67,29 +100,41 @@ async function fetchGames() {
 
 
 async function renderCard(jeu) {
-    container.insertAdjacentHTML(        // pour ajouter des jeux a la fin d'array
-      "beforeend",                        //
-      `<div class="game" data-titre="${jeu.title.toLowerCase()}" data-img="${jeu.cover}"> 
+    const gameDiv = document.createElement("div");
+    gameDiv.classList.add("game");
+    gameDiv.dataset.titre = jeu.title.toLowerCase();
+    gameDiv.dataset.id = jeu.id;   // Sauvegarder id du jeux
+    gameDiv.dataset.img = jeu.cover;
+
+    gameDiv.innerHTML = `
         <div class="game-inner">
             <a href="#"><img src="assets/gamePhoto/${jeu.cover}" alt="${jeu.title}"></a>
         </div>
-      </div>`
-    );
+    `;
 
+    // Quand on click sur jeux
+    gameDiv.addEventListener("click", () => {
+        // Sauvegarder l'id en localStorage
+        localStorage.setItem("selectedGameId", jeu.id);
+        // transferer vers la page guide
+        window.location.href = "gamePage.html";
+    });
+
+    container.appendChild(gameDiv);
 }
 
 
 button.addEventListener('click', () => {
 
     if (!isExpanded) {
-      addNext();
-      updateCounter();
+        addNext();
+        updateCounter();
     } else{
-      renderInitial();
-      currentIndex = initial;
-      isExpanded = false;
-      button.textContent = "Show more";
-      updateCounter();
+        renderInitial();
+        currentIndex = initial;
+        isExpanded = false;
+        button.textContent = "Show more";
+        updateCounter();
     }
 });
 

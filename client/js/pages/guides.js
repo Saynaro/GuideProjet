@@ -2,6 +2,41 @@ const container = document.querySelector(".games_block");
 const counter = document.getElementById("search_results");
 const button = document.getElementById("view_more");
 
+
+
+async function fetchUserInfo() {
+    try {
+        const res = await fetch("http://localhost:5001/users/me", {
+            credentials: "include"
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch user info");
+
+        const user = await res.json();
+
+            const rightAvatarImg = document.querySelector(".right-avatar");
+            const rightNicknameAnchor = document.querySelector(".nick a:first-child");
+
+            if (rightAvatarImg) {
+                rightAvatarImg.src = user.avatar 
+                    ? `http://localhost:5001/assets/avatars/${user.avatar}` 
+                    : "assets/white.jpg";
+            }
+
+            if (rightNicknameAnchor) {
+                rightNicknameAnchor.textContent = user.username;
+            }
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+fetchUserInfo();
+
+
+
+
 let allGuides = [];
 const initial = 9;
 const step = 6;
@@ -19,7 +54,7 @@ async function fetchGuides() {
         if (!response.ok) throw new Error("Failed to fetch guides");
 
         allGuides = await response.json();
-        renderInitial();
+        await renderInitial();
         updateCounter();
     } catch (err) {
         console.error(err);
@@ -76,7 +111,7 @@ async function renderCard(guide) {
                 <a href="#"><img src="${coverUrl}" alt="${title}"></a>
                 <div class="sousimg">
                     <div class="avatar">
-                        <img src="assets/${avatar}" alt="${username}">
+                        <img src="assets/avatars/${avatar}" class = "sousimg-avatar"  alt="${username}">
                         <a href="account.html" class="name">${username}</a>
                     </div>
                     <p class="time">${time}</p>

@@ -46,10 +46,10 @@ body{
     display: flex;
     align-items: center;
     height: 35px;
-    gap: 5px;
+    gap: 10px;
     background-color: rgba(0, 0, 0, 0.9);
     margin-left: 0;
-    padding: 4px 5px 4px 10px;
+    padding: 4px 10px 4px 10px;
 }
 .nickname a{
     text-decoration: none;
@@ -61,13 +61,18 @@ body{
     transition: 0.3s;  
 }
 
-.nickname img{
-    border-radius: 50%;
+.nickname img.right-avatar {
     width: 30px;
     height: 30px;
+    min-width: 30px; 
+    min-height: 30px;
+    border-radius: 50%;
+    object-fit: cover; 
+    display: block;
     transition: transform 0.3s ease;
 }
-.nickname img:hover{
+
+.nickname img.right-avatar:hover {
     transform: scale(1.1);
 }
 

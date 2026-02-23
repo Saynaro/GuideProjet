@@ -79,11 +79,11 @@ let isExpanded = false;
 
 
 async function fetchUserGames() {
-  try {
-    const response = await fetch(
-      "http://localhost:5001/users/me/games-with-guides",
-      { credentials: "include" }
-    );
+    try {
+        const response = await fetch(
+        "http://localhost:5001/users/me/games-with-guides",
+        { credentials: "include" }
+        );
 
     if (!response.ok) throw new Error("Failed to load games");
 
@@ -92,10 +92,10 @@ async function fetchUserGames() {
 
     renderInitial();
 
-  } catch (err) {
-    console.error(err);
-    container.innerHTML = "<p>Failed to load games.</p>";
-  }
+    } catch (err) {
+        console.error(err);
+        container.innerHTML = "<p>Failed to load games.</p>";
+    }
 }
 
 function renderInitial() {
@@ -120,8 +120,8 @@ function addNext() {
     currentIndex += slice.length;
 
     if (currentIndex >= filteredGames.length) {
-      button.textContent = "Hide";
-      isExpanded = true;
+        button.textContent = "Hide";
+        isExpanded = true;
     }
 
     updateCounter();
@@ -138,9 +138,9 @@ function updateCounter() {
 
 button.addEventListener("click", () => {
     if (!isExpanded) {
-      addNext();
+        addNext();
     } else {
-      renderInitial();
+        renderInitial();
     }
 });
 
@@ -151,7 +151,7 @@ searchInput.addEventListener("input", (event) => {
     const value = event.target.value.toLowerCase().trim();
 
     filteredGames = allGames.filter(game =>
-      game.title.toLowerCase().includes(value)
+        game.title.toLowerCase().includes(value)
     );
 
     renderInitial();
@@ -162,14 +162,14 @@ searchInput.addEventListener("input", (event) => {
 
 function renderCard(game) {
     container.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="game" data-id="${game.id}">
-        <div class="game-inner">
-          <img src="assets/gamePhoto/${game.cover || "default.jpg"}" alt="${game.title}">
+        "beforeend",
+        `
+        <div class="game" data-id="${game.id}">
+            <div class="game-inner">
+            <img src="assets/gamePhoto/${game.cover || "default.jpg"}" alt="${game.title}">
+            </div>
         </div>
-      </div>
-      `
+        `
     );
 }
 
@@ -190,146 +190,4 @@ container.addEventListener("click", async (e) => {
 });
 
 
-
-
-
 fetchUserGames();
-
-
-
-
-// import { jeux } from "../../Arrays/gamesArray.js";
-
-
-// // ajouter des jeux et le button show
-// const container = document.querySelector('.games_block');
-// const counter = document.getElementById('search_results');
-// const button = document.getElementById('view_more');
-// const searchInput = document.getElementById("searchInput");
-
-// function updateCounterAll() {
-// let filteredGames = [...jeux]; // pour stocker les jeux filtrés, initialement tous les jeux
-
-
-// const initial = 12;        // les jeux afichés premier
-// let isExpanded = false;
-// let currentIndex = 0;
-// const step = 6;     // par combien de jeux on veux afficher 
-// renderInitial();
-
-
-// function updateCounter() {
-//   counter.textContent = `Showing ${currentIndex} of ${filteredGames.length} results`;
-// }
-
-
-// currentIndex = initial; // pour afficher le nombre de jeux sur le nombre total de jeux
-// updateCounter();
-
-
-
-// // AFFICHER LES JEUX EN OUVRANT LE SITE
-
-// function renderInitial() {
-//   container.innerHTML = '';
-//   filteredGames.slice(0, initial).forEach(renderCard);
-//   currentIndex = Math.min(initial, filteredGames.length);
-//   updateCounter();
-// }
-
-
-
-// // AJOUTER PLUS DE JEUX EN CLIQUANT LE BUTTON VIEW MORE
-// // ajouter 6  jeux en clickant le button view more
-
-// function addNext() {
-//   const slice = filteredGames.slice(currentIndex, currentIndex + step);
-//   slice.forEach(renderCard);
-//   currentIndex += slice.length;
-
-//   if (currentIndex >= filteredGames.length) {
-//     button.textContent = "Hide";
-//     isExpanded = true;
-//   }
-
-//   updateCounter();
-// }
-
-
-
-
-// // SI LE BUTTON EST CLIQUÉ, AFFICHER PLUS DE JEUX OU CACHER LES JEUX
-// //   pour afficher les jeux en clickant le button view more et hide
-
-//   button.addEventListener('click', () => {
-
-//     if (!isExpanded) {
-//       addNext();
-//       updateCounter();
-//     } else{
-//       renderInitial();
-//       currentIndex = initial;
-//       isExpanded = false;
-//       button.textContent = "Show more";
-//       updateCounter();
-//     }
-// });
-
-
-
-// // AFFICHER LES JEUX
-// //pour afficher les jeux
-
-// function renderCard(jeu) {
-//     container.insertAdjacentHTML(        // pour ajouter des jeux a la fin d'array
-//       "beforeend",                        //
-//       `<div class="game ">
-//         <div class="game-inner">
-//                 <a href="${jeu.lien}"><img src="assets/gamePhoto/${jeu.image}" alt="${jeu.titre}"></a>
-//         </div>
-//       </div>`
-//     );
-// }
-
-
-// // SEARCH BAR
-
-// // fait search bar work
-// // pour filtrer les jeux en fonction de la recherche
-// searchInput.addEventListener("input", (event) => {
-//   const value = event.target.value.toLowerCase().trim();
-
-//   //
-//   filteredGames = jeux.filter((jeu) =>
-//     jeu.titre.toLowerCase().includes(value) 
-//   );
-
-//   container.innerHTML = ''; 
-
-//   currentIndex = 0;
-//   isExpanded = false;
-//   button.textContent = "Show more";   // reset button text
-
-//   renderInitial(); // afficher les jeux filtrés
-// });
-// }
-// updateCounterAll();
-
-
-
-
-// // BUTTONS ACTIVE BACKGROUND COLOR CHANGE
-// //buttons allguides, favorites onclick active background color change
-
-// const buttons = document.querySelectorAll(".button");
-
-
-// buttons.forEach(button => {
-//     button.addEventListener("click",() =>{
-//         buttons.forEach(btn => btn.classList.remove("active")); 
-//             button.classList.add("active");   
-//     });
-// });
-
-
-

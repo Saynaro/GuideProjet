@@ -7,6 +7,7 @@ import { guidesPath } from "./pathsAddPhoto.js";
 // 3. Set up multer storage configuration
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
+        console.log("Saving file to:", guidesPath);
         cb(null, guidesPath); 
     },
     filename: function (req, file, cb) {

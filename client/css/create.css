@@ -31,9 +31,11 @@ body{
     font-weight: bold;
     display: flex;
     gap: 20px;
-    padding: 5px 0 5px 5px;
+    padding: 5px 40px 5px 5px;
     font-size: 24px;
-    width: 15%;
+    width: auto;
+    min-width: min-content;
+    white-space: nowrap;
     border-radius: 0 0 16px 0;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -53,26 +55,36 @@ body{
     display: flex;
     justify-content: end;
     padding: 5px;
+    padding-left: 20px;
     gap: 10px;
     font-size: 24px;
     font-weight: bold;
     border-radius: 0 0 0 16px;
     height: 30px;
-    width: 16%;
+    width: auto; 
+    min-width: min-content;
     background-color: rgba(0, 0, 0, 0.7);
+    
+    white-space: nowrap;
     
 }
 .nickname a{
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
-.nickname img{
-    border-radius: 50%;
+.nickname img.right-avatar {
     width: 30px;
+    height: 30px;
+    min-width: 30px; 
+    min-height: 30px;
+    border-radius: 50%;
+    object-fit: cover; 
+    display: block;
     transition: transform 0.3s ease;
 }
-.nickname img:hover{
-    transform: scale(1.05);
+
+.nickname img.right-avatar:hover {
+    transform: scale(1.1);
 }
 .titre{
     position: absolute;

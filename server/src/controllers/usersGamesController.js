@@ -14,7 +14,8 @@ export const getUsersInfo = async (req, res) => {
                 display_name: true,
                 cover: true,
                 _count: {
-                    select: { followers: true } // это вернет количество подписчиков
+                    select: { followers: true } // result will be available in user._count.followers
+                                                // this will count the number of followers for the user
                 }
             }
         });
@@ -40,9 +41,9 @@ export const getUsersInfo = async (req, res) => {
 };
 
 /*
------------------------------------------
-1️⃣ Получить игры, где пользователь писал гайды
------------------------------------------
+                    -----------------------------------------
+                    Take all games that user has guides for
+                    -----------------------------------------
 */
 export const getUserGamesWithGuides = async (req, res) => {
     try {
@@ -73,9 +74,9 @@ export const getUserGamesWithGuides = async (req, res) => {
 
 
 /*
------------------------------------------
-2️⃣ Получить guides пользователя по игре
------------------------------------------
+                -----------------------------------------
+                Take all guides that user has for specific game
+                -----------------------------------------
 */
 export const getUserGuidesByGame = async (req, res) => {
     try {
@@ -92,7 +93,7 @@ export const getUserGuidesByGame = async (req, res) => {
                 users: true
             },
             orderBy: {
-                created_at: "desc"
+                created_at: "desc"              // order guides by creation date, newest first
             }
         });
 
