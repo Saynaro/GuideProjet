@@ -9,11 +9,11 @@ const __dirname = path.dirname(__filename);
 const rootPath = path.join(__dirname, "../../");
 
 // right folder for saving photos: server/client/assets/guides
-export const avatarsPath = path.join(rootPath, "client", "assets", "avatars");
+export const coversPath = path.join(rootPath, "client", "assets", "covers");
 
 // if the folder doesn't exist, create it
-if (!fs.existsSync(avatarsPath)) {
-    fs.mkdirSync(avatarsPath, { recursive: true });
+if (!fs.existsSync(coversPath)) {
+    fs.mkdirSync(coversPath, { recursive: true });
 }
 
-console.log("Saving to:", avatarsPath);
+console.log("Saving to:", coversPath);

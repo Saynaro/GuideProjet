@@ -92,8 +92,11 @@ form.addEventListener("submit", async (e) => {
         console.log(data);
         alert("Guide est creé avec success!");
 
-        form.reset();
-        previewContainer.innerHTML = ""; // clear preview
+        window.location.replace('main.html');
+
+        return;
+        // form.reset();
+        // previewContainer.innerHTML = ""; // clear preview
     } catch (err) {
         console.error("Error detaillé:", err);
     

@@ -24,7 +24,7 @@ async function fetchUserInfo() {
             }
 
             if (rightNicknameAnchor) {
-                rightNicknameAnchor.textContent = user.username;
+                rightNicknameAnchor.textContent = user.display_name || user.username;
             }
 
     } catch (err) {
@@ -91,7 +91,7 @@ async function getCover(guide) {
 async function renderCard(guide) {
     const avatar = guide.users.avatar || "default-avatar.jpg";
     const title = guide.title;
-    const username = guide.users.username;
+    const username = guide.users.display_name || guide.users.username;
     const rawDate = guide.created_at;  // c'est la date brute telle qu'elle est stockée en base de données 2026-01-15T14:30:00Z
     const time = new Date(rawDate).toLocaleDateString('fr-FR', {
         day: '2-digit',
@@ -111,7 +111,7 @@ async function renderCard(guide) {
                 <a href="#"><img src="${coverUrl}" alt="${title}"></a>
                 <div class="sousimg">
                     <div class="avatar">
-                        <img src="assets/avatars/${avatar}" class = "sousimg-avatar"  alt="${username}">
+                        <img src="../server/client/assets/avatars/${avatar}" class = "sousimg-avatar"  alt="${username}">
                         <a href="account.html" class="name">${username}</a>
                     </div>
                     <p class="time">${time}</p>

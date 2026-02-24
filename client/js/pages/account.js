@@ -1,3 +1,26 @@
+// verify if user is authenticated, if not redirect to login page
+
+async function checkAuth() {
+    try {
+        const res = await fetch("http://localhost:5001/users/me", {
+            credentials: "include"
+        });
+        
+        // if server responded with 401 (Unauthorized) or 403
+        if (res.ok) {
+            document.body.style.visibility = "visible";
+        } else {
+            window.location.replace("login.html");
+        }
+    } catch (err) {
+        window.location.replace("login.html");
+    }
+}
+
+// Check auth immediately on page load
+checkAuth();
+
+
 const container = document.querySelector('.games_block');
 const counter = document.getElementById('search_results');
 const button = document.getElementById('view_more');
@@ -39,7 +62,7 @@ async function fetchUserInfo() {
             }
 
             if (rightNicknameAnchor) {
-                rightNicknameAnchor.textContent = user.username;
+                rightNicknameAnchor.textContent = user.display_name || user.username;
             }
 
             const violetDiv = document.querySelector(".violet");
@@ -51,7 +74,7 @@ async function fetchUserInfo() {
                 }
             }
 
-        h2El.textContent = user.username;       // H2 in left block
+        h2El.textContent = user.display_name;       // H2 in left block
         usernameEl.textContent = `@${user.username}`;
         descriptionEl.textContent = user.bio || "Bonjour Lorem...";  // bio from database or placeholder
         followersEl.textContent = `${user.followersCount || 0} Followers`;
@@ -88,7 +111,7 @@ async function fetchUserGames() {
     if (!response.ok) throw new Error("Failed to load games");
 
     allGames = await response.json();
-    filteredGames = [...allGames];
+    filteredGames = [...allGames];      // ... pour faire une copie indépendante de allGames
 
     renderInitial();
 

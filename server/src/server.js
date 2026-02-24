@@ -4,7 +4,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
 import { guidesPath } from "./config/pathsAddPhoto.js";
-import { avatarsPath, coversPath } from "./config/pathsAddAvatar.js";
+import { avatarsPath } from "./config/pathsAddAvatar.js";
+import { coversPath } from "./config/pathsAddCover.js";
 
 
 import { connectDB, disconnectDB } from "./config/db.js";
@@ -14,6 +15,7 @@ import authRoutes from "./routes/authRoutes.js"
 import afficheJeuxRoutes from "./routes/afficheJeuxRoutes.js" 
 import guideRoutes from "./routes/guideRoutes.js";
 import userRoutes from "./routes/usersRoutes.js"
+import accountRoutes from "./routes/accountRoutes.js";
 
 
 
@@ -34,6 +36,13 @@ app.use(cors({
 }));
 
 
+// Middleware pour désactiver le cache sur toutes les réponses;
+// si je veux retourner sur la page precedent apres login pour ne pas afficher le page main
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    next();
+});
+
 app.use(express.json());  // Middleware to parse JSON bodies from incoming requests
 app.use(express.urlencoded({ extended: true }));      // Middleware to parse URL-encoded bodies (like form submissions)
 // app.use(cookieParser()); // pour que le server peux lire res.cookie("jwt")
@@ -48,6 +57,8 @@ app.use("/auth", authRoutes);       // All routes defined in authRoutes will be 
 app.use("/main", afficheJeuxRoutes);
 
 app.use("/guides", guideRoutes);
+
+app.use("/account", accountRoutes);
 
 //  Afficher des photos des guides
 app.use('/assets/guides', express.static(guidesPath));

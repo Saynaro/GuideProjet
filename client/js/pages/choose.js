@@ -19,7 +19,7 @@ async function fetchUserInfo() {
             }
 
             if (rightNicknameAnchor) {
-                rightNicknameAnchor.textContent = user.username;
+                rightNicknameAnchor.textContent = user.display_name || user.username;
             }
 
     } catch (err) {

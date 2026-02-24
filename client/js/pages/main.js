@@ -1,3 +1,26 @@
+// verify if user is authenticated, if not redirect to login page
+
+async function checkAuth() {
+    try {
+        const res = await fetch("http://localhost:5001/users/me", {
+            credentials: "include"
+        });
+        
+        // if server responded with 401 (Unauthorized) or 403
+        if (res.ok) {
+            document.body.style.visibility = "visible";
+        } else {
+            window.location.replace("login.html");
+        }
+    } catch (err) {
+        window.location.replace("login.html");
+    }
+}
+
+// Check auth immediately on page load
+checkAuth();
+
+
 const searchResults = document.querySelector('.nombres');
 const gameBlocks = document.querySelectorAll('.game');
 searchResults.innerHTML = `Showing ${gameBlocks.length} results`;
@@ -7,6 +30,7 @@ searchResults.innerHTML = `Showing ${gameBlocks.length} results`;
 const button = document.getElementById('view_more');
 const counter = document.getElementById('search_results');
 const container = document.querySelector('.game_block');
+const create = document.querySelector('.create-lien');
 
 
 
@@ -30,7 +54,7 @@ async function fetchUserInfo() {
             }
 
             if (rightNicknameAnchor) {
-                rightNicknameAnchor.textContent = user.username;
+                rightNicknameAnchor.textContent = user.display_name || user.username;
             }
 
     } catch (err) {
@@ -155,3 +179,10 @@ buttons.forEach(button => {
 
 
 fetchGames();
+
+// window.addEventListener('pageshow', function (event) {
+//     // persisted — это свойство, которое равно true, если страница загружена из кэша (нажата кнопка назад)
+//     if (event.persisted) {
+//         window.location.reload(); // Перезагружаем, чтобы сработал fetch и проверка авторизации
+//     }
+// });

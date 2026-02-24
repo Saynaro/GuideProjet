@@ -4,11 +4,12 @@ import { prisma } from "../config/db.js";
 export const getUsersInfo = async (req, res) => {
     try {
         const userId = req.user.id;
-        console.log("User from middleware:", req.user);
+        
         const user = await prisma.users.findUnique({
             where: { id: userId },
             select: {
                 username: true,
+                email: true,
                 avatar: true,
                 bio: true,
                 display_name: true,
@@ -30,6 +31,7 @@ export const getUsersInfo = async (req, res) => {
             bio: user.bio,
             display_name: user.display_name,
             cover: user.cover,
+            email: user.email,
             followersCount: user._count.followers,
         });
 

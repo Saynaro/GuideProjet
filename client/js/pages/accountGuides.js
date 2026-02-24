@@ -1,3 +1,25 @@
+// verify if user is authenticated, if not redirect to login page
+
+async function checkAuth() {
+    try {
+        const res = await fetch("http://localhost:5001/users/me", {
+            credentials: "include"
+        });
+        
+        // if server responded with 401 (Unauthorized) or 403
+        if (res.ok) {
+            document.body.style.visibility = "visible";
+        } else {
+            window.location.replace("login.html");
+        }
+    } catch (err) {
+        window.location.replace("login.html");
+    }
+}
+
+// Check auth immediately on page load
+checkAuth();
+
 // === DOM elements ===
 const container = document.querySelector(".games_block");
 const counter = document.getElementById("search_results");
@@ -49,7 +71,7 @@ async function fetchUserInfo() {
             }
 
             if (rightNicknameAnchor) {
-                rightNicknameAnchor.textContent = user.username;
+                rightNicknameAnchor.textContent = user.display_name || user.username;
             }
 
 
@@ -62,7 +84,7 @@ async function fetchUserInfo() {
                 }
             }
 
-        h2El.textContent = user.username;
+        h2El.textContent = user.display_name || user.username;
         usernameEl.textContent = `@${user.username}`;
         descriptionEl.textContent = user.bio || "Bonjour ...";
         followersEl.textContent = `${user.followersCount || 0} Followers`;
@@ -151,8 +173,8 @@ function renderCard(guide) {
     }
 
     // Users avatar and username
-    const avatar = guide.users?.avatar || "default-avatar.jpg";
-    const username = guide.users?.username || "Unknown";
+    const avatar = guide.users.avatar || "default-avatar.jpg";
+    const username = guide.users.display_name || guide.users.username || "Unknown";
 
     // Date formatting
     const time = new Date(guide.created_at).toLocaleDateString();
