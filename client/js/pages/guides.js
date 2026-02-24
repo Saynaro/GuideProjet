@@ -106,9 +106,9 @@ async function renderCard(guide) {
         `<div class="game">
             <div class="game-inner">
                 <div class="text">
-                    <a href="#">${title}</a>
+                    <a href="viewGuides.html?id=${guide.id}">${title}</a>
                 </div>
-                <a href="#"><img src="${coverUrl}" alt="${title}"></a>
+                <a href="viewGuides.html?id=${guide.id}"><img src="${coverUrl}" alt="${title}"></a>
                 <div class="sousimg">
                     <div class="avatar">
                         <img src="../server/client/assets/avatars/${avatar}" class = "sousimg-avatar"  alt="${username}">

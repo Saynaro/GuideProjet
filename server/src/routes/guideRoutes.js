@@ -1,12 +1,14 @@
 import express from "express";
 import { authMiddleware } from "../middleware/authMiddlewares.js";
-import { getGuidesByGame, createGuide, deleteGuide, updateGuide } from "../controllers/addGuideController.js";
+import { getGuidesByGame, createGuide, deleteGuide, updateGuide, getSingleGuide } from "../controllers/addGuideController.js";
 import { upload } from "../config/upload.js";
 
 const router = express.Router();
 
-router.use(authMiddleware);
 
+
+router.use(authMiddleware);
+router.get("/single/:id", getSingleGuide);
 router.get("/:id", getGuidesByGame);
 // localhost:5001/guides
 router.post("/", upload.array("images", 5), createGuide); // 5 images max;   "images" - key from FormData in  ajoutGuide.js

@@ -40,17 +40,17 @@ const storage = multer.diskStorage({
             dest = guidesPath;
         }
 
-        // Проверяем существование папки по АБСОЛЮТНОМУ пути
+        // Vefifier si le dossier existe, sinon le créer
         if (!fs.existsSync(dest)) {
             console.log("Creating directory:", dest);
             fs.mkdirSync(dest, { recursive: true });
         }
 
-        // ПЕРЕДАЕМ АБСОЛЮТНЫЙ ПУТЬ
+        // Afficher le chemin de destination pour le debug
         cb(null, dest); 
     },
     filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);    // 1e9 = 1 milliard pour plus d'unicité
         cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
     }
 });

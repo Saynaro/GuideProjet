@@ -20,7 +20,7 @@
     <form id="guideForm" enctype="multipart/form-data">
       <label>
         Photo du guide:
-        <input type="file" id="guideImage" name="image" accept="image/*">
+        <input type="file" id="guideImage" name="images" accept="image/*" multiple>
       </label>
       <label>
         Title:
@@ -30,7 +30,7 @@
         Contenu du guide:
         <textarea id="guideContent" rows="5" name="content" placeholder="Entrez le texte de votre guide..."></textarea>
       </label>
-      <button type="submit">Sauvegarder</button>
+      <button type="submit" id="saveGuideBtn">Sauvegarder</button>
     </form>
   </div>
 
@@ -40,6 +40,8 @@
     <div class="guide-photo"></div>
     <p class="guide-text"></p>
   </div>
+
+  <div id="toast" class="toast">Guide ajouté avec succès ✅</div>
 
   <script type="module" src="js/pages/ajoutGuide.js"></script>
 </body>

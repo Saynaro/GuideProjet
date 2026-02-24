@@ -36,6 +36,7 @@ displayGame();
 // --- Form pour ajouter le guide ---
 const form = document.getElementById("guideForm");
 const previewContainer = document.querySelector(".guide-photo"); // container pour afficher les previews 
+const toast = document.getElementById("toast"); // element pour afficher le toast de succès
 
 // afficher les previews des images choisies
 document.getElementById("guideImage").addEventListener("change", (e) => {
@@ -58,49 +59,49 @@ document.getElementById("guideImage").addEventListener("change", (e) => {
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    const content = document.getElementById("guideContent").value.trim();
-    const title = document.getElementById("title").value.trim();
-    const imageFiles = document.getElementById("guideImage").files;
-
-    if (!content || !title) {
-        alert("Veuillez remplir le titre et contenu du guide");
-        return;
-    }
-
-    // Creer FormData pour envoie des files
-    const formData = new FormData();
-    formData.append("game_id", gameId);
-    formData.append("content", content);
-    formData.append("title", title);
-
-    // Ajouter tous les images choisi
-    for (let i = 0; i < imageFiles.length; i++) {
-        formData.append("images", imageFiles[i]); // key "images" paraille pour tous
-    }
+    
 
     try {
+        const content = document.getElementById("guideContent").value.trim();
+        const title = document.getElementById("title").value.trim();
+        const imageFiles = document.getElementById("guideImage").files;
+
+        const formData = new FormData();
+        formData.append("game_id", gameId);
+        formData.append("content", content);
+        formData.append("title", title);
+
+        for (let i = 0; i < imageFiles.length; i++) {
+            formData.append("images", imageFiles[i]);
+        }
+
+        
         const response = await fetch("http://localhost:5001/guides/", {
             method: "POST",
             body: formData,
             credentials: "include",
         });
 
-        if (!response.ok) throw new Error(`Erreur du serveur: ${response.status}`);
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Server reponded: ${response.status} - ${errorText}`);
+        }
 
-        const data = await response.json();
-        console.log(data);
-        alert("Guide est creé avec success!");
+        // showToast("Guide ajouté avec succès ✅");
+        // await delay(2000);
+        window.location.href = "main.html";
 
-        window.location.replace('main.html');
-
-        return;
-        // form.reset();
-        // previewContainer.innerHTML = ""; // clear preview
     } catch (err) {
-        console.error("Error detaillé:", err);
-    
-
-    console.log(`Erreur de creation du guide: ${err.message}`);
+        
+        console.error("Erreur ICI:", err);
+        alert("Y'a une erreur: " + err.message); 
     }
 });
+
+function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+}
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

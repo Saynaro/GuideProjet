@@ -33,22 +33,29 @@ const fetchData = async () => {
         })
     });
 
-    const data = await response.json();
+    const contentType = response.headers.get("content-type");
+        
+        if (contentType && contentType.includes("application/json")) {
+            // Si le serveur a répondu avec du JSON (succès ou erreur métier)
+            const data = await response.json();
 
-    if (!response.ok) {
-        // data.error contien le message du server
-        showError(data.error || "Something is wrong");
-        return;
-    }
+            if (!response.ok) {
+                // Console log l'erreur 
+                showError(data.error || "Registration failed");
+                return;
+            }
 
-
-
-    errorMessage.style.display = "none";
-    console.log("User registered:", data);
-
-    // vider le forme
-    form.reset();
-
+            // Si tout s'est bien passé, on peut rediriger ou afficher un message de succès
+            console.log("User registered:", data);
+            form.reset();
+            window.location.href = "main.html"; 
+            
+        } else {
+            // 2. Si le serveur a répondu avec du texte brut (erreur serveur), on affiche un message générique
+            const rawError = await response.text(); 
+            console.error("Server error raw text:", rawError);
+            showError("This username is already taken. Please choose another one."); // Message générique pour les erreurs serveur, car on ne peut pas faire confiance au contenu exact du message d'erreur
+        }
     }catch (err){
         console.error("Fetch failed:", err);
         showError(err.message || "Network error");
@@ -58,5 +65,6 @@ const fetchData = async () => {
 form.addEventListener('submit', async (event) => {
     event.preventDefault();         // pour ne pas rafraichir le page
 
+    
     await fetchData();
 });

@@ -227,12 +227,12 @@ form button:hover{
     width: 100%;
     
 }
-.games_block{
+.games_block {
     width: 80%;
-    height: 100%;
+    height: auto; 
     display: grid;
-    grid-template-columns: repeat(3, 21em);
-    grid-template-rows: repeat(3,250px);
+    grid-template-columns: repeat(3, 1fr); 
+    grid-auto-rows: 250px; 
     gap: 50px 32px;
     margin: 0 20px 10px 20px;
 }

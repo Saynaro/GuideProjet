@@ -62,6 +62,10 @@ app.use("/account", accountRoutes);
 
 //  Afficher des photos des guides
 app.use('/assets/guides', express.static(guidesPath));
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
 app.use('/assets/avatars', express.static(avatarsPath));
 app.use('/assets/covers', express.static(coversPath));
 

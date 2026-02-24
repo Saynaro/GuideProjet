@@ -3,7 +3,28 @@ import dayjs from "dayjs";
 import { prisma } from "../config/db.js";
 
 
+const getSingleGuide = async (req, res) => {
+    try {
+        const { id } = req.params;
 
+        const guide = await prisma.guides.findUnique({
+            where: { id: parseInt(id) },
+            include: {
+                users: true, // Pour inclure les infos de l'utilisateur qui a créé le guide
+                games: true  // Pour inclure les infos du jeu associé au guide
+            }
+        });
+
+        if (!guide) {
+            return res.status(404).json({ message: "Guide non trouvé" });
+        }
+
+        res.json(guide);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Erreur serveur" });
+    }
+};
 
 
 const getGuidesByGame = async (req, res) => {
@@ -37,6 +58,11 @@ const createGuide = async (req, res) => {
 
         const gameIdNumber = Number(game_id);
 
+
+        // Build an array of image filenames from the uploaded files
+        const imagesArray = (req.files || []).map(f => f.filename);
+
+
         const game = await prisma.games.findUnique({
             where: { id: gameIdNumber },
         });
@@ -45,7 +71,6 @@ const createGuide = async (req, res) => {
             return res.status(404).json({ error: "Game not found"})
         }
 
-        const imagesArray = req.files ? req.files.map(file => file.filename) : [];
 
         const guide = await prisma.guides.create({
             data: {
@@ -141,4 +166,4 @@ const deleteGuide = async (req, res) => {
 };
 
 
-export { getGuidesByGame, createGuide, deleteGuide, updateGuide };
+export { getGuidesByGame, createGuide, deleteGuide, updateGuide, getSingleGuide };
