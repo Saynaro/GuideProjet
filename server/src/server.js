@@ -31,8 +31,10 @@ app.use(cookieParser());
 
 
 app.use(cors({
-  origin: ["http://127.0.0.1:5500", "http://localhost:5500"], 
-  credentials: true,  // Permet de envoyer des cookies
+  origin: process.env.NODE_ENV === 'production' 
+    ? false // In production,  If front and back in one domain, we put "false" or site adresse
+    : ["http://127.0.0.1:5500", "http://localhost:5500"], 
+  credentials: true,
 }));
 
 
@@ -72,9 +74,19 @@ app.use('/assets/covers', express.static(coversPath));
 app.use("/users", userRoutes);
 
 
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 
+// Define the frontend folder path (projet/client)
+const clientPath = path.join(process.cwd(), "..", "client");
+
+// Envoie static files of frontend
+app.use(express.static(clientPath));
+
+// All the demandes, which don't match with API-routes, envoie to main.html
+app.get("*", (req, res) => {
+    res.sendFile(path.join(clientPath, "main.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port: http://localhost:${PORT}`);
