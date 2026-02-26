@@ -21,7 +21,7 @@ async function checkAuth() {
 checkAuth();
 
 
-let currentLoggedInUserId = null; // Une variable globale pour stocker l'ID de l'utilisateur actuellement connecté.
+let currentUserId = null; // Une variable globale pour stocker l'ID de l'utilisateur actuellement connecté.
 const params = new URLSearchParams(window.location.search);
 const profileId = params.get("id");
 
@@ -57,8 +57,23 @@ async function fetchUserInfo() {
     try {
         // 1. D'abord, on récupère les infos de l'utilisateur actuellement connecté pour obtenir son ID
         const authRes = await fetch("http://localhost:5001/users/me", { credentials: "include" });
-        const currentUser = await authRes.json();
-        currentLoggedInUserId = currentUser.id; 
+        const me = await authRes.json();
+        currentUserId = me.id; // Stocker l'ID de l'utilisateur connecté dans la variable globale
+
+
+
+        const rightAvatarImg = document.querySelector(".right-avatar");
+        const rightNicknameAnchor = document.querySelector(".nickname a:first-child");
+
+        if (rightAvatarImg) {
+            rightAvatarImg.src = me.avatar 
+                ? `http://localhost:5001/assets/avatars/${me.avatar}` 
+                : "assets/white.jpg";
+        }
+
+        if (rightNicknameAnchor) {
+            rightNicknameAnchor.textContent = me.display_name || me.username;
+        }
 
         // 2. Load profile info( peut etre notre propre profil ou celui d'un autre utilisateur)
         const res = await fetch(userUrl, { credentials: "include" });
@@ -73,19 +88,6 @@ async function fetchUserInfo() {
             : "assets/white.jpg";
 
 
-            const rightAvatarImg = document.querySelector(".right-avatar");
-            const rightNicknameAnchor = document.querySelector(".nickname a:first-child");
-
-            if (rightAvatarImg) {
-                rightAvatarImg.src = user.avatar 
-                    ? `http://localhost:5001/assets/avatars/${user.avatar}` 
-                    : "assets/white.jpg";
-            }
-
-            if (rightNicknameAnchor) {
-                rightNicknameAnchor.textContent = user.display_name || user.username;
-            }
-
             const violetDiv = document.querySelector(".violet");
             if (violetDiv) {
                 if (user.cover) {
@@ -97,7 +99,7 @@ async function fetchUserInfo() {
 
 
         const editBtn = document.querySelector(".edit");
-        if (!profileId || Number(profileId) === currentLoggedInUserId) {
+        if (!profileId || Number(profileId) === currentUserId) {
             if (editBtn) editBtn.style.display = "block"; // affiche le bouton d'édition si c'est notre propre profil
         } else {
             if (editBtn) editBtn.style.display = "none";  // cache le bouton d'édition si c'est le profil de quelqu'un d'autre
@@ -241,7 +243,7 @@ container.addEventListener("click", async (e) => {
 
     // 1.   Essayer de prendre l'ID du propriétaire du profil à partir de la variable globale (qui devrait être définie si on a déjà chargé les infos du profil)
     // 2. Si la variable globale est vide (par exemple, si l'utilisateur a cliqué très rapidement avant que les infos du profil ne soient chargées), essayer de prendre l'ID à partir de l'URL (pour le cas où on arrive sur ce page en cliquant sur un profil d'utilisateur depuis une autre page)
-    let targetId = profileId || currentLoggedInUserId;
+    let targetId = profileId || currentUserId;
 
     // 3. Si ВСЁ ЕЩЕ пусто (exemple, cliqué trop vite), on fait une requête d'urgence
     if (!targetId) {
@@ -250,7 +252,7 @@ container.addEventListener("click", async (e) => {
             const res = await fetch("http://localhost:5001/users/me", { credentials: "include" });
             if (res.ok) {
                 const user = await res.json();
-                currentLoggedInUserId = user.id; // sauvegarder pour éviter de refaire ce genre de requête à l'avenir
+                currentUserId = user.id; // sauvegarder pour éviter de refaire ce genre de requête à l'avenir
                 targetId = user.id;
             }
         } catch (err) {

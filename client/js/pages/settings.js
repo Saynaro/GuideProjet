@@ -187,6 +187,9 @@ form.addEventListener('submit', async(e) => {
 
 
 
+////////////// LOGOUT //////////////
+
+
 const logoutBtn = document.querySelector('.logout');
 
 logoutBtn.addEventListener("click", async (e) => {
@@ -209,3 +212,44 @@ logoutBtn.addEventListener("click", async (e) => {
         console.error("Erreur", error);
     }
 })
+
+
+
+
+
+////////////// DELETE ACCOUNT ///////////////////
+
+const deleteForm = document.getElementById('delete-account-form');
+
+if (deleteForm) {
+    deleteForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Arrêter le formulaire de se soumettre normalement
+
+        // Confirmation avant de supprimer le compte
+        const confirmed = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
+        
+        if (confirmed) {
+            try {
+                const response = await fetch("http://localhost:5001/account/delete", {
+                    method: "DELETE", // IMPORTANT: UTILISER DELETE pour correspondre à la route définie dans le backend
+                    credentials: "include",
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+
+                    alert("Votre compte a été supprimé avec succès.");
+
+                    // Apres la suppression du compte, on redirige vers la page de login
+                    window.location.replace("login.html");
+                } else {
+                    alert("Erreur lors de la suppression : " + result.message);
+                }
+            } catch (error) {
+                console.error("Erreur réseau :", error);
+                alert("Impossible de contacter le serveur.");
+            }
+        }
+    });
+}

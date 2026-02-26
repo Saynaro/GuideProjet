@@ -67,7 +67,7 @@ async function fetchUserInfo() {
         const me = await authRes.json();
         currentUserId = me.id;  // id of authenticated user, which we will use to determine if the profile we're viewing is our own or someone else's, and also for rendering guide cards correctly (show/hide delete button)
 
-
+        
         const rightAvatarImg = document.querySelector(".right-avatar");
         const rightNicknameAnchor = document.querySelector(".nickname a:first-child");
 

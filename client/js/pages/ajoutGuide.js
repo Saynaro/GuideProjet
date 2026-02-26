@@ -74,6 +74,7 @@ form.addEventListener("submit", async (e) => {
         for (let i = 0; i < imageFiles.length; i++) {
             formData.append("images", imageFiles[i]);
         }
+        console.log(formData);
 
         
         const response = await fetch("http://localhost:5001/guides/", {
