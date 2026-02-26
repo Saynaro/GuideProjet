@@ -21,6 +21,22 @@ async function checkAuth() {
 checkAuth();
 
 
+let currentLoggedInUserId = null; // Une variable globale pour stocker l'ID de l'utilisateur actuellement connecté.
+const params = new URLSearchParams(window.location.search);
+const profileId = params.get("id");
+
+
+// Define API endpoints based on whether we're viewing our own profile or someone else's
+const userUrl = profileId 
+    ? `http://localhost:5001/users/${profileId}` 
+    : `http://localhost:5001/users/me`;
+
+// For fetching games with guides, we also need to differentiate between own profile and others'
+const gamesUrl = profileId 
+    ? `http://localhost:5001/users/${profileId}/games-with-guides` 
+    : `http://localhost:5001/users/me/games-with-guides`;
+
+
 const container = document.querySelector('.games_block');
 const counter = document.getElementById('search_results');
 const button = document.getElementById('view_more');
@@ -35,12 +51,17 @@ const descriptionEl = document.querySelector(".left .description p");
 const followersEl = document.getElementById("followers");
 
 
+
 // Info for current user
 async function fetchUserInfo() {
     try {
-        const res = await fetch("http://localhost:5001/users/me", {
-            credentials: "include"
-        });
+        // 1. D'abord, on récupère les infos de l'utilisateur actuellement connecté pour obtenir son ID
+        const authRes = await fetch("http://localhost:5001/users/me", { credentials: "include" });
+        const currentUser = await authRes.json();
+        currentLoggedInUserId = currentUser.id; 
+
+        // 2. Load profile info( peut etre notre propre profil ou celui d'un autre utilisateur)
+        const res = await fetch(userUrl, { credentials: "include" });
 
         if (!res.ok) throw new Error("Failed to fetch user info");
 
@@ -74,6 +95,14 @@ async function fetchUserInfo() {
                 }
             }
 
+
+        const editBtn = document.querySelector(".edit");
+        if (!profileId || Number(profileId) === currentLoggedInUserId) {
+            if (editBtn) editBtn.style.display = "block"; // affiche le bouton d'édition si c'est notre propre profil
+        } else {
+            if (editBtn) editBtn.style.display = "none";  // cache le bouton d'édition si c'est le profil de quelqu'un d'autre
+        }
+
         h2El.textContent = user.display_name;       // H2 in left block
         usernameEl.textContent = `@${user.username}`;
         descriptionEl.textContent = user.bio || "Bonjour Lorem...";  // bio from database or placeholder
@@ -103,9 +132,8 @@ let isExpanded = false;
 
 async function fetchUserGames() {
     try {
-        const response = await fetch(
-        "http://localhost:5001/users/me/games-with-guides",
-        { credentials: "include" }
+        const response = await fetch(gamesUrl,
+            { credentials: "include" }
         );
 
     if (!response.ok) throw new Error("Failed to load games");
@@ -130,7 +158,13 @@ function renderInitial() {
 
     currentIndex = slice.length;
     isExpanded = false;
-    button.textContent = "Show more";
+
+    if (filteredGames.length <= initial) {
+        button.style.display = "none";
+    } else {
+        button.style.display = "flex"; 
+        button.textContent = "Show more";
+    }
 
     updateCounter();
 }
@@ -205,11 +239,37 @@ container.addEventListener("click", async (e) => {
 
     const gameId = card.dataset.id;
 
-    // Save choosen game ID to localStorage for the guides page to access
-    localStorage.setItem("selectedGameId", gameId);
+    // 1.   Essayer de prendre l'ID du propriétaire du profil à partir de la variable globale (qui devrait être définie si on a déjà chargé les infos du profil)
+    // 2. Si la variable globale est vide (par exemple, si l'utilisateur a cliqué très rapidement avant que les infos du profil ne soient chargées), essayer de prendre l'ID à partir de l'URL (pour le cas où on arrive sur ce page en cliquant sur un profil d'utilisateur depuis une autre page)
+    let targetId = profileId || currentLoggedInUserId;
 
-    // Go to guides page for this game  
-    window.location.href = "accountGuides.html";
+    // 3. Si ВСЁ ЕЩЕ пусто (exemple, cliqué trop vite), on fait une requête d'urgence
+    if (!targetId) {
+        console.log("Id n'est pas taked...");
+        try {
+            const res = await fetch("http://localhost:5001/users/me", { credentials: "include" });
+            if (res.ok) {
+                const user = await res.json();
+                currentLoggedInUserId = user.id; // sauvegarder pour éviter de refaire ce genre de requête à l'avenir
+                targetId = user.id;
+            }
+        } catch (err) {
+            console.error("Error during authorization check on click", err);
+        }
+    }
+
+    // 4. Finally, if we have an ID, save it and redirect. If not, redirect to login as a fallback.
+    if (targetId) {
+        localStorage.setItem("selectedGameId", gameId);
+        localStorage.setItem("selectedProfileOwnerId", targetId);
+        
+        console.log("Saved to Storage: Game:", gameId, "Owner:", targetId);
+        window.location.href = "accountGuides.html";
+    } else {
+        // Meme si c'est une situation très improbable, on gère le cas où on n'arrive pas à déterminer l'ID de l'utilisateur
+        console.error("Error: Could not determine profile owner ID. Redirecting to login.");
+        window.location.href = "login.html";
+    }
 });
 
 

@@ -1,8 +1,56 @@
 const params = new URLSearchParams(window.location.search);
+const showDelete = params.get('fromAccount');
 const guideId = params.get("id");
+
+
+// verifie si on est venu via accountGuide
+if (showDelete === 'true' && guideId) {
+    const parentContainer = document.querySelector('.second');
+
+    if (parentContainer) {
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = "Supprimer le guide";
+        deleteBtn.className = "delete-button"; 
+        
+        deleteBtn.addEventListener('click', async () => {
+            if (confirm("Vous etes sure?")) {
+                try {
+                    const response = await fetch(`http://localhost:5001/guides/${guideId}`, {
+                        method: 'DELETE',
+                        credentials: "include"
+                    });
+
+                    if (response.ok) {
+                        alert("Guide bien supprimé");
+                        window.location.href = "account.html"; 
+                    } else {
+                        const errorData = await response.json().catch(() => ({}));
+                        alert(`Erreur lors de supprime: ${errorData.message || "Pas d'acces"}`);
+                    }
+                } catch (err) {
+                    console.error("Erreur du serveur:", err);
+                    alert("Erreur de connection à serveur");
+                }
+            }
+        });
+
+        parentContainer.appendChild(deleteBtn);
+    } else {
+        console.warn("Element .second n'as pas été trouvé.");
+    }
+}
+
+
+        const deleteBtn = document.querySelector(".delete-button");
+
 
 async function fetchFullGuide() {
     try {
+        const authRes = await fetch("http://localhost:5001/users/me", { credentials: "include" });
+        const currentUser = await authRes.json();
+
+
+        // 2. Получаем сам гайд
         const response = await fetch(`http://localhost:5001/guides/single/${guideId}`, {
             credentials: "include"
         });
@@ -32,6 +80,13 @@ async function fetchFullGuide() {
                         imagesContainer.appendChild(imgTag);
                     });
                     hasImages = true;
+                }
+
+                if (guide.user_id !== currentUser.id) {
+                    if (deleteBtn) deleteBtn.style.display = "none";
+                } else {
+                    
+                    if (deleteBtn) deleteBtn.style.display = "block";
                 }
             } catch (err) {
                 // If parsing fails, try to use the single image as a fallback

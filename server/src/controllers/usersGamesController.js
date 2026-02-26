@@ -3,11 +3,13 @@ import { prisma } from "../config/db.js";
 
 export const getUsersInfo = async (req, res) => {
     try {
-        const userId = req.user.id;
+        // If :userId is in the URL, use it. If not, use the ID from the token (ourselves)
+        const userId = req.params.userId ? parseInt(req.params.userId) : req.user.id;
         
         const user = await prisma.users.findUnique({
             where: { id: userId },
             select: {
+                id: true,
                 username: true,
                 email: true,
                 avatar: true,
@@ -26,6 +28,7 @@ export const getUsersInfo = async (req, res) => {
         }
 
         res.json({
+            id: user.id,
             username: user.username,
             avatar: user.avatar,
             bio: user.bio,
@@ -49,12 +52,13 @@ export const getUsersInfo = async (req, res) => {
 */
 export const getUserGamesWithGuides = async (req, res) => {
     try {
-        const userId = req.user.id;
+        // If :userId is in the URL, use it. If not, use the ID from the token (ourselves)
+        const userId = req.params.userId ? parseInt(req.params.userId) : req.user.id;
 
         const games = await prisma.games.findMany({
             where: {
                 guides: {
-                    some: {
+                    some: {             // le jeux qui a au moins un guide creé par user_id, sinon cacher
                         user_id: userId
                     }
                 }
@@ -82,13 +86,28 @@ export const getUserGamesWithGuides = async (req, res) => {
 */
 export const getUserGuidesByGame = async (req, res) => {
     try {
-        const userId = req.user.id;
-        const gameId = Number(req.params.gameId);
+
+
+        const { userId, gameId } = req.params;
+
+        // 1. Determiner quel ID de user utiliser : celui de l'URL ou celui du token (pour "me")
+        let targetUserId;
+        
+        // Verifier si userId est "me", "undefined" ou absent, et dans ce cas utiliser l'ID du token
+        if (!userId || userId === "me" || userId === "undefined") {
+            targetUserId = req.user.id; // Take user ID from token if "me", "undefined" or no userId in URL
+        } else {
+            targetUserId = Number(userId);
+        }
+
+        if (isNaN(targetUserId) || isNaN(Number(gameId))) {
+            return res.status(400).json({ message: "Invalid User ID or Game ID" });
+        }
 
         const guides = await prisma.guides.findMany({
             where: {
-                user_id: userId,
-                game_id: gameId
+                user_id: targetUserId,
+                game_id: Number(gameId)
             },
             include: {
                 games: true,

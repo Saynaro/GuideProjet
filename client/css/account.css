@@ -8,8 +8,8 @@ body{
     margin: 0;
     padding: 0;
 }
-section{
-    height: 100vh;
+section {
+    min-height: 100vh; 
 }
 .tous{
     display: flex;
@@ -383,7 +383,6 @@ form button:hover{
 .games_block{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(3,1fr);
     gap: 20px;
     padding: 0 20px 10px 20px;
 }

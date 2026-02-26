@@ -8,10 +8,14 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.get("/me", getUsersInfo);
-
 router.get("/me/games-with-guides", getUserGamesWithGuides);
-
 // /users/me/games/:gameId/guides
 router.get( "/me/games/:gameId/guides", getUserGuidesByGame );
+
+
+// Parametre :userId can take a number (exemple /users/6)
+router.get("/:userId", getUsersInfo); 
+router.get("/:userId/games-with-guides", getUserGamesWithGuides);
+router.get("/:userId/games/:gameId/guides", getUserGuidesByGame);
 
 export default router;

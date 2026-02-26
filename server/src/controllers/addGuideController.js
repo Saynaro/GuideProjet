@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { prisma } from "../config/db.js";
 
 
+// utilise en viewGuides.js pour afficher un guide 
 const getSingleGuide = async (req, res) => {
     try {
         const { id } = req.params;
@@ -33,11 +34,20 @@ const getGuidesByGame = async (req, res) => {
     if (isNaN(gameId)) {
         return res.status(400).json({ error: "Invalid game id" });
     }
+
     try {
         const guides = await prisma.guides.findMany({
             where: { game_id: gameId },
             include: {
-                users: true,
+                users: {
+                    select: {
+                        id: true,
+                        username: true,
+                        display_name: true,
+                        avatar: true
+                        // Le password est caché
+                    }
+                },
                 games: true
             },
             orderBy: { created_at: "desc" }
@@ -141,10 +151,18 @@ const updateGuide = async (req, res) => {
 };
 
 
+
 const deleteGuide = async (req, res) => {
+    // on ajoute le try catch parce que si y'a un erreur du bdd, serveur ne tombe pas
+    try{
+        const guideId = Number(req.params.id);
+
+        if (isNaN(guideId)) {
+            return res.status(400).json({ error: "Invalid guide ID" });
+        }
 
         const guide = await prisma.guides.findUnique({
-            where: { id: req.params.id },
+            where: { id: guideId },
         });
 
         if (!guide) {
@@ -156,13 +174,17 @@ const deleteGuide = async (req, res) => {
         }
 
         await prisma.guides.delete({
-            where: { id: req.params.id }
+            where: { id: guideId }
         })
 
         res.status(200).json({
             status: "Success",
             message: "Guide removed",
         });
+    }catch{
+        console.error("Delete Error:", error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
 };
 
 

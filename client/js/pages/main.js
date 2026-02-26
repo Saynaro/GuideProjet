@@ -31,6 +31,7 @@ const button = document.getElementById('view_more');
 const counter = document.getElementById('search_results');
 const container = document.querySelector('.game_block');
 const create = document.querySelector('.create-lien');
+const searchInput = document.getElementById("searchInput");
 
 
 
@@ -67,6 +68,7 @@ fetchUserInfo();
 
 
 let allGames = [];
+let filteredGames = [];
 const initial = 12;        // les jeux afichés premier
 let isExpanded = false;      // est élargi?
 let currentIndex = 0;       // index du jeux au moment
@@ -75,7 +77,7 @@ renderInitial();
 
 
 function updateCounter() {                      // combien des jeux affiché sur combien
-    counter.textContent = `Showing ${currentIndex} of ${allGames.length} results`;
+    counter.textContent = `Showing ${currentIndex} of ${filteredGames.length} results`;
 }
 
 currentIndex = initial;
@@ -84,12 +86,24 @@ updateCounter();
 
 function renderInitial() {                          // les jeux affichés en ouvrant le site
     container.innerHTML = '';
-    allGames.slice(0, initial).forEach(renderCard);
+    
+    const slice = filteredGames.slice(0, initial);
+    slice.forEach(renderCard);
+
+    currentIndex = slice.length;
+    isExpanded = false;
+
+    if (filteredGames.length <= initial) {
+        button.style.display = "none";
+    } else {
+        button.style.display = "flex"; 
+        button.textContent = "Show more";
+    }
 }
 
 
 function addNext() {                    // les jeux affiché en touchant le button view 
-  const slice = allGames.slice(currentIndex, currentIndex + step);            // prendre le tableau, combien jeux on veux (ici: 12).
+  const slice = filteredGames.slice(currentIndex, currentIndex + step);            // prendre le tableau, combien jeux on veux (ici: 12).
   slice.forEach(renderCard);                                     //  A partir de la premiere element du array, et + 6 chaque fois
 
     currentIndex += slice.length;
@@ -113,6 +127,9 @@ async function fetchGames() {
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         allGames = await response.json();   // array des objects
+        filteredGames = [...allGames];      // ... pour faire une copie indépendante de allGames
+
+
         renderInitial();
         updateCounter();
     } catch (err) {
@@ -157,12 +174,23 @@ button.addEventListener('click', () => {
         renderInitial();
         currentIndex = initial;
         isExpanded = false;
+
         button.textContent = "Show more";
+
         updateCounter();
     }
 });
 
 
+searchInput.addEventListener("input", (event) => {
+    const value = event.target.value.toLowerCase().trim();
+
+    filteredGames = allGames.filter(game =>
+        game.title.toLowerCase().includes(value)
+    );
+
+    renderInitial();
+});
 
 
 //buttons allguides, favorites onclick active background color change
@@ -180,9 +208,3 @@ buttons.forEach(button => {
 
 fetchGames();
 
-// window.addEventListener('pageshow', function (event) {
-//     // persisted — это свойство, которое равно true, если страница загружена из кэша (нажата кнопка назад)
-//     if (event.persisted) {
-//         window.location.reload(); // Перезагружаем, чтобы сработал fetch и проверка авторизации
-//     }
-// });

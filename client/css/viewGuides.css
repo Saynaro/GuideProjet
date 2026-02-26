@@ -69,3 +69,27 @@ body {
 .back-btn:hover {
     filter: brightness(1.2);
 }
+
+
+
+.second{
+    justify-content: center;
+    justify-self: center;
+    margin-bottom: 30px;
+}
+.delete-button {
+
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}

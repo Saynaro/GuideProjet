@@ -1,5 +1,6 @@
 const container = document.querySelector(".games_block");
 const counter = document.getElementById("search_results");
+const searchInput = document.getElementById("searchInput");
 const button = document.getElementById("view_more");
 
 
@@ -38,6 +39,7 @@ fetchUserInfo();
 
 
 let allGuides = [];
+let filteredGuides = [];
 const initial = 9;
 const step = 6;
 let currentIndex = 0;
@@ -54,6 +56,8 @@ async function fetchGuides() {
         if (!response.ok) throw new Error("Failed to fetch guides");
 
         allGuides = await response.json();
+        filteredGuides = [...allGuides];      // ... pour faire une copie indépendante de allGuides
+
         await renderInitial();
         updateCounter();
     } catch (err) {
@@ -112,7 +116,7 @@ async function renderCard(guide) {
                 <div class="sousimg">
                     <div class="avatar">
                         <img src="../server/client/assets/avatars/${avatar}" class = "sousimg-avatar"  alt="${username}">
-                        <a href="account.html" class="name">${username}</a>
+                        <a href="account.html?id=${guide.users.id}" class="name">${username}</a>
                     </div>
                     <p class="time">${time}</p>
                 </div>
@@ -123,7 +127,7 @@ async function renderCard(guide) {
 
 async function renderInitial() {
     container.innerHTML = "";
-    const slice = allGuides.slice(0, initial);
+    const slice = filteredGuides.slice(0, initial);
     
     for (const guide of slice) {
         await renderCard(guide);
@@ -131,17 +135,24 @@ async function renderInitial() {
 
     currentIndex = slice.length;
     isExpanded = false;
-    button.textContent = "Show more";
+
+
+    if (filteredGuides.length <= initial) {
+        button.style.display = "none";
+    } else {
+        button.style.display = "flex"; 
+        button.textContent = "Show more";
+    }
 }
 
 async function addNext() {
-    const slice = allGuides.slice(currentIndex, currentIndex + step);
+    const slice = filteredGuides.slice(currentIndex, currentIndex + step);
     for (const guide of slice) {
         await renderCard(guide);
     }
     currentIndex += slice.length;
 
-    if (currentIndex >= allGuides.length) {
+    if (currentIndex >= filteredGuides.length) {
         button.textContent = "Hide";
         isExpanded = true;
     }
@@ -150,8 +161,20 @@ async function addNext() {
 }
 
 function updateCounter() {
-    counter.textContent = `Showing ${currentIndex} of ${allGuides.length} results`;
+    counter.textContent = `Showing ${currentIndex} of ${filteredGuides.length} results`;
 }
+
+
+searchInput.addEventListener("input", (event) => {
+    const value = event.target.value.toLowerCase().trim();
+
+    filteredGuides = allGuides.filter(game =>
+        game.title.toLowerCase().includes(value)
+    );
+
+    renderInitial();
+});
+
 
 button.addEventListener("click", async () => {
     if (!isExpanded) {
