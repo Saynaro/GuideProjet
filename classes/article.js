@@ -1,5 +1,5 @@
-export default class Article {
-    #codeArticle;
+export default class Guide {
+    #codeGuide;
     #tags;
     #nom;
     #dateCreation;
@@ -10,11 +10,11 @@ export default class Article {
 
     //#data;
 
-    /*Constructeur de la classe Article
+    /*Constructeur de la classe Guide
     
-    constructor(codeArticle, tags, nom, dateCreation, dateModification, nombreDeVues, nombreDeLikes, nombreDeFavoris)
+    constructor(codeGuide, tags, nom, dateCreation, dateModification, nombreDeVues, nombreDeLikes, nombreDeFavoris)
     {
-        this.#data = {codeArticle, tags, nom, dateCreation, dateModification, nombreDeVues, nombreDeLikes, nombreDeFavoris};
+        this.#data = {codeGuide, tags, nom, dateCreation, dateModification, nombreDeVues, nombreDeLikes, nombreDeFavoris};
     };
 
     get(prop){
@@ -27,8 +27,8 @@ export default class Article {
     
     */
 
-    constructor(codeArticle, tags, nom, dateCreation, dateModification, nombreDeVues, nombreDeLikes, nombreDeFavoris) {
-        this.#codeArticle = codeArticle;
+    constructor(codeGuide, tags, nom, dateCreation, dateModification, nombreDeVues, nombreDeLikes, nombreDeFavoris) {
+        this.#codeGuide = codeGuide;
         this.#tags = tags;
         this.#nom = nom;
         this.#dateCreation = dateCreation;
