@@ -77,7 +77,7 @@ p{
     height: 25vh;
     width: 90%;
     border-radius: 16px;
-    margin: 30px;
+    margin: 30px auto;
     padding-top: 70px;
     padding-bottom: 20px;
     justify-items: center;
@@ -137,6 +137,31 @@ p{
     caret-color: #ffffff !important;                                /* cursor blanc */
 }
 
+.password-wrapper {
+    position: relative;
+    width: 100%; 
+}
+
+.password-wrapper input {
+    width: 90%;
+    padding-right: 45px; 
+    font-size: 16px;
+}
+
+.password-wrapper button {
+    color: rgb(185, 185, 185);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+
 .paragraph{
     margin-bottom: 20px;
 }
@@ -155,6 +180,7 @@ p{
 }
 .valider{
     background-color: rgb(31, 31, 31);
+    font-size: 14px;
     width: 120px;
     height: 40px;
     color: white;
@@ -313,7 +339,7 @@ p{
         margin: 20px 20px 0 20px;
     }
     .register{
-        height: 35vh;
+        height: auto;
         width: 90%;
         border-radius: 16px;
         margin: 30px;
@@ -345,13 +371,25 @@ p{
         height: 35px;
         
     }
+    .password-wrapper {
+        position: relative;
+        width: 100%; 
+    }
+
+    .password-wrapper input {
+        width: 100%;
+        padding-right: 45px; 
+        box-sizing: border-box;
+    }
+
 
     .footer{
+
         display: flex;
-        
 
         width: 100%;
         font-size: 0.6rem;
+
     }
 
 

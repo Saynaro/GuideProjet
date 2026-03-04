@@ -1,9 +1,11 @@
 import { prisma } from "../config/db.js";
 import  bcrypt  from "bcryptjs";   // bcrypt is a library used to hash passwords before storing them in the database, enhancing security by making it difficult for attackers to retrieve original passwords even if they gain access to the database.
 import { generateToken } from "../utils/generateToken.js";
+import { Prisma } from "@prisma/client"; // utilise ici pour verifier si le user email ou username est unique
 
 
 const register = async(req, res) => {
+    try{
     const { username, email, password, display_name } = req.body;     // Extracting the name, email, and password from the request body sent by the client during registration.
 
 
@@ -51,6 +53,16 @@ const register = async(req, res) => {
             token,
         },
     });
+} catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002'){
+                // P2002 = Unique constraint failed
+            return res.status(409).json({
+            error: "Username already taken"
+        });
+        }
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 };
 
 

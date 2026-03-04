@@ -78,7 +78,7 @@ p{
     height: 35vh;
     width: 90%;
     border-radius: 16px;
-    margin: 30px;
+    margin: 30px auto;
     padding-top: 20px;
     padding-bottom: 20px;
     justify-items: center;
@@ -150,7 +150,28 @@ p{
     font-size: 14px;
 }
 
+.password-wrapper {
+    position: relative;
+    width: 100%; 
+}
 
+.password-wrapper input {
+    width: 90%;
+    padding-right: 45px; 
+    font-size: 16px;
+}
+
+.password-wrapper button {
+    color: rgb(185, 185, 185);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
 
 
 .actions {
@@ -224,6 +245,7 @@ p{
 
 .valider{
     background-color: rgb(31, 31, 31);
+    font-size: 14px;
     width: 120px;
     height: 40px;
     color: white;
@@ -413,6 +435,17 @@ p{
     .checkbox-container {
         width: 50%;
         justify-content: center;   
+    }
+
+    .password-wrapper {
+        position: relative;
+        width: 100%; 
+    }
+
+    .password-wrapper input {
+        width: 100%;
+        padding-right: 45px; 
+        box-sizing: border-box;
     }
 
 

@@ -40,10 +40,10 @@ app.use(cors({
 
 // Middleware pour désactiver le cache sur toutes les réponses;
 // si je veux retourner sur la page precedent apres login pour ne pas afficher le page main
-app.use((req, res, next) => {
-    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+//     next();
+// });
 
 app.use(express.json());  // Middleware to parse JSON bodies from incoming requests
 app.use(express.urlencoded({ extended: true }));      // Middleware to parse URL-encoded bodies (like form submissions)
@@ -84,9 +84,9 @@ const clientPath = path.join(process.cwd(), "..", "client");
 app.use(express.static(clientPath));
 
 // All the demandes, which don't match with API-routes, envoie to main.html
-app.get("*", (req, res) => {
-    res.sendFile(path.join(clientPath, "main.html"));
-});
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(clientPath, "main.html"));
+// });
 
 app.listen(PORT, () => {
   console.log(`Server running on port: http://localhost:${PORT}`);

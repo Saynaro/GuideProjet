@@ -7,6 +7,31 @@ const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 
 
+// PASSWORD 
+const isValidPassword = (password) => {
+    // 8 symbols, 1 maj, 1 min, 1 chifre
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$/;
+    return regex.test(password);
+};
+
+const togglePassword = document.getElementById('togglePassword');
+const eyeOpen = document.getElementById('eyeOpen');
+const eyeClosed = document.getElementById('eyeClosed');
+
+togglePassword.addEventListener('click', () => {
+    const isHidden = passwordInput.type === "password";
+
+    passwordInput.type = isHidden ? "text" : "password";
+
+    eyeOpen.style.display = isHidden ? "none" : "block";
+    eyeClosed.style.display = isHidden ? "block" : "none";
+});
+
+
+
+
+
+
 const showError = (message) => {
     errorMessage.innerHTML = `
         ${message}
@@ -57,5 +82,10 @@ const fetchData = async () => {
 form.addEventListener('submit', async (event) => {
     event.preventDefault();         // pour ne pas rafraichir le page
 
+
+    if (!isValidPassword(passwordInput.value)) {
+        showError("Le mot de passe doit etre au moins 8 symbols et contenir 1 majuscule, 1 miniscule, et 1 chiffre ou symbole");
+        return;
+    }
     await fetchData();
 });

@@ -1,6 +1,6 @@
 import { prisma } from "../config/db.js";
 
-
+// This controller will handle routes related to user information and their games/guides
 export const getUsersInfo = async (req, res) => {
     try {
         // If :userId is in the URL, use it. If not, use the ID from the token (ourselves)

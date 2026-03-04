@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.use(authMiddleware);
 
+// /users/me for ourself, /users/:userId for other users
 router.get("/me", getUsersInfo);
 router.get("/me/games-with-guides", getUserGamesWithGuides);
 // /users/me/games/:gameId/guides
