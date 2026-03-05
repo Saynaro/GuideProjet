@@ -501,7 +501,7 @@ a:hover{
     border-radius: 6px;
     border: none;
     padding: 10px;
-    margin-top: 50px;
+    margin: 50px auto;
     gap: 5px;
 }
 #view_more img{

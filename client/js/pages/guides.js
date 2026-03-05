@@ -110,6 +110,7 @@ async function renderCard(guide) {
 
     const coverUrl = await getCover(guide); 
 
+
     container.insertAdjacentHTML(
         "beforeend",
         `<div class="game">
@@ -120,7 +121,7 @@ async function renderCard(guide) {
                 <a href="viewGuides.html?id=${guide.id}"><img src="${coverUrl}" alt="${title}"></a>
                 <div class="sousimg">
                     <div class="avatar">
-                        <img src="../server/client/assets/avatars/${avatar}" class = "sousimg-avatar"  alt="${username}">
+                        <img src="${API_URL}/assets/avatars/${avatar}" class = "sousimg-avatar"  alt="${username}">
                         <a href="account.html?id=${guide.users.id}" class="name">${username}</a>
                     </div>
                     <p class="time">${time}</p>
