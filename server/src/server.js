@@ -89,5 +89,5 @@ app.use(express.static(clientPath));
 // });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port: http://localhost:${PORT}`);
+  console.log(`Server running on port: ${PORT}`);
 });
