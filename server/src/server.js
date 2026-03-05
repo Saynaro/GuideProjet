@@ -36,6 +36,8 @@ app.use(cors({
     : ["http://127.0.0.1:5500", "http://localhost:5500"], 
   credentials: true,
 }));
+//Si je laisse le paramètre en mode développement, CORS n'autorisera que les requêtes provenant de l'ordinateur local (localhost).
+//Si je le définisse en mode production, la condition « false » sera activée (ou je pourrai saisir l'adresse site dans Render). Ceci est essentiel pour la communication entre le frontend et le backend dans le cloud.
 
 
 // Middleware pour désactiver le cache sur toutes les réponses;
