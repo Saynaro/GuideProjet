@@ -6,7 +6,7 @@ const API_URL = window.location.hostname === 'localhost' || window.location.host
 
 async function checkAuth() {
     try {
-        const res = await fetch("http://localhost:5001/users/me", {
+        const res = await fetch(`${API_URL}/users/me`, {
             credentials: "include"
         });
         
