@@ -83,6 +83,10 @@ const clientPath = path.join(process.cwd(), "..", "client");
 // Envoie static files of frontend
 app.use(express.static(clientPath));
 
+//route for the root URL, which sends the login.html file to the client
+app.get("/", (req, res) => {
+    res.sendFile(path.join(clientPath, "login.html"));
+});
 // All the demandes, which don't match with API-routes, envoie to main.html
 // app.get("*", (req, res) => {
 //     res.sendFile(path.join(clientPath, "main.html"));
