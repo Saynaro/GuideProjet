@@ -1,3 +1,8 @@
+// Define API_URL based on environment (development or production) to avoid CORS issues and relative path problems
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001'
+    : '';
+
 const params = new URLSearchParams(window.location.search);
 const showDelete = params.get('fromAccount');
 const guideId = params.get("id");
@@ -15,7 +20,7 @@ if (showDelete === 'true' && guideId) {
         deleteBtn.addEventListener('click', async () => {
             if (confirm("Vous etes sure?")) {
                 try {
-                    const response = await fetch(`http://localhost:5001/guides/${guideId}`, {
+                    const response = await fetch(`${API_URL}/guides/${guideId}`, {
                         method: 'DELETE',
                         credentials: "include"
                     });
@@ -46,12 +51,12 @@ if (showDelete === 'true' && guideId) {
 
 async function fetchFullGuide() {
     try {
-        const authRes = await fetch("http://localhost:5001/users/me", { credentials: "include" });
+        const authRes = await fetch(`${API_URL}/users/me`, { credentials: "include" });
         const currentUser = await authRes.json();
 
 
         // 2. Получаем сам гайд
-        const response = await fetch(`http://localhost:5001/guides/single/${guideId}`, {
+        const response = await fetch(`${API_URL}/guides/single/${guideId}`, {
             credentials: "include"
         });
 
@@ -76,7 +81,7 @@ async function fetchFullGuide() {
                 if (Array.isArray(images) && images.length > 0) {
                     images.forEach(img => {
                         const imgTag = document.createElement("img");
-                        imgTag.src = `http://localhost:5001/assets/guides/${img}`;
+                        imgTag.src = `${API_URL}/assets/guides/${img}`;
                         imagesContainer.appendChild(imgTag);
                     });
                     hasImages = true;
@@ -92,7 +97,7 @@ async function fetchFullGuide() {
                 // If parsing fails, try to use the single image as a fallback
                 if (guide.image.trim() !== "") {
                     const imgTag = document.createElement("img");
-                    imgTag.src = `http://localhost:5001/assets/guides/${guide.image}`;
+                    imgTag.src = `${API_URL}/assets/guides/${guide.image}`;
                     imagesContainer.appendChild(imgTag);
                     hasImages = true;
                 }

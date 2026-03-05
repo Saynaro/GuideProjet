@@ -1,3 +1,7 @@
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001'
+    : '';
+
 // verify if user is authenticated, if not redirect to login page
 
 async function checkAuth() {
@@ -28,13 +32,13 @@ const profileId = params.get("id");
 
 // Define API endpoints based on whether we're viewing our own profile or someone else's
 const userUrl = profileId 
-    ? `http://localhost:5001/users/${profileId}` 
-    : `http://localhost:5001/users/me`;
+    ? `${API_URL}/users/${profileId}` 
+    : `${API_URL}/users/me`;
 
 // For fetching games with guides, we also need to differentiate between own profile and others'
 const gamesUrl = profileId 
-    ? `http://localhost:5001/users/${profileId}/games-with-guides` 
-    : `http://localhost:5001/users/me/games-with-guides`;
+    ? `${API_URL}/users/${profileId}/games-with-guides` 
+    : `${API_URL}/users/me/games-with-guides`;
 
 
 const container = document.querySelector('.games_block');
@@ -56,7 +60,7 @@ const followersEl = document.getElementById("followers");
 async function fetchUserInfo() {
     try {
         // 1. D'abord, on récupère les infos de l'utilisateur actuellement connecté pour obtenir son ID
-        const authRes = await fetch("http://localhost:5001/users/me", { credentials: "include" });
+        const authRes = await fetch(`${API_URL}/users/me`, { credentials: "include" });
         const me = await authRes.json();
         currentUserId = me.id; // Stocker l'ID de l'utilisateur connecté dans la variable globale
 
@@ -67,7 +71,7 @@ async function fetchUserInfo() {
 
         if (rightAvatarImg) {
             rightAvatarImg.src = me.avatar 
-                ? `http://localhost:5001/assets/avatars/${me.avatar}` 
+                ? `${API_URL}/assets/avatars/${me.avatar}` 
                 : "assets/white.jpg";
         }
 
@@ -84,14 +88,14 @@ async function fetchUserInfo() {
 
         // ajoute l'avatar de l'utilisateur ou une image par défaut
         avatarEl.src = user.avatar
-            ? `http://localhost:5001/assets/avatars/${user.avatar}`
+            ? `${API_URL}/assets/avatars/${user.avatar}`
             : "assets/white.jpg";
 
 
             const violetDiv = document.querySelector(".violet");
             if (violetDiv) {
                 if (user.cover) {
-                    violetDiv.style.backgroundImage = `url('http://localhost:5001/assets/covers/${user.cover}')`;
+                    violetDiv.style.backgroundImage = `url('${API_URL}/assets/covers/${user.cover}')`;
                 } else {
                     violetDiv.style.backgroundColor = "blueviolet";
                 }
@@ -249,7 +253,7 @@ container.addEventListener("click", async (e) => {
     if (!targetId) {
         console.log("Id n'est pas taked...");
         try {
-            const res = await fetch("http://localhost:5001/users/me", { credentials: "include" });
+            const res = await fetch(`${API_URL}/users/me`, { credentials: "include" });
             if (res.ok) {
                 const user = await res.json();
                 currentUserId = user.id; // sauvegarder pour éviter de refaire ce genre de requête à l'avenir

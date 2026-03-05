@@ -1,3 +1,7 @@
+// Define API_URL based on environment (development or production) to avoid CORS issues and relative path problems
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001'
+    : '';
 
 // take id from URL
 const params = new URLSearchParams(window.location.search);
@@ -10,7 +14,7 @@ if (!gameId) {
 // Afficher l'info du jeux (title + cover)
 const displayGame = async () => {
     try {
-        const res = await fetch("http://localhost:5001/main/afficheJeux", {
+        const res = await fetch(`${API_URL}/main/afficheJeux`, {
             credentials: "include",
         });
         if (!res.ok) throw new Error(`Erreur du serveur: ${res.status}`);
@@ -77,7 +81,7 @@ form.addEventListener("submit", async (e) => {
         console.log(formData);
 
         
-        const response = await fetch("http://localhost:5001/guides/", {
+        const response = await fetch(`${API_URL}/guides/`, {
             method: "POST",
             body: formData,
             credentials: "include",
@@ -88,7 +92,7 @@ form.addEventListener("submit", async (e) => {
             throw new Error(`Server reponded: ${response.status} - ${errorText}`);
         }
 
-        // showToast("Guide ajouté avec succès ✅");
+        // showToast("Guide ajouté avec succès ");
         // await delay(2000);
         window.location.href = "main.html";
 

@@ -42,7 +42,14 @@ const showError = (message) => {
 
 const fetchData = async () => {
     try{
-    const response = await fetch('http://localhost:5001/auth/register', {
+
+        // on definit l'url de l'api en fonction de l'environnement (dev ou prod) pour éviter les problèmes de CORS et de chemins relatifs
+        // 1. On tente de faire la requete, en supposant que le serveur répond avec du JSON (succès ou erreur métier)
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5001'
+            : '';
+
+    const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

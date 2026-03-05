@@ -1,3 +1,8 @@
+// Define API_URL based on environment (development or production) to avoid CORS issues and relative path problems
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001'
+    : '';
+
 const container = document.querySelector(".games_block");
 const counter = document.getElementById("search_results");
 const searchInput = document.getElementById("searchInput");
@@ -7,7 +12,7 @@ const button = document.getElementById("view_more");
 
 async function fetchUserInfo() {
     try {
-        const res = await fetch("http://localhost:5001/users/me", {
+        const res = await fetch(`${API_URL}/users/me`, {
             credentials: "include"
         });
 
@@ -20,7 +25,7 @@ async function fetchUserInfo() {
 
             if (rightAvatarImg) {
                 rightAvatarImg.src = user.avatar 
-                    ? `http://localhost:5001/assets/avatars/${user.avatar}` 
+                    ? `${API_URL}/assets/avatars/${user.avatar}` 
                     : "assets/white.jpg";
             }
 
@@ -50,7 +55,7 @@ const gameId = localStorage.getItem("selectedGameId");
 
 async function fetchGuides() {
     try {
-        const response = await fetch(`http://localhost:5001/guides/${gameId}`, {
+        const response = await fetch(`${API_URL}/guides/${gameId}`, {
             credentials: "include"
         });
         if (!response.ok) throw new Error("Failed to fetch guides");
@@ -76,13 +81,13 @@ async function getCover(guide) {
             if (Array.isArray(images) && images.length > 0) {
                 // ON ECRIT LE CHEMIN COMPLET POUR AFFICHER L'IMAGE: http://localhost:5001/assets/guides/nom_du_fichier.jpg
                 const fileName = images[0]; 
-                return `http://localhost:5001/assets/guides/${fileName}`;
+                return `${API_URL}/assets/guides/${fileName}`;
             }
         } catch (err) {
             // 2. si en base de données le champ image n'est pas un JSON valide (peut-être une string simple), on essaie de l'utiliser directement
             console.warn("Les données ne sont pas au format JSON:", guide.image);
             const fileName = guide.image;
-            return `http://localhost:5001/assets/guides/${fileName}`;
+            return `${API_URL}/assets/guides/${fileName}`;
         }
     }
     

@@ -1,6 +1,11 @@
+// Define API_URL based on environment (development or production) to avoid CORS issues and relative path problems
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001'
+    : '';
+
 async function fetchUserInfo() {
     try {
-        const res = await fetch("http://localhost:5001/users/me", {
+        const res = await fetch(`${API_URL}/users/me`, {
             credentials: "include"
         });
 
@@ -13,7 +18,7 @@ async function fetchUserInfo() {
 
             if (rightAvatarImg) {
                 rightAvatarImg.src = user.avatar 
-                    ? `http://localhost:5001/assets/avatars/${user.avatar}` 
+                    ? `${API_URL}/assets/avatars/${user.avatar}` 
                     : "assets/white.jpg";
             }
 

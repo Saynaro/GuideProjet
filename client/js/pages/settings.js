@@ -1,8 +1,13 @@
+// Define API_URL based on environment (development or production) to avoid CORS issues and relative path problems
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001'
+    : '';
+
 // verify if user is authenticated, if not redirect to login page
 
 async function checkAuth() {
     try {
-        const res = await fetch("http://localhost:5001/users/me", {
+        const res = await fetch(`${API_URL}/users/me`, {
             credentials: "include"
         });
         
@@ -75,7 +80,7 @@ const followersEl = document.getElementById("followers");
 // Info for current user
 async function fetchUserInfo() {
     try {
-        const res = await fetch("http://localhost:5001/users/me", {
+        const res = await fetch(`${API_URL}/users/me`, {
             credentials: "include"
         });
 
@@ -92,7 +97,7 @@ async function fetchUserInfo() {
 
         // ajoute l'avatar de l'utilisateur ou une image par défaut
         avatarEl.src = user.avatar
-            ? `http://localhost:5001/assets/avatars/${user.avatar}`
+            ? `${API_URL}/assets/avatars/${user.avatar}`
             : "assets/white.jpg";
 
 
@@ -101,7 +106,7 @@ async function fetchUserInfo() {
 
             if (rightAvatarImg) {
                 rightAvatarImg.src = user.avatar 
-                    ? `http://localhost:5001/assets/avatars/${user.avatar}` 
+                    ? `${API_URL}/assets/avatars/${user.avatar}` 
                     : "assets/white.jpg";
             }
 
@@ -112,7 +117,7 @@ async function fetchUserInfo() {
             const violetDiv = document.querySelector(".violet");
             if (violetDiv) {
                 if (user.cover) {
-                    violetDiv.style.backgroundImage = `url('http://localhost:5001/assets/covers/${user.cover}')`;
+                    violetDiv.style.backgroundImage = `url('${API_URL}/assets/covers/${user.cover}')`;
                 } else {
                     violetDiv.style.backgroundColor = "blueviolet";
                 }
@@ -140,7 +145,7 @@ form.addEventListener('submit', async(e) => {
     const formData = new FormData(form);
 
     try {
-        const response = await fetch("http://localhost:5001/account/update", {
+        const response = await fetch(`${API_URL}/account/update`, {
             method: "POST",
             body: formData,
             credentials: "include",
@@ -154,7 +159,7 @@ form.addEventListener('submit', async(e) => {
 
             // Update the donnes 
             if (result.user.avatar) {
-                const avatarUrl = `http://localhost:5001/assets/avatars/${result.user.avatar}`;
+                const avatarUrl = `${API_URL}/assets/avatars/${result.user.avatar}`;
                 avatarEl.src = avatarUrl; // Avatar dans le bloc de gauche
                 
                 const rightAvatarImg = document.querySelector(".right-avatar");
@@ -163,7 +168,7 @@ form.addEventListener('submit', async(e) => {
 
             // 2. Mise à jour de l'image de couverture si elle a été modifiée
             if (result.user.cover) {
-                const coverUrl = `http://localhost:5001/assets/covers/${result.user.cover}`;
+                const coverUrl = `${API_URL}/assets/covers/${result.user.cover}`;
                 const violetDiv = document.querySelector(".violet");
                 if (violetDiv) {
                     violetDiv.style.backgroundImage = `url('${coverUrl}')`;
@@ -197,7 +202,7 @@ logoutBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
     try {
-        const response = await fetch("http://localhost:5001/auth/logout", {
+        const response = await fetch(`${API_URL}/auth/logout`, {
             method: "POST",
             credentials: "include",
         });
@@ -230,7 +235,7 @@ if (deleteForm) {
         
         if (confirmed) {
             try {
-                const response = await fetch("http://localhost:5001/account/delete", {
+                const response = await fetch(`${API_URL}/account/delete`, {
                     method: "DELETE", // IMPORTANT: UTILISER DELETE pour correspondre à la route définie dans le backend
                     credentials: "include",
                 });

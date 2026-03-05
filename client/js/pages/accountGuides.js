@@ -1,8 +1,13 @@
+// Define API_URL based on environment (development or production) to avoid CORS issues and relative path problems
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001'
+    : '';
+
 // verify if user is authenticated, if not redirect to login page
 
 async function checkAuth() {
     try {
-        const res = await fetch("http://localhost:5001/users/me", {
+        const res = await fetch(`${API_URL}/users/me`, {
             credentials: "include"
         });
         
@@ -62,7 +67,7 @@ async function fetchUserInfo() {
     try {
 
         // 1. First, we fetch the current user's info to get their ID, which is necessary for correctly rendering the guide cards (especially for showing/hiding delete button)
-        const authRes = await fetch("http://localhost:5001/users/me", { credentials: "include" });
+        const authRes = await fetch(`${API_URL}/users/me`, { credentials: "include" });
         if (!authRes.ok) throw new Error("Not authenticated");
         const me = await authRes.json();
         currentUserId = me.id;  // id of authenticated user, which we will use to determine if the profile we're viewing is our own or someone else's, and also for rendering guide cards correctly (show/hide delete button)
@@ -74,7 +79,7 @@ async function fetchUserInfo() {
 
         if (rightAvatarImg) {
         rightAvatarImg.src = me.avatar 
-            ? `http://localhost:5001/assets/avatars/${me.avatar}` 
+            ? `${API_URL}/assets/avatars/${me.avatar}` 
             : "assets/white.jpg";
         }
         if (rightNicknameAnchor) {
@@ -83,8 +88,8 @@ async function fetchUserInfo() {
 
         // 2. Now we have the current user's ID, we can safely fetch the profile info of the page we're viewing (which could be our own profile or another user's profile, depending on the URL and localStorage)
         const userUrl = (ownerId && ownerId !== "me") 
-            ? `http://localhost:5001/users/${ownerId}` 
-            : `http://localhost:5001/users/me`;
+            ? `${API_URL}/users/${ownerId}` 
+            : `${API_URL}/users/me`;
 
         const res = await fetch(userUrl, { credentials: "include" });
         if (!res.ok) throw new Error("Failed to fetch profile info");
@@ -104,13 +109,13 @@ async function fetchUserInfo() {
             }
         }
         avatarEl.src = user.avatar
-            ? `http://localhost:5001/assets/avatars/${user.avatar}`
+            ? `${API_URL}/assets/avatars/${user.avatar}`
             : "assets/white.jpg";
 
         const violetDiv = document.querySelector(".violet");
         if (violetDiv) {
             if (user.cover) {
-                violetDiv.style.backgroundImage = `url('http://localhost:5001/assets/covers/${user.cover}')`;
+                violetDiv.style.backgroundImage = `url('${API_URL}/assets/covers/${user.cover}')`;
             } else {
                 violetDiv.style.backgroundColor = "blueviolet";
             }
@@ -142,7 +147,7 @@ async function fetchGuides() {
     }
 
     try {
-        const res = await fetch(`http://localhost:5001/users/${ownerId}/games/${gameId}/guides`, {
+        const res = await fetch(`${API_URL}/users/${ownerId}/games/${gameId}/guides`, {
             credentials: "include"
         });
         if (!res.ok) throw new Error("Failed to fetch guides");
@@ -233,11 +238,11 @@ function renderCard(guide) {
                     <a href="viewGuides.html?id=${guide.id}&fromAccount=true">${guide.title}</a>
                 </div>
                 <a href="viewGuides.html?id=${guide.id}&fromAccount=true">
-                    <img src="http://localhost:5001/assets/guides/${guideImage}" alt="${guide.title}">
+                    <img src="${API_URL}/assets/guides/${guideImage}" alt="${guide.title}">
                 </a>
                 <div class="sousimg">
                     <div class="avatar-sousimg">
-                        <img src="http://localhost:5001/assets/avatars/${avatar}" alt="${username}">
+                        <img src="${API_URL}/assets/avatars/${avatar}" alt="${username}">
                         <a href="account.html?id=${guide.user_id || ownerId}" class="name">${username}</a>
                     </div>
                     <p class="time">${time}</p>

@@ -43,7 +43,12 @@ const showError = (message) => {
 
 const fetchData = async () => {
     try{
-    const response = await fetch('http://localhost:5001/auth/login', {
+
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5001'
+            : '';
+
+    const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
