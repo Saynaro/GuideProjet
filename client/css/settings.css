@@ -255,8 +255,9 @@ section{
 .form{
     display: flex;
     flex-direction: column;
+    justify-self: center;
     position: relative;
-    margin-top: 40px;
+    margin: 40px auto;
     
     background-color: #0c0c0c;
     border: none;
@@ -345,7 +346,12 @@ section{
     border-radius: 5px;
 }
 
-
+#delete-account-form{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    margin: 30px auto;
+}
 
 
 .delete-btn {

@@ -120,11 +120,14 @@ p{
     height: 23vh;
     width: 60%;
     border-radius: 16px;
-    margin: 30px;
+    margin: 30px auto;
     padding-top: 40px;
     padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
     justify-items: center;
     justify-self: center;
+    text-align: center;
     
 }
 .choice{
