@@ -93,9 +93,36 @@ export const updateProfile = async (req, res) => {
         });
 
     } catch (error) {
+        // Prisma unique constraint error
+        // P2002 : Unique constraint failed on the field: `field_name`
+        if (error.code === "P2002") {
+
+            const field = error.meta?.target?.[0];
+            // meta.target est un array des champs en conflit, mais ici, on suppose qu'il n'y en a qu'un seul, donc on prend le premier.
+
+            if (field === "username") {
+                return res.status(400).json({
+                    message: "Ce nom d'utilisateur est déjà utilisé"
+                });
+            }
+
+            if (field === "email") {
+                return res.status(400).json({
+                    message: "Cet email est déjà utilisé"
+                });
+            }
+
+            return res.status(400).json({
+                message: "Cette valeur est déjà existante"
+            });
+        }
+
         console.error("Prisma Error:", error);
-        res.status(500).json({ message: "Error", error: error.message });
-    }
+
+        res.status(500).json({
+            message: "Erreur du serveur"
+        });
+        }
 };
 
 
