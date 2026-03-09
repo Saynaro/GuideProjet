@@ -47,20 +47,26 @@ export const updateProfile = async (req, res) => {
             // Path: from server/src/controllers exit to 2 levels up to server, then go to client/assets
             const baseAssetsPath = path.join(__dirname, "..", "..", "client", "assets");
 
-        // avatar   modification
-            if (req.files?.avatar?.[0]) {
-                if (currentUser.avatar) {
-                    const oldAvatarPath = path.join(baseAssetsPath, "avatars", currentUser.avatar);
-                    await fs.unlink(oldAvatarPath).catch(() => console.log("Old avatar not found"));
+        // Fonction utilitaire pour supprimer un fichier de manière sécurisée : on vérifie d'abord s'il existe avant de tenter de le supprimer,
+        //  et on attrape l'erreur si le fichier n'est pas trouvé pour éviter que cela arrête tout le processus.
+            const safeUnlink = async (folder, fileName) => {
+                if (!fileName) return;
+                const filePath = path.join(baseAssetsPath, folder, fileName);
+                try {
+                    await fs.access(filePath); // Verifie si le fichier existe avant de tenter de le supprimer
+                    await fs.unlink(filePath);
+                } catch (err) {
+                    console.log(`Log: File ${fileName} not found, skipping delete.`);
                 }
+            };
+
+            if (req.files?.avatar?.[0]) {
+                await safeUnlink("avatars", currentUser.avatar);
                 updateData.avatar = req.files.avatar[0].filename;
             }
 
             if (req.files?.cover?.[0]) {
-                if (currentUser.cover) {
-                    const oldCoverPath = path.join(baseAssetsPath, "covers", currentUser.cover);
-                    await fs.unlink(oldCoverPath).catch(() => console.log("Old cover not found"));
-                }
+                await safeUnlink("covers", currentUser.cover);
                 updateData.cover = req.files.cover[0].filename;
             }
         }
@@ -83,36 +89,31 @@ export const updateProfile = async (req, res) => {
         });
 
     } catch (error) {
-        // Prisma unique constraint error
+        // Gestion spécifique des erreurs de contrainte d'unicité de Prisma : on vérifie si l'erreur est un P2002,
+        //  qui indique une violation de contrainte d'unicité (comme un username ou email déjà existant),
+        //  et on retourne un message d'erreur clair en fonction du champ concerné.
         if (error.code === "P2002") {
-            const target = error.meta?.target?.join(" ") || "";
+            const target = error.meta?.target || "";
+            // Make sure target is a string for includes() check, if it's an array (multiple fields), join them into a single string
+            const targetStr = Array.isArray(target) ? target.join(",") : String(target);
 
-            if (target.includes("username")) {
-                return res.status(400).json({ message: "Ce nom d'utilisateur est déjà utilisé" });
+            if (targetStr.includes("username")) {
+                return res.status(400).json({ message: "Cette username est déjà utilisé" });
             }
-
-            if (target.includes("email")) {
+            if (targetStr.includes("email")) {
                 return res.status(400).json({ message: "Cet email est déjà utilisé" });
             }
-
             return res.status(400).json({ message: "Cette valeur existe déjà" });
         }
 
-        // Log détaillé de l'erreur pour faciliter le debugging
-        console.error("Update Profile Error:", {
-            message: error.message,
-            stack: error.stack,
-            code: error.code,
-            meta: error.meta
+        console.error("Full Error Info:", error);
+        
+        // Envoyer JSON meme en cas d'erreur 500 pour que le client puisse afficher un message d'erreur approprié
+        return res.status(500).json({
+            message: "Erreur interne du serveur",
+            error: error.message
         });
-
-        // Erreur générique pour les autres cas
-        // meme si le status est 500, on essaye de fournir un message d'erreur plus précis grâce à error.message, qui peut contenir des infos utiles même pour les erreurs non Prisma
-        res.status(500).json({
-            message: "Erreur du serveur",
-            error: error.message 
-        });
-    }   
+    }
 };
 
 

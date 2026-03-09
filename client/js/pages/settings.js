@@ -151,7 +151,20 @@ form.addEventListener('submit', async(e) => {
             credentials: "include",
         });
 
-        const result = await response.json();
+        // response.headers.get("content-type") peut être null si le serveur ne renvoie pas d'en-tête Content-Type,
+        //  donc on vérifie d'abord s'il existe avant de tenter de l'utiliser pour éviter une erreur côté client.
+        const contentType = response.headers.get("content-type");
+        let result;
+        
+        // On vérifie d'abord si le serveur a renvoyé du JSON (ce qui est attendu même en cas d'erreur grâce à la gestion d'erreur améliorée dans le backend),
+        if (contentType && contentType.includes("application/json")) {
+            result = await response.json();
+        } else {
+            // Si le serveur ne renvoie pas de JSON (comme dans le cas d'une erreur 500 sans gestion d'erreur appropriée),
+            //  on lance une erreur pour que le catch puisse l'afficher
+            throw new Error("Le serveur a renvoyé une réponse invalide (Erreur 500)");
+        }
+
 
         if (response.ok) {
             alert('Les donneés est bien mis a jour!');
@@ -186,8 +199,8 @@ form.addEventListener('submit', async(e) => {
             alert('Erreur: ' + (result.message || "Erreur inconnue"));
         }
     } catch (error) {
-        console.error("Erreur en envoi", error);
-        alert("Impossible de contacter le serveur.");
+        console.error("Erreur détaillée:", error);
+        alert("Erreur: " + error.message);
     }
 });
 
