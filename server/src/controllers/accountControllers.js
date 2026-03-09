@@ -12,7 +12,6 @@ const __dirname = path.dirname(__filename);
 
 
 
-
 export const updateProfile = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -31,18 +30,10 @@ export const updateProfile = async (req, res) => {
         const updateData = {};
 
         // 2. Verifions chaque champ et ne l'ajoutons à updateData que s'il est présent et non vide
-        if (username && username.trim() !== "" && username !== currentUser.username) {
-            updateData.username = username;
-        }
-        if (display_name && display_name.trim() !== "" && display_name !== currentUser.display_name) {
-            updateData.display_name = display_name;
-        }
-        if (email && email.trim() !== "" && email !== currentUser.email) {
-            updateData.email = email;
-        }
-        if (bio && bio.trim() !== "" && bio !== currentUser.bio) {
-            updateData.bio = bio;
-        }
+        if (username && username.trim() !== "") updateData.username = username;
+        if (display_name && display_name.trim() !== "") updateData.display_name = display_name;
+        if (email && email.trim() !== "") updateData.email = email;
+        if (bio && bio.trim() !== "") updateData.bio = bio;
 
         // 3. Logique spéciale pour le mot de passe : s'il est fourni, on le hash avant de l'ajouter à updateData
         if (password && password.trim() !== "") {
@@ -51,17 +42,12 @@ export const updateProfile = async (req, res) => {
         }
 
 
-        // 4. Logique pour les fichiers : avatar et cover. Si un nouveau fichier est fourni, on doit supprimer l'ancien du disque (s'il existe) avant de mettre à jour le champ correspondant dans updateData avec le nom du nouveau fichier.
-        // On vérifie d'abord si des fichiers ont été téléchargés, car req.files peut être undefined ou un objet vide si aucun fichier n'a été envoyé.
-        //  Si des fichiers sont présents, on construit le chemin de base vers le dossier assets pour pouvoir accéder aux anciens fichiers à supprimer.
-        // object.keys() pour vérifier si req.files n'est pas un objet vide, car même si req.files est défini, il peut ne contenir aucun fichier.
-        if (req.files && Object.keys(req.files).length > 0) {
+
+        if (req.files) {
             // Path: from server/src/controllers exit to 2 levels up to server, then go to client/assets
             const baseAssetsPath = path.join(__dirname, "..", "..", "client", "assets");
 
         // avatar   modification
-        // ['avatar'] pour accéder à la propriété avatar de req.files, car multer stocke les fichiers téléchargés dans un objet où chaque champ de fichier est une clé.
-        // Par exemple, si le champ de téléchargement s'appelle "avatar", alors le fichier téléchargé sera accessible via req.files['avatar'] et req.files.avatar parce que req.files est un objet.
         if (req.files['avatar']) {
 
             // If user had an avatar, delete the old one from disc
@@ -82,7 +68,6 @@ export const updateProfile = async (req, res) => {
                     
                     const oldCoverPath = path.join(baseAssetsPath, "covers", currentUser.cover);
 
-                    // .catch() use, because code don't "bug", if file doesn't exists in disk
                     await fs.unlink(oldCoverPath).catch(() => console.log("The cover don't find in disc"));
                 }
                     updateData.cover = req.files['cover'][0].filename;
@@ -110,7 +95,7 @@ export const updateProfile = async (req, res) => {
         // Prisma unique constraint error
         // P2002 : Unique constraint failed on the field: `field_name`
         if (error.code === "P2002") {
-
+            
             const target = error.meta?.target?.join(" ") || "";
 
             if (target.includes("username")) {
@@ -130,12 +115,12 @@ export const updateProfile = async (req, res) => {
             });
         }
 
-        console.error(error);
+        console.error("Prisma Error:", error);
 
         res.status(500).json({
             message: "Erreur du serveur"
         });
-    }
+        }
 };
 
 
