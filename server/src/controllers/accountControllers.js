@@ -62,7 +62,7 @@ export const updateProfile = async (req, res) => {
         // avatar   modification
         // ['avatar'] pour accéder à la propriété avatar de req.files, car multer stocke les fichiers téléchargés dans un objet où chaque champ de fichier est une clé.
         // Par exemple, si le champ de téléchargement s'appelle "avatar", alors le fichier téléchargé sera accessible via req.files['avatar'] et req.files.avatar parce que req.files est un objet.
-        if (req.files.avatar) {
+        if (req.files['avatar']) {
 
             // If user had an avatar, delete the old one from disc
             if (currentUser.avatar) {
@@ -72,11 +72,11 @@ export const updateProfile = async (req, res) => {
                 // .catch() use, because code don't "bug", if file doesn't exists in disk
                 await fs.unlink(oldAvatarPath).catch(() => console.log("The old avatar not find"));
             }
-            updateData.avatar = req.files.avatar[0].filename;
+            updateData.avatar = req.files['avatar'][0].filename;
         }
 
         // Covers modidication (Cover)
-        if (req.files.cover) {
+        if (req.files['cover']) {
                 // If user had cover, delete the old one
                 if (currentUser.cover) {
                     
@@ -85,7 +85,7 @@ export const updateProfile = async (req, res) => {
                     // .catch() use, because code don't "bug", if file doesn't exists in disk
                     await fs.unlink(oldCoverPath).catch(() => console.log("The cover don't find in disc"));
                 }
-                    updateData.cover = req.files.cover[0].filename;
+                    updateData.cover = req.files['cover'][0].filename;
             }
         }
 
