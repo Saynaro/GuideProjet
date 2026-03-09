@@ -151,12 +151,7 @@ form.addEventListener('submit', async(e) => {
             credentials: "include",
         });
 
-        let result;
-        try {
-            result = await response.json(); // essai de parser la réponse JSON, même en cas d'erreur HTTP, pour obtenir le message d'erreur du serveur
-        } catch {
-            result = { message: "Erreur inconnue du serveur" };
-        }
+        const result = await response.json();
 
         if (response.ok) {
             alert('Les donneés est bien mis a jour!');
