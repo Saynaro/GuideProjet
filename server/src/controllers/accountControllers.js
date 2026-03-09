@@ -48,29 +48,20 @@ export const updateProfile = async (req, res) => {
             const baseAssetsPath = path.join(__dirname, "..", "..", "client", "assets");
 
         // avatar   modification
-        if (req.files['avatar']) {
-
-            // If user had an avatar, delete the old one from disc
-            if (currentUser.avatar) {
-
-                const oldAvatarPath = path.join(baseAssetsPath, "avatars", currentUser.avatar);
-
-                // .catch() use, because code don't "bug", if file doesn't exists in disk
-                await fs.unlink(oldAvatarPath).catch(() => console.log("The old avatar not find"));
-            }
-            updateData.avatar = req.files['avatar'][0].filename;
-        }
-
-        // Covers modidication (Cover)
-        if (req.files['cover']) {
-                // If user had cover, delete the old one
-                if (currentUser.cover) {
-                    
-                    const oldCoverPath = path.join(baseAssetsPath, "covers", currentUser.cover);
-
-                    await fs.unlink(oldCoverPath).catch(() => console.log("The cover don't find in disc"));
+            if (req.files?.avatar?.[0]) {
+                if (currentUser.avatar) {
+                    const oldAvatarPath = path.join(baseAssetsPath, "avatars", currentUser.avatar);
+                    await fs.unlink(oldAvatarPath).catch(() => console.log("Old avatar not found"));
                 }
-                    updateData.cover = req.files['cover'][0].filename;
+                updateData.avatar = req.files.avatar[0].filename;
+            }
+
+            if (req.files?.cover?.[0]) {
+                if (currentUser.cover) {
+                    const oldCoverPath = path.join(baseAssetsPath, "covers", currentUser.cover);
+                    await fs.unlink(oldCoverPath).catch(() => console.log("Old cover not found"));
+                }
+                updateData.cover = req.files.cover[0].filename;
             }
         }
 
@@ -93,34 +84,35 @@ export const updateProfile = async (req, res) => {
 
     } catch (error) {
         // Prisma unique constraint error
-        // P2002 : Unique constraint failed on the field: `field_name`
         if (error.code === "P2002") {
-            
             const target = error.meta?.target?.join(" ") || "";
 
             if (target.includes("username")) {
-                return res.status(400).json({
-                    message: "Ce nom d'utilisateur est déjà utilisé"
-                });
+                return res.status(400).json({ message: "Ce nom d'utilisateur est déjà utilisé" });
             }
 
             if (target.includes("email")) {
-                return res.status(400).json({
-                    message: "Cet email est déjà utilisé"
-                });
+                return res.status(400).json({ message: "Cet email est déjà utilisé" });
             }
 
-            return res.status(400).json({
-                message: "Cette valeur existe déjà"
-            });
+            return res.status(400).json({ message: "Cette valeur existe déjà" });
         }
 
-        console.error("Prisma Error:", error);
-
-        res.status(500).json({
-            message: "Erreur du serveur"
+        // Log détaillé de l'erreur pour faciliter le debugging
+        console.error("Update Profile Error:", {
+            message: error.message,
+            stack: error.stack,
+            code: error.code,
+            meta: error.meta
         });
-        }
+
+        // Erreur générique pour les autres cas
+        // meme si le status est 500, on essaye de fournir un message d'erreur plus précis grâce à error.message, qui peut contenir des infos utiles même pour les erreurs non Prisma
+        res.status(500).json({
+            message: "Erreur du serveur",
+            error: error.message 
+        });
+    }   
 };
 
 
