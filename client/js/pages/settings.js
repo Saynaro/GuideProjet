@@ -151,7 +151,12 @@ form.addEventListener('submit', async(e) => {
             credentials: "include",
         });
 
-        const result = await response.json();
+        let result;
+        try {
+            result = await response.json(); // essai de parser la réponse JSON, même en cas d'erreur HTTP, pour obtenir le message d'erreur du serveur
+        } catch {
+            result = { message: "Erreur inconnue du serveur" };
+        }
 
         if (response.ok) {
             alert('Les donneés est bien mis a jour!');
@@ -183,10 +188,11 @@ form.addEventListener('submit', async(e) => {
             descriptionEl.textContent = result.user.bio || "Bonjour Lorem...";
 
         } else {
-            alert('Erreur: ' + result.message);
+            alert('Erreur: ' + (result.message || "Erreur inconnue"));
         }
     } catch (error) {
-        console.error("Erreur en envoie", error);
+        console.error("Erreur en envoi", error);
+        alert("Impossible de contacter le serveur.");
     }
 });
 
