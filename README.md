@@ -1,8 +1,8 @@
-<<<<<<< HEAD
+
 Fullstack GameGuide site
 =======
 # 🎮 GuideProjet - Game Guide Platform
->>>>>>> 2acb099 (Created README file)
+
 
 ![GuideProjet Banner](https://img.shields.io/badge/Project-Guide_Projet-blueviolet?style=for-the-badge&logo=gamepad)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=flat-square)](https://opensource.org/licenses/ISC)
@@ -11,10 +11,10 @@ Fullstack GameGuide site
 [![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)](https://www.prisma.io/)
 [![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
 
-<<<<<<< HEAD
-https://guideprojet.onrender.com
 
-=======
+
+
+
 **GuideProjet** is a comprehensive full-stack web application that allows users to create, discover, and interact with professional game guides. Whether you're a hardcore gamer looking for a strategy or a creator wanting to share your knowledge, GuideProjet provides the perfect platform.
 
 🚀 **Live Demo**: [guideprojet.onrender.com](https://guideprojet.onrender.com)
@@ -106,5 +106,4 @@ https://guideprojet.onrender.com
 This project is licensed under the **ISC License**.
 
 ---
-*Developed with ❤️ by Sainaro*
->>>>>>> 2acb099 (Created README file)
+*Developed by Sainaro Khalid*
