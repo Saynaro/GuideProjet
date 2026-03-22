@@ -2,7 +2,8 @@
 Fullstack GameGuide site
 =======
 # 🎮 GuideProjet - Game Guide Platform
-
+![Main Screen](client/assets/pageScreens/mainPage.png)
+![Account Screen](client/assets/pageScreens/accountPage.png)
 
 ![GuideProjet Banner](https://img.shields.io/badge/Project-Guide_Projet-blueviolet?style=for-the-badge&logo=gamepad)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=flat-square)](https://opensource.org/licenses/ISC)
@@ -76,7 +77,7 @@ Fullstack GameGuide site
    Create a `.env` file in the `server` directory:
    ```env
    DATABASE_URL="mysql://user:password@localhost:3306/guide_db"
-   JWT_SECRET="your_secret_key"
+   JWT_SECRET="secret_key"
    ```
 
 4. **Initialize Database**:
