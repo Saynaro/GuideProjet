@@ -1,29 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-*{
-    font-family: "Inter",sans-serif;
-    
+
+* {
+    font-family: "Inter", sans-serif;
+
 }
-body{
-    background-color:#222222;
+
+body {
+    background-color: #222222;
     margin: 0;
     padding: 0;
 }
-section{
+
+section {
     height: 100vh;
 }
-.tous{
+
+.tous {
     display: flex;
     flex-direction: row;
-    
+
 }
 
-.left{
+.left {
     display: flex;
     flex-direction: column;
     position: fixed;
     width: 25%;
     height: 100vh;
 }
+
 .edit {
     position: absolute;
     width: 20%;
@@ -35,11 +40,13 @@ section{
     height: 5%;
     border-radius: 6px;
 }
-.edit:hover{
+
+.edit:hover {
     cursor: pointer;
     background-color: #222222;
 }
-.avatar{
+
+.avatar {
     border-radius: 50%;
     position: fixed;
     top: 25%;
@@ -50,12 +57,15 @@ section{
     width: 17%;
     z-index: 10;
 }
-.h2{
+
+.h2 {
     margin-bottom: 0;
 }
+
 .violet {
     height: 25%;
-    background-color: blueviolet; /* fallback color */
+    background-color: blueviolet;
+    /* fallback color */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -63,7 +73,7 @@ section{
 
 
 
-.sitename{
+.sitename {
     font-weight: 600;
     display: flex;
     justify-content: start;
@@ -77,25 +87,28 @@ section{
     height: 30px;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.sitename a{
+
+.sitename a {
     text-decoration: none;
     color: white;
 }
-.sitename a:hover{
+
+.sitename a:hover {
     color: rgb(185, 185, 185);
 }
 
 
 
-.follow{
+.follow {
     display: flex;
     width: 80%;
     height: 40px;
-    
+
     justify-content: center;
     gap: 10px;
 }
-.follow button{
+
+.follow button {
     height: 40px;
     font-size: 16px;
     border-radius: 6px;
@@ -104,11 +117,13 @@ section{
     width: 40%;
     border-style: none;
 }
-.follow button:hover{
+
+.follow button:hover {
     background-color: rgb(153, 78, 224);
     cursor: pointer;
 }
-.followers{
+
+.followers {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,12 +134,14 @@ section{
     border: 1px solid blueviolet;
     padding: 0;
 }
-.username{
+
+.username {
     margin: 0 0 5px 0;
     font-size: 1.2em;
     color: rgb(210, 210, 210);
 }
-.description{
+
+.description {
     font-size: 12.5px;
     width: 75%;
     min-height: 200px;
@@ -140,18 +157,21 @@ section{
     padding: 5px;
     padding-left: 10px;
 }
-.description p{
+
+.description p {
     font-size: 16px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
-.vide{
+
+.vide {
     display: flex;
     position: relative;
     padding-bottom: 30%;
 }
-.noir{
+
+.noir {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,15 +180,17 @@ section{
     color: white;
     text-align: center;
     height: 75%;
-    
+
     background-color: #1a1919;
-    
+
 }
-.noir h2{
+
+.noir h2 {
     margin-bottom: 3px;
     font-weight: 500;
 }
-.reseau-left{
+
+.reseau-left {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -177,10 +199,11 @@ section{
     margin: 20px;
     width: 77%;
     gap: 20px;
-    border-top: 2px solid gray;;
+    border-top: 2px solid gray;
+    ;
 }
 
-.reseau img{
+.reseau img {
     border-radius: 0;
     left: auto;
     top: auto;
@@ -188,32 +211,37 @@ section{
     height: 100px;
     padding: 10px;
 }
-.icon{
+
+.icon {
     transition: transform 0.3s ease;
 }
-.icon:hover{
+
+.icon:hover {
     transform: scale(1.02);
 }
-.right{
+
+.right {
     margin-left: 25%;
     width: 75%;
     padding: 0;
-    
+
 }
 
-.back_img{
+.back_img {
     display: flex;
     position: relative;
     justify-content: end;
-    display: flex; 
+    display: flex;
     height: auto;
     width: 100%;
 }
-.bannier{
+
+.bannier {
     height: 40vh;
     width: 100%;
 }
-.nickname{
+
+.nickname {
     position: absolute;
     display: flex;
     justify-content: end;
@@ -221,29 +249,32 @@ section{
     padding: 5px 5px 5px 20px;
     gap: 10px;
     font-size: 24px;
-    width: auto; 
+    width: auto;
     min-width: min-content;
-        
+
     border-radius: 0 0 0 18px;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.5);
     white-space: nowrap;
 }
-.nickname a{
+
+.nickname a {
     text-decoration: none;
     font-weight: 500;
     color: rgb(255, 255, 255);
 }
-.nickname a:hover{
+
+.nickname a:hover {
     color: rgb(153, 153, 153);
 }
+
 .nickname img.right-avatar {
     width: 30px;
     height: 30px;
-    min-width: 30px; 
+    min-width: 30px;
     min-height: 30px;
     border-radius: 50%;
-    object-fit: cover; 
+    object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -252,27 +283,32 @@ section{
     transform: scale(1.1);
 }
 
-form{
+form {
     display: flex;
     position: relative;
 }
-form input{
+
+form input {
     width: 20vw;
 }
-form button{
+
+form button {
     border-radius: 0 6px 6px 0;
     background-color: rgba(115, 31, 161, 1);
     border: none;
     width: 40px;
     height: 37px;
 }
-form button img{
+
+form button img {
     width: 80%;
 }
-form button:hover{
+
+form button:hover {
     background-color: rgb(187, 187, 187);
 }
-.second{
+
+.second {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -281,11 +317,12 @@ form button:hover{
     border-bottom: 1px solid;
     border-bottom-color: darkgrey;
 }
-.rond{
+
+.rond {
     gap: 4px;
 }
 
-.rond button{
+.rond button {
     border-radius: 30px;
     height: 40px;
     width: 20vh;
@@ -294,18 +331,23 @@ form button:hover{
     background-color: #222222;
     color: white;
 }
-.button.active{
-        background-color: rgb(110, 110, 110);
+
+.button.active {
+    background-color: rgb(110, 110, 110);
 }
-.rond button:hover{
-    background-color:rgb(110, 110, 110);
+
+.rond button:hover {
+    background-color: rgb(110, 110, 110);
     transition: 0.3s;
 }
-.arrondi{
+
+.arrondi {
     display: flex;
     gap: 10px;
 }
-.arrondi input,button{
+
+.arrondi input,
+button {
     font-weight: 500;
     font-size: 16px;
     height: 35px;
@@ -313,47 +355,56 @@ form button:hover{
     color: rgb(255, 255, 255);
     border-style: groove;
 }
-.arrondi button{
+
+.arrondi button {
     cursor: pointer;
     border-color: rgba(115, 31, 161, 1);
 }
-.arrondi button:hover{
+
+.arrondi button:hover {
     background-color: rgba(115, 31, 161, 1);
     transition: 0.3s;
 }
-.arrond{
+
+.arrond {
     border-radius: 6px;
     display: flex;
     gap: 3px;
     padding: 4px;
     align-items: center;
 }
-.filter{
+
+.filter {
     height: 37px;
-    
+
 }
-.filter img{
+
+.filter img {
     width: 20%;
     height: 100%;
 }
-.sort{
-    
+
+.sort {
+
     height: 37px;
     width: 70px;
 }
-.show_line{
+
+.show_line {
     display: flex;
     align-items: center;
     padding: 10px 10px 10px 20px;
 }
-.show_line p{
+
+.show_line p {
     margin-left: 10px;
 }
-.arrond:hover{
+
+.arrond:hover {
     border-color: rgba(0, 0, 0, 0.1);
 }
 
-.arrondi input{
+.arrondi input {
     color: rgb(170, 170, 170);
     cursor: auto;
     border: none;
@@ -361,44 +412,48 @@ form button:hover{
     padding-left: 10px;
     border-radius: 6px 0 0 6px;
 }
-.arrondi input:focus{
+
+.arrondi input:focus {
     border: 1px solid blueviolet;
     height: 33px;
 }
 
 
-.nombres{
+.nombres {
     margin-left: 20px;
-    
+
     font-size: 14px;
     color: rgb(196, 196, 196);
 }
 
-a{
+a {
     text-decoration: none;
     color: white;
 }
-a:hover{
+
+a:hover {
     color: rgb(201, 201, 201);
     transition: 0.3s;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: row;
     width: 100%;
-    
+
 }
-.games_block{
+
+.games_block {
     width: 96%;
-    height: auto; 
+    height: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    grid-auto-rows: 250px; 
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 250px;
     gap: 50px 32px;
     margin: 0 20px 10px 20px;
 }
-.games_block img{
+
+.games_block img {
     display: block;
     height: 100%;
     width: 100%;
@@ -423,7 +478,7 @@ a:hover{
     border-radius: 8px;
 }
     */
-.game{
+.game {
     border: 1px solid rgba(255, 255, 255, 0.1);
 
     opacity: 0;
@@ -436,64 +491,75 @@ a:hover{
     border-radius: 8px;
 }
 
-.game-inner{
+.game-inner {
     height: 100%;
     transition: transform 0.5s ease;
 }
+
 .game-inner img {
     height: 100%;
 }
-.game-inner:hover{
+
+.game-inner:hover {
     transform: scale(1.007);
 }
 
-@keyframes fadeUp{
-    to{
+@keyframes fadeUp {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.sousimg img{
+.sousimg img {
     width: 23px;
     height: 23px;
     border-radius: 50%;
 }
-.sousimg p{
+
+.sousimg p {
     margin: 0;
 }
-.avatar-sousimg{
+
+.avatar-sousimg {
     display: flex;
     align-items: center;
     object-fit: cover;
     gap: 5px;
 }
-.avatar-sousimg img{
+
+.avatar-sousimg img {
     object-fit: cover;
 }
-.avatar-sousimg a{
+
+.avatar-sousimg a {
     color: rgb(202, 202, 202);
     font-size: 17px;
     font-weight: 400;
 }
-.avatar-sousimg a:hover{
+
+.avatar-sousimg a:hover {
     color: rgb(151, 151, 151);
-} 
-.sousimg{
+}
+
+.sousimg {
     display: flex;
     justify-content: space-between;
     margin: 5px 10px 0px 10px;
 }
-.time{
+
+.time {
     font-size: 17px;
     color: rgb(196, 196, 196);
 }
-.name{
+
+.name {
     font-size: 17px;
     color: rgb(202, 202, 202);
     font-weight: 400;
 }
-#view_more{
+
+#view_more {
 
     display: flex;
     justify-self: center;
@@ -504,18 +570,20 @@ a:hover{
     margin: 50px auto;
     gap: 5px;
 }
-#view_more img{
+
+#view_more img {
     width: 20px;
     height: 20px;
 
 }
-#view_more:hover{
+
+#view_more:hover {
     cursor: pointer;
     background-color: rgb(133, 61, 201);
     transition: 0.3s;
 }
 
-.text{
+.text {
     font-weight: bold;
     position: absolute;
     top: 0;
@@ -530,8 +598,8 @@ a:hover{
     border-radius: 8px 8px 0 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-    
-.footer{
+
+.footer {
     position: relative;
     width: 95%;
     margin-left: 30%;
@@ -541,25 +609,29 @@ a:hover{
     justify-content: center;
     margin: 100px 20px 0 20px;
 }
-.liens{
+
+.liens {
     font-size: 14px;
     width: 95%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 30px ;
+    gap: 30px;
     border-top: 1px solid gray;
     padding: 10px;
 }
-.liens a{
+
+.liens a {
     color: white;
     text-decoration: none;
 }
-.liens a:hover{
+
+.liens a:hover {
     color: rgb(165, 90, 235);
     transition: 0.3s ease;
 }
-.reseau-right{
+
+.reseau-right {
 
     display: flex;
     flex-direction: row;
@@ -567,17 +639,21 @@ a:hover{
     width: 80%;
     gap: 50px;
     margin-bottom: 70px;
-    border-top: 1px solid gray;;
+    border-top: 1px solid gray;
+    ;
 }
-.reseau img{
+
+.reseau img {
     width: 35px;
     height: 35px;
     padding-top: 20px;
 }
-.icon{
+
+.icon {
     transition: transform 0.3s ease;
 }
-.icon:hover{
+
+.icon:hover {
     transform: scale(1.1);
 }
 
@@ -588,73 +664,85 @@ a:hover{
 
 /* Responsive display */
 
-@media (min-width: 1700px)  {
+@media (min-width: 1700px) {
 
 
-    button{
+    button {
         font-size: 18px;
     }
-    .left{
+
+    .left {
         font-size: 20px;
     }
-    .bannier{
-    height: 40vh;
-    width: 100%;
+
+    .bannier {
+        height: 40vh;
+        width: 100%;
     }
-    .avatar{
+
+    .avatar {
         height: 30%;
     }
-    .vide{
+
+    .vide {
         padding-bottom: 110px;
     }
-    .follow{
+
+    .follow {
         padding-bottom: 10px;
         padding-top: 20px;
     }
-    .follow button{
+
+    .follow button {
         height: 50px;
 
     }
-    .followers{
+
+    .followers {
         height: 50px;
     }
-    .description{
+
+    .description {
         font-size: 16px;
         min-height: 200px;
         max-height: 200px;
     }
+
     .edit {
         font-size: 20px;
         top: 12%;
     }
 
-    .icon{
+    .icon {
         width: 40px !important;
         height: 40px !important;
     }
-    .sitename{
+
+    .sitename {
         width: 40%;
         height: 40px;
-        
+
     }
-    .sitename a{
+
+    .sitename a {
         font-size: 30px;
     }
 
 
 
     /* right side */
-    .nickname{
-        
+    .nickname {
+
         width: 23%;
         height: 40px;
     }
-    .nickname a{
+
+    .nickname a {
         font-size: 30px;
     }
 
 
-    .rond button{
+    .rond button {
         height: 40px;
     }
 
@@ -663,26 +751,32 @@ a:hover{
         height: 40px;
         width: 150px;
     }
+
     .sort {
         height: 40px;
         width: 100px;
     }
-    form button{
-        width:  35px;
+
+    form button {
+        width: 35px;
         height: 40px;
     }
-    .search{
+
+    .search {
         width: 25px;
     }
-    .arrondi input{
+
+    .arrondi input {
         height: 40px;
         width: 300px;
     }
-    .arrondi input:focus{
+
+    .arrondi input:focus {
         height: 36px;
     }
+
     /* footer */
-    .footer a{
+    .footer a {
         font-size: 23px;
     }
 }
@@ -700,138 +794,155 @@ a:hover{
 
 
 
-@media (min-width: 750px) and (max-width: 999px){
-    button{
+@media (min-width: 750px) and (max-width: 999px) {
+    button {
         font-size: 11px;
     }
-    .left{
+
+    .left {
         font-size: 10px;
     }
-    
-    .avatar{
+
+    .avatar {
         height: 30%;
     }
-    .vide{
+
+    .vide {
         padding-bottom: 110px;
     }
 
-    .follow button{
+    .follow button {
         height: 30px;
-        
+
     }
-    .followers{
+
+    .followers {
         height: 29px;
-        
+
     }
-    .description{
+
+    .description {
         font-size: 9px;
         min-height: 80px;
         max-height: 90px;
         margin: 10px 0 20px 20px;
-        
+
     }
+
     .edit {
         font-size: 11px;
         top: 12%;
     }
 
-    .icon{
+    .icon {
         width: 23px !important;
         height: 23px !important;
     }
-    .reseau{
+
+    .reseau {
         gap: 20px;
     }
-    .sitename{
+
+    .sitename {
         width: 45%;
         height: 25px;
         padding-right: 10px;
     }
-    .sitename img{
+
+    .sitename img {
         height: 22px;
         width: 22px;
     }
-    .sitename a{
+
+    .sitename a {
         font-size: 14px;
     }
 
 
 
     /* right side */
-    .nombres{
+    .nombres {
         font-size: 10px;
-        
-    }
-    .show_icon{
-        height: 20px;
-        width: 25px;
-        
+
     }
 
-    .nickname{
+    .show_icon {
+        height: 20px;
+        width: 25px;
+
+    }
+
+    .nickname {
         width: 25%;
         height: 25px;
     }
-    .nickname img{
+
+    .nickname img {
         height: 25px;
         width: 25px;
     }
-    .nickname a{
+
+    .nickname a {
         font-size: 14px;
     }
 
-    
 
-    .rond button{
+
+    .rond button {
         font-size: 10px;
         height: 30px;
         width: 70px;
     }
 
-   
+
     .filter {
         font-size: 10px;
         height: 30px;
         width: 90px;
-        
+
     }
-   
-    .arrond img{
+
+    .arrond img {
         height: 20px;
         width: 16px;
     }
+
     .sort {
         font-size: 10px;
         height: 30px;
         width: 50px;
     }
-    form button{
-        width:  30px;
+
+    form button {
+        width: 30px;
         height: 30px;
     }
-    .search{
-        
+
+    .search {
+
         width: 20px;
     }
-    .arrondi input{
+
+    .arrondi input {
         font-size: 10px;
         height: 30px;
         width: 100px;
     }
-    .arrondi input:focus{
+
+    .arrondi input:focus {
         height: 26px;
     }
 
-    .edit{
+    .edit {
         height: 30px;
     }
 
 
     /* footer */
-    .footer a{
+    .footer a {
         font-size: 12px;
     }
-        
+
 }
 
 
@@ -839,90 +950,106 @@ a:hover{
 
 
 @media (min-width: 1000px) and (max-width: 1199px) {
-        button{
+    button {
         font-size: 13px;
     }
-    .left{
+
+    .left {
         font-size: 13px;
     }
-    .bannier{
-    height: 40vh;
-    width: 100%;
+
+    .bannier {
+        height: 40vh;
+        width: 100%;
     }
-    .avatar{
+
+    .avatar {
         height: 30%;
     }
-    .vide{
+
+    .vide {
         padding-bottom: 110px;
     }
- 
-    .follow button{
+
+    .follow button {
         height: 35px;
-        
+
     }
-    .followers{
+
+    .followers {
         height: 35px;
     }
-    .description{
+
+    .description {
         font-size: 12px;
         min-height: 110px;
         max-height: 120px;
 
     }
+
     .edit {
         font-size: 13px;
         top: 12%;
     }
 
-    .icon{
+    .icon {
         width: 25px !important;
         height: 25px !important;
     }
-    .reseau{
+
+    .reseau {
         gap: 20px;
     }
-    .sitename{
+
+    .sitename {
         width: 45%;
         height: 30px;
     }
-    .sitename img{
+
+    .sitename img {
         height: 25px;
         width: 25px;
     }
-    .sitename a{
+
+    .sitename a {
         font-size: 16px;
     }
 
 
 
     /* right side */
-    .nombres{
+    .nombres {
         font-size: 12px;
         margin-left: 0;
     }
-    .show_icon{
+
+    .show_icon {
         height: 20px;
         width: 25px;
-        
+
     }
-    .show{
+
+    .show {
         gap: 8px;
     }
-    .nickname{
-        
+
+    .nickname {
+
         width: 25%;
         height: 30px;
     }
-    .nickname img{
+
+    .nickname img {
         height: 25px;
         width: 25px;
     }
-    .nickname a{
+
+    .nickname a {
         font-size: 16px;
     }
 
 
-    .rond button{
+    .rond button {
         font-size: 11px;
         height: 35px;
         width: 100px;
@@ -933,30 +1060,35 @@ a:hover{
         font-size: 11px;
         height: 35px;
         width: 100px;
-        
+
     }
 
-    .arrond img{
+    .arrond img {
         height: 22px;
         width: 18px;
     }
+
     .sort {
         font-size: 11px;
         height: 35px;
         width: 70px;
     }
-    form button{
-        width:  35px;
+
+    form button {
+        width: 35px;
         height: 35px;
     }
-    .search{
+
+    .search {
         width: 25px;
     }
-    .arrondi input{
+
+    .arrondi input {
         height: 34px;
         width: 130px;
     }
-    .arrondi input:focus{
+
+    .arrondi input:focus {
         height: 30px;
     }
 
@@ -964,25 +1096,28 @@ a:hover{
 
 
     /* footer */
-    .footer a{
+    .footer a {
         font-size: 14px;
     }
-    
+
 }
 
 @media (max-width: 480px) {
     .tous {
         flex-direction: column;
     }
+
     .left {
         position: relative;
         width: 100%;
         height: auto;
     }
+
     .right {
         margin-left: 0;
         width: 100%;
     }
+
     .edit {
         width: auto;
         padding: 5px 10px;
@@ -991,42 +1126,52 @@ a:hover{
         right: 15px;
         z-index: 20;
     }
+
     .violet {
         height: 120px;
         width: 100%;
     }
+
     .avatar {
         position: absolute;
-        top: 120px;
+        top: 60px;
         left: 50%;
         height: 100px;
         width: 100px;
         transform: translate(-50%, -50%) !important;
     }
+
     .bannier {
         height: 25vh;
     }
+
     .sitename {
         width: 80%;
     }
+
     .vide {
         padding-bottom: 75px;
     }
+
     .description {
         width: 90%;
         margin: 20px auto;
     }
+
     .follow {
         width: 90%;
     }
+
     .nickname {
         font-size: 16px;
     }
+
     .second {
         flex-direction: column;
         align-items: center;
         gap: 15px;
     }
+
     .rond {
         display: flex;
         flex-wrap: wrap;
@@ -1034,50 +1179,62 @@ a:hover{
         gap: 10px;
         width: 100%;
     }
+
     .rond button {
         width: auto;
         padding: 0 15px;
     }
+
     .arrondi {
         flex-direction: column;
         align-items: center;
         width: 100%;
     }
+
     .arrondi form {
         width: 90%;
         display: flex;
         justify-content: center;
         margin: 0 auto;
     }
+
     .arrondi input {
         width: 100%;
     }
+
     .filter {
         width: 90%;
         margin: 0 auto;
         justify-content: center;
     }
+
     .games_block {
         grid-template-columns: 1fr;
         padding: 0 10px;
     }
+
     .game {
         width: 90%;
         margin: 0 auto;
     }
+
     .footer {
         margin-left: 0;
         width: 100%;
     }
-    .reseau-right, .reseau-left {
+
+    .reseau-right,
+    .reseau-left {
         width: 100%;
         gap: 30px;
     }
+
     .liens {
         flex-direction: column;
         align-items: center;
         gap: 15px;
     }
+
     .reseau img {
         width: 25px;
         height: 25px;
@@ -1088,15 +1245,18 @@ a:hover{
     .tous {
         flex-direction: column;
     }
+
     .left {
         position: relative;
         width: 100%;
         height: auto;
     }
+
     .right {
         margin-left: 0;
         width: 100%;
     }
+
     .avatar {
         position: absolute;
         top: 150px;
@@ -1105,19 +1265,24 @@ a:hover{
         width: 120px;
         transform: translate(-50%, -50%) !important;
     }
+
     .bannier {
         height: 30vh;
     }
+
     .vide {
         padding-bottom: 85px;
     }
+
     .games_block {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .footer {
         margin-left: 0;
         width: 100%;
     }
+
     .second {
         flex-direction: column;
         align-items: center;
