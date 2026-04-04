@@ -983,19 +983,25 @@ a:hover{
         margin-left: 0;
         width: 100%;
     }
+    .edit {
+        width: auto;
+        padding: 5px 10px;
+        top: 15px;
+        left: auto;
+        right: 15px;
+        z-index: 20;
+    }
+    .violet {
+        height: 15vh;
+        width: 100%;
+    }
     .avatar {
         position: absolute;
-        top: 23%;
+        top: 15vh;
         left: 50%;
         height: 100px;
         width: 100px;
         transform: translate(-50%, -50%);
-    }
-    .edit {
-        width: auto;
-        padding: 5px 10px;
-        top: 5%;
-        left: 75%;
     }
     .bannier {
         height: 25vh;
@@ -1021,6 +1027,17 @@ a:hover{
         align-items: center;
         gap: 15px;
     }
+    .rond {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+    .rond button {
+        width: auto;
+        padding: 0 15px;
+    }
     .arrondi {
         flex-direction: column;
         align-items: center;
@@ -1042,6 +1059,11 @@ a:hover{
     }
     .games_block {
         grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+    .game {
+        width: 90%;
+        margin: 0 auto;
     }
     .footer {
         margin-left: 0;

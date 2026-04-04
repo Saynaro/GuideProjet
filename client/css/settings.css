@@ -822,11 +822,35 @@ section{
     .tous { flex-direction: column; }
     .left { position: relative; width: 100%; height: auto; }
     .right { margin-left: 0; width: 100%; }
-    .avatar { position: absolute; top: 23%; left: 50%; height: 100px; width: 100px; transform: translate(-50%, -50%); }
-    .bannier { height: 25vh; }
-    .sitename { width: 80%; }
-    .vide { padding-bottom: 60px; }
-    .description { width: 90%; margin: 20px auto; }
+    .edit {
+        width: auto;
+        padding: 5px 10px;
+        top: 15px;
+        left: auto;
+        right: 15px;
+        z-index: 20;
+    }
+    .violet {
+        height: 15vh;
+        width: 100%;
+    }
+    .avatar {
+        position: absolute;
+        top: 15vh;
+        left: 50%;
+        height: 100px;
+        width: 100px;
+        transform: translate(-50%, -50%);
+    }
+    .bannier {
+        height: 25vh;
+    }
+    .sitename {
+        width: 80%;
+    }
+    .vide {
+        padding-bottom: 60px;
+    }.description { width: 90%; margin: 20px auto; }
     .follow { width: 90%; }
     .nickname { font-size: 16px; }
     .second { flex-direction: column; align-items: center; gap: 15px; }
