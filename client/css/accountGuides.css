@@ -992,16 +992,16 @@ a:hover{
         z-index: 20;
     }
     .violet {
-        height: 15vh;
+        height: 120px;
         width: 100%;
     }
     .avatar {
         position: absolute;
-        top: 15vh;
+        top: 120px;
         left: 50%;
         height: 100px;
         width: 100px;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) !important;
     }
     .bannier {
         height: 25vh;
@@ -1010,7 +1010,7 @@ a:hover{
         width: 80%;
     }
     .vide {
-        padding-bottom: 60px;
+        padding-bottom: 75px;
     }
     .description {
         width: 90%;
@@ -1099,17 +1099,17 @@ a:hover{
     }
     .avatar {
         position: absolute;
-        top: 25%;
+        top: 150px;
         left: 50%;
         height: 120px;
         width: 120px;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) !important;
     }
     .bannier {
         height: 30vh;
     }
     .vide {
-        padding-bottom: 80px;
+        padding-bottom: 85px;
     }
     .games_block {
         grid-template-columns: repeat(2, 1fr);
