@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient({
-  log: 
+  log:
     process.env.NODE_ENV === "development"   // If in development, log queries, errors, and warnings
-    ? ['query', 'error', 'warn']              // If in production, only log errors
-    : ['error'],                              // utile for debugging and monitoring database interactions during development
+      ? ['query', 'error', 'warn']              // If in production, only log errors
+      : ['error'],                              // utile for debugging and monitoring database interactions during development
 });
 
 const connectDB = async () => {

@@ -969,3 +969,136 @@ a:hover{
     }
     
 }
+
+@media (max-width: 480px) {
+    .tous {
+        flex-direction: column;
+    }
+    .left {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .right {
+        margin-left: 0;
+        width: 100%;
+    }
+    .avatar {
+        position: absolute;
+        top: 23%;
+        left: 50%;
+        height: 100px;
+        width: 100px;
+        transform: translate(-50%, -50%);
+    }
+    .edit {
+        width: auto;
+        padding: 5px 10px;
+        top: 5%;
+        left: 75%;
+    }
+    .bannier {
+        height: 25vh;
+    }
+    .sitename {
+        width: 80%;
+    }
+    .vide {
+        padding-bottom: 60px;
+    }
+    .description {
+        width: 90%;
+        margin: 20px auto;
+    }
+    .follow {
+        width: 90%;
+    }
+    .nickname {
+        font-size: 16px;
+    }
+    .second {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .arrondi {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .arrondi form {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .arrondi input {
+        width: 100%;
+    }
+    .filter {
+        width: 90%;
+        margin: 0 auto;
+        justify-content: center;
+    }
+    .games_block {
+        grid-template-columns: 1fr;
+    }
+    .footer {
+        margin-left: 0;
+        width: 100%;
+    }
+    .reseau-right, .reseau-left {
+        width: 100%;
+        gap: 30px;
+    }
+    .liens {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .reseau img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tous {
+        flex-direction: column;
+    }
+    .left {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .right {
+        margin-left: 0;
+        width: 100%;
+    }
+    .avatar {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        height: 120px;
+        width: 120px;
+        transform: translate(-50%, -50%);
+    }
+    .bannier {
+        height: 30vh;
+    }
+    .vide {
+        padding-bottom: 80px;
+    }
+    .games_block {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .footer {
+        margin-left: 0;
+        width: 100%;
+    }
+    .second {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}

@@ -93,3 +93,29 @@ body {
 .delete-button:hover {
     background-color: #cc0000;
 }
+
+@media (max-width: 480px) {
+    .guide-full-content {
+        padding: 10px;
+        margin: 20px auto;
+    }
+    #guide-title {
+        font-size: 1.8rem;
+    }
+    .content-text {
+        padding: 15px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .guide-full-content {
+        padding: 15px;
+    }
+    #guide-title {
+        font-size: 2rem;
+    }
+    .guide-images-grid img {
+        max-height: 300px;
+    }
+}

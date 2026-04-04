@@ -753,3 +753,38 @@ form button:hover{
 
     }
 }
+
+@media (max-width: 480px) {
+    .back_img { height: 25vh; }
+    .haut { justify-content: center; }
+    .nickname { font-size: 16px; border-radius: 0; }
+    .ajoute { width: 70px; padding: 0 5px; border-radius: 0; }
+    .nick { height: 40px; gap: 8px; }
+    .nickname img.right-avatar, .nick svg { width: 20px; height: 20px; }
+    .titre { height: 12%; width: 45%; bottom: 20%; left: 5%; }
+    .second { flex-direction: column; align-items: center; gap: 15px; margin: 15px auto; }
+    .rond button { width: 120px; height: 35px; font-size: 14px; }
+    .arrondi { flex-direction: column; align-items: center; width: 100%; }
+    form { width: 90%; }
+    .arrondi input { width: 100%; font-size: 14px; }
+    .filter, .sort { width: 90%; justify-content: center; margin: 0 auto; }
+    .pub { display: none; }
+    .container { flex-direction: column; align-items: center; width: 100%; }
+    .games_block { width: 95%; grid-template-columns: 1fr; padding: 0; gap: 20px; }
+    .game { width: 80%; margin: 0 auto; border-radius: 8px; }
+    .footer { width: 100%; margin: 30px 0; }
+    .liens { flex-direction: column; align-items: center; gap: 15px; }
+    .reseau { width: 100%; gap: 30px; margin-bottom: 30px; }
+}
+
+@media (max-width: 768px) {
+    .back_img { height: 30vh; }
+    .titre { width: 40%; bottom: 15%; }
+    .second { flex-direction: column; gap: 20px; align-items: center; }
+    form { width: 300px; }
+    .arrondi input { width: 100%; }
+    .container { flex-direction: column; align-items: center; }
+    .pub { display: flex; flex-direction: row; width: 90%; height: 100px; margin: 0 0 20px 0; gap: 20px; }
+    .pub1, .pub2 { height: 100%; width: 50%; margin-bottom: 0; }
+    .games_block { width: 90%; grid-template-columns: repeat(2, 1fr); padding: 0; gap: 15px; }
+}

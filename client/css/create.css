@@ -188,3 +188,63 @@ h3{
 .liens a:hover{
     color: rgb(153, 153, 153);
 }
+
+@media (max-width: 480px) {
+    .back_img {
+        height: 25vh;
+    }
+    .sitename {
+        font-size: 16px;
+        height: 30px;
+        padding-right: 20px;
+    }
+    .nickname {
+        font-size: 16px;
+        height: 30px;
+    }
+    .nickname img.right-avatar {
+        width: 20px;
+        height: 20px;
+    }
+    .choice_container {
+        width: 90%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .choice {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .choice h3 {
+        align-self: center;
+        margin-bottom: 5px;
+    }
+    .choice button {
+        width: 100%;
+        height: 50px;
+        font-size: 18px;
+    }
+    .liens {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .back_img {
+        height: 30vh;
+    }
+    .choice_container {
+        width: 80%;
+        height: auto;
+    }
+    .choice {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .choice h3 {
+        align-self: center;
+    }
+}

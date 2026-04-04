@@ -30,6 +30,7 @@ body {
     font-size: 2.5rem;
     margin-bottom: 20px;
     background: linear-gradient(90deg, var(--primary-color), var(--accent));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -152,4 +153,27 @@ button[type="submit"]:hover {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 1.8rem;
+    }
+    .game-image {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+    }
+    .guide-form {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    .guide-form {
+        max-width: 95%;
+    }
 }
